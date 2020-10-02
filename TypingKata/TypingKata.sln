@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1169
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataShell", "KataShell\KataShell.csproj", "{E1E3C031-4B9C-4337-B4EC-5ACA3DB37A5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainer", "KataTrainer\KataTrainer.csproj", "{5A3D658B-B676-421C-81C0-68B914746488}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E1E3C031-4B9C-4337-B4EC-5ACA3DB37A5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E3C031-4B9C-4337-B4EC-5ACA3DB37A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E3C031-4B9C-4337-B4EC-5ACA3DB37A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E3C031-4B9C-4337-B4EC-5ACA3DB37A5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A3D658B-B676-421C-81C0-68B914746488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A3D658B-B676-421C-81C0-68B914746488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9683A3F9-F62E-401C-8FD0-1E685274F1AD}
+	EndGlobalSection
+EndGlobal
