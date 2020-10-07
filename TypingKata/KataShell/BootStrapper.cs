@@ -1,10 +1,9 @@
-﻿using System;
-using System.Configuration;
-using System.Xml;
+﻿using System.IO;
+using System.Linq;
+using System.Reflection;
 using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
-using KataTrainer;
 using log4net;
 
 namespace TypingKata {
@@ -49,22 +48,45 @@ namespace TypingKata {
             //configure log path here.
         }
 
-
+        /// <summary>
+        /// Loads all modules assemblies at Run time.
+        /// This works by searching the output files of the executing assembly and looks for any .dll files ending with "Module"
+        /// and loads any classes that inherit the AutoFac.Module class.
+        /// In order to load an assembly module the project *must* end with Module or it won't find it and *must* be referenced in Shell.
+        /// </summary>
+        /// <param name="builder">The container builder that loads the modules.</param>
+        /// <returns>Module registrar to enable dynamic loading of modules.</returns>
         private static IModuleRegistrar LoadModules(ContainerBuilder builder) {
 
-            //get assemblies of Modules - for this project only a few modules will be loaded
-            //but if ever expanded this process should be dynamically loaded.
-            var kataTrainerAssembly = typeof(KataTrainerModule).Assembly;
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            //Register Modules without parameters
-            //Return a registrar to add more modules at runtime if needed.
-            return builder.RegisterAssemblyModules(kataTrainerAssembly);
+            if (string.IsNullOrWhiteSpace(path)) {
+                return null;
+            }
+
+            var assemblies = Directory.GetFiles(path, "*Module.dll", SearchOption.TopDirectoryOnly)
+                .Select(Assembly.LoadFrom);
+
+            return builder.RegisterAssemblyModules(assemblies.ToArray());
         }
 
+        /// <summary>
+        /// Resolve a type with a given scope.
+        /// </summary>
+        /// <typeparam name="T">The interface to resolve.</typeparam>
+        /// <param name="scope">The scope to resolve the interface from.</param>
+        /// <returns>Resolved type.</returns>
         public static T Resolve<T>(ILifetimeScope scope) {
             return scope.Resolve<T>();
         }
 
+        /// <summary>
+        /// Resolve a type with a given scope with parameters.
+        /// </summary>
+        /// <typeparam name="T">The interface to resolve.</typeparam>
+        /// <param name="scope">The scope to resolve the interface from.</param>
+        /// <param name="parameters">Parameters to be passed if the concrete classes constructor is not parameterless.</param>
+        /// <returns>Resolved type.</returns>
         public static T Resolve<T>(ILifetimeScope scope, Parameter[] parameters) {
             return scope.Resolve<T>(parameters);
         }   
