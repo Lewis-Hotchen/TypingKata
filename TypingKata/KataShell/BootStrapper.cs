@@ -11,7 +11,7 @@ namespace TypingKata {
         private static readonly ILog Log = LogManager.GetLogger("AppLog");
         private static RootViewModel _rootViewModel;
 
-        private static IModuleRegistrar moduleRegistrar;
+        private static IModuleRegistrar _moduleRegistrar;
 
         public static IContainer Container { get; private set; }
 
@@ -21,19 +21,19 @@ namespace TypingKata {
 
         public static void Start() {
 
-            //Configure App.Config to set log path to documents
-            ConfigureLog();
+            var builder = new ContainerBuilder();
+
+            ConfigureLog(builder);
 
             Log.Info("BootStrapper Starting...");
-
-            var builder = new ContainerBuilder();
+            Log.Info("Log configured");
 
             builder.RegisterType(typeof(RootViewModel));
 
             Log.Info("Loading Modules...");
-            moduleRegistrar = LoadModules(builder);
+            _moduleRegistrar = LoadModules(builder);
             Log.Info("Modules Loaded");
-                
+            
             Container = builder.Build();
 
             Log.Info("Container Built");
@@ -44,8 +44,8 @@ namespace TypingKata {
             }
         }
 
-        private static void ConfigureLog() {
-            //configure log path here.
+        private static void ConfigureLog(ContainerBuilder builder) {
+            log4net.Config.XmlConfigurator.Configure();
         }
 
         /// <summary>
@@ -66,6 +66,8 @@ namespace TypingKata {
 
             var assemblies = Directory.GetFiles(path, "*Module.dll", SearchOption.TopDirectoryOnly)
                 .Select(Assembly.LoadFrom);
+
+            log.Debug($"Found {assemblies.Count()} module assemblies");
 
             return builder.RegisterAssemblyModules(assemblies.ToArray());
         }

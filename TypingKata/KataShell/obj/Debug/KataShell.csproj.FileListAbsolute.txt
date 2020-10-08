@@ -50,3 +50,7 @@ E:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataSpeedProfilerModule.dll.config
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataTrainerModule.pdb
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataTrainerModule.dll.config
+E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\Autofac.log4net.dll
+E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\Autofac.log4net.pdb
+E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\log4net.config
+E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata_Content.g.cs
