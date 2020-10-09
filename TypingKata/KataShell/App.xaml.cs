@@ -8,7 +8,10 @@ namespace TypingKata {
 
 
         public App() {
-
+            
+            //Work around to allow some "dependency injection" in my BootStrapper class before the container is actually configured
+            //testing purposes.
+            BootStrapper.Log4NetConfigurator = new Log4NetConfigurator(); 
             BootStrapper.Start();
         }
 

@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Autofac;
@@ -8,35 +11,24 @@ using log4net;
 
 namespace TypingKata {
     public static class BootStrapper {
+
+        private static int noOfContainerBuilds;
+
         private static readonly ILog Log = LogManager.GetLogger("AppLog");
         private static RootViewModel _rootViewModel;
-
         private static IModuleRegistrar _moduleRegistrar;
-
         public static IContainer Container { get; private set; }
-
         public static RootViewModel RootViewModel => _rootViewModel;
-
-        private static readonly ILog log = LogManager.GetLogger(typeof(BootStrapper));
+        public static ILog4NetConfigurator Log4NetConfigurator;
 
         public static void Start() {
-
+            noOfContainerBuilds = 0;
             var builder = new ContainerBuilder();
-
-            ConfigureLog(builder);
+            ConfigureContainer(builder);    
+            ConfigureLog(Log4NetConfigurator);
 
             Log.Info("BootStrapper Starting...");
             Log.Info("Log configured");
-
-            builder.RegisterType(typeof(RootViewModel));
-
-            Log.Info("Loading Modules...");
-            _moduleRegistrar = LoadModules(builder);
-            Log.Info("Modules Loaded");
-            
-            Container = builder.Build();
-
-            Log.Info("Container Built");
 
             using (var scope = Container.BeginLifetimeScope()) {
                 Log.Info("Starting Scope");
@@ -44,8 +36,26 @@ namespace TypingKata {
             }
         }
 
-        private static void ConfigureLog(ContainerBuilder builder) {
-            log4net.Config.XmlConfigurator.Configure();
+        private static void ConfigureContainer(ContainerBuilder builder) {
+            Log.Debug("Container configuration called");
+            builder.RegisterType(typeof(RootViewModel));
+            builder.RegisterType(typeof(Log4NetConfigurator));
+            builder.RegisterType<ContainerBuilderFacade>().As<IContainerBuilderFacade>();
+            Log.Info("Loading Modules...");
+            _moduleRegistrar = LoadModules(builder);
+            Log.Info("Modules Loaded");
+
+            Container = builder.Build();
+            noOfContainerBuilds++;
+            Log.Debug($"Container built ({noOfContainerBuilds}) times, with ({Container.ComponentRegistry.Registrations.Count()}) number of types.");
+        }
+
+        /// <summary>
+        /// Configures the log4net config.
+        /// </summary>
+        /// <param name="log4NetConfigurator">The configurator class that will call the configurator. Injected as dependency for testing purposes.</param>
+        private static void ConfigureLog(ILog4NetConfigurator log4NetConfigurator) {
+            log4NetConfigurator.Configure();
         }
 
         /// <summary>
@@ -67,7 +77,7 @@ namespace TypingKata {
             var assemblies = Directory.GetFiles(path, "*Module.dll", SearchOption.TopDirectoryOnly)
                 .Select(Assembly.LoadFrom);
 
-            log.Debug($"Found {assemblies.Count()} module assemblies");
+            Log.Debug($"Found {assemblies.Count()} module assemblies");
 
             return builder.RegisterAssemblyModules(assemblies.ToArray());
         }
@@ -83,6 +93,16 @@ namespace TypingKata {
         }
 
         /// <summary>
+        /// Resolve a type with a container.
+        /// </summary>
+        /// <typeparam name="T">The interface to resolve.</typeparam>
+        /// <param name="container">The container to resolve the interface from.</param>
+        /// <returns>Resolved type.</returns>
+        public static T Resolve<T>(IContainer container) {
+            return container.Resolve<T>();
+        }
+
+        /// <summary>
         /// Resolve a type with a given scope with parameters.
         /// </summary>
         /// <typeparam name="T">The interface to resolve.</typeparam>
@@ -91,6 +111,22 @@ namespace TypingKata {
         /// <returns>Resolved type.</returns>
         public static T Resolve<T>(ILifetimeScope scope, Parameter[] parameters) {
             return scope.Resolve<T>(parameters);
-        }   
+        }
+
+        /// <summary>
+        /// Register a type to the Parent container, will rebuild the container.
+        /// </summary>
+        /// <typeparam name="TImp">The type to register.</typeparam>
+        /// <typeparam name="TInt">The interface to resolve the type with.</typeparam>
+        /// <remarks>Note from AutoFac on ContainerBuilder.Update being marked obsolete:
+        /// Containers should generally be considered immutable. Register all of your dependencies before building/resolving.
+        /// If you need to change the contents of a container, you technically should rebuild the container.
+        /// As of my current running ver. of AutoFac 6.0.0 this method has been removed.
+        /// </remarks>
+        public static void RegisterType<TImp, TInt>(IContainerBuilderFacade builder) {
+            builder.RegisterType<TInt, TImp>();
+            builder.RegisterHistoryToBuilder();
+            ConfigureContainer(builder.GetCachedBuilder());
+        }
     }
-}   
+}

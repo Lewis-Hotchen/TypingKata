@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataSpeedProfilerModule", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainerModule", "KataTrainerModule\KataTrainerModule.csproj", "{5A3D658B-B676-421C-81C0-68B914746488}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataShellUnitTests", "KataShellUnitTests\KataShellUnitTests.csproj", "{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5A3D658B-B676-421C-81C0-68B914746488}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
