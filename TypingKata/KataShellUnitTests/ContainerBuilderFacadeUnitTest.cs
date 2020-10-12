@@ -21,11 +21,6 @@ namespace KataShellUnitTests {
             Assert.Contains(typeof(ResolveHelper), target.RegisterHistory.ToArray());
         }
 
-        [Test]
-        public void ShouldRegisterType() {
-            CreateTarget();
-        }
-
         private ContainerBuilderFacade CreateTarget() {
             return new ContainerBuilderFacade();
         }

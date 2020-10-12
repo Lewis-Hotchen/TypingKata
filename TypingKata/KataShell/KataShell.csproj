@@ -112,6 +112,9 @@
     <Compile Include="IRootViewModel.cs" />
     <Compile Include="Log4NetConfigurator.cs" />
     <Compile Include="RootViewModel.cs" />
+    <Compile Include="TabControlNice.xaml.cs">
+      <DependentUpon>TabControlNice.xaml</DependentUpon>
+    </Compile>
     <Page Include="RootView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -125,6 +128,10 @@
       <DependentUpon>RootView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TabControlNice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -141,7 +148,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Content Include="log4net.config">
