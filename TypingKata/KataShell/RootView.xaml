@@ -5,7 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resx="clr-namespace:TypingKata.Properties"
         mc:Ignorable="d"
-        Title="Typing Kata" Height="450" Width="800"
+        Title="Typing Kata" 
+        WindowState="Maximized"
+        Height="{x:Static SystemParameters.PrimaryScreenHeight}"
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         Background="#272727">
     <Grid>
         <TabControl Background="#272727">
@@ -13,6 +16,7 @@
                 <Style TargetType="{x:Type TabItem}" x:Key="TabItemStyle">
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="Foreground" Value="Gray"></Setter>
+                    <Setter Property="FontSize" Value="30"></Setter>
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="{x:Type TabItem}">

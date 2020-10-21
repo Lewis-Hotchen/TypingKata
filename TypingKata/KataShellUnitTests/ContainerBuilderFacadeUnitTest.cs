@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using KataShellUnitTests.HelperClasses;
+using Moq;
 using NUnit.Framework;
 using TypingKata;
 
@@ -18,7 +19,7 @@ namespace KataShellUnitTests {
             var target = CreateTarget();
             target.RegisterType<IResolveHelper, ResolveHelper>();
 
-            Assert.Contains(typeof(ResolveHelper), target.RegisterHistory.ToArray());
+            Assert.IsFalse(target.IsRegisterHistoryEmpty());
         }
 
         private ContainerBuilderFacade CreateTarget() {

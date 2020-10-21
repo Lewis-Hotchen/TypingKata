@@ -8,6 +8,7 @@ using Autofac;
 using Autofac.Core;
 using Autofac.Core.Registration;
 using log4net;
+using log4net.Core;
 
 namespace TypingKata {
     public static class BootStrapper {
@@ -40,6 +41,7 @@ namespace TypingKata {
             Log.Debug("Container configuration called");
             builder.RegisterType(typeof(RootViewModel));
             builder.RegisterType(typeof(Log4NetConfigurator));
+            builder.RegisterType<LogImpl>().As<ILog>();
             builder.RegisterType<ContainerBuilderFacade>().As<IContainerBuilderFacade>();
             Log.Info("Loading Modules...");
             _moduleRegistrar = LoadModules(builder);
@@ -123,10 +125,9 @@ namespace TypingKata {
         /// If you need to change the contents of a container, you technically should rebuild the container.
         /// As of my current running ver. of AutoFac 6.0.0 this method has been removed.
         /// </remarks>
-        public static void RegisterType<TImp, TInt>(IContainerBuilderFacade builder) {
-            builder.RegisterType<TInt, TImp>();
-            builder.RegisterHistoryToBuilder();
-            ConfigureContainer(builder.GetCachedBuilder());
+        public static void RegisterType<TImp, TInt>(IContainerBuilderFacade builder)
+        {
+            ConfigureContainer(builder.RegisterType<TInt, TImp>().Build().GetCachedBuilder());
         }
     }
 }

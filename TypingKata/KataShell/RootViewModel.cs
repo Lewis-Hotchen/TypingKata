@@ -4,7 +4,8 @@ namespace TypingKata {
     public class RootViewModel : ViewModelBase, IRootViewModel {
 
 
-        public RootViewModel() {
+        public RootViewModel(IContainerBuilderFacade builderFacade) {
+            builderFacade.ClearHistory();
         }
     }
 }
