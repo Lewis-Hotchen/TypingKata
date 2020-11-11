@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TypingKata;
 
 namespace KataShell {
     /// <summary>
@@ -7,6 +8,7 @@ namespace KataShell {
     public partial class RootView : Window {
         public RootView() {
             InitializeComponent();
+            DataContext = new RootViewModel(BootStrapper.Resolve<IContainerBuilderFacade>(BootStrapper.Container));
         }
     }
 }

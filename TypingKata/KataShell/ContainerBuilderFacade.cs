@@ -14,6 +14,7 @@ namespace TypingKata {
         private readonly ContainerBuilder _builder;
         private IList<Type> RegisterHistory { get; set; }
         private bool _isBuilt;
+
         /// <summary>
         /// Instantiates new <see cref="ContainerBuilderFacade"/>.
         /// </summary>
