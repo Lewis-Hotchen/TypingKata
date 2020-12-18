@@ -4071,6 +4071,9 @@
         <member name="M:Autofac.Core.Registration.DefaultRegisteredServicesTracker.ServiceRegistrationsFor(Autofac.Core.Service)">
             <inheritdoc/>
         </member>
+        <member name="M:Autofac.Core.Registration.DefaultRegisteredServicesTracker.Complete">
+            <inheritdoc/>
+        </member>
         <member name="M:Autofac.Core.Registration.DefaultRegisteredServicesTracker.Dispose(System.Boolean)">
             <summary>
             Releases unmanaged and - optionally - managed resources.
@@ -4265,6 +4268,12 @@
             Fired when an <see cref="T:Autofac.Core.IRegistrationSource"/> is added to the registry.
             </summary>
         </member>
+        <member name="M:Autofac.Core.Registration.IRegisteredServicesTracker.Complete">
+            <summary>
+            Should be called prior to the construction of a <see cref="T:Autofac.Core.Registration.ComponentRegistry" /> to
+            indicate that the tracker is complete, and requested service information should no longer be ephemeral.
+            </summary>
+        </member>
         <member name="P:Autofac.Core.Registration.IRegisteredServicesTracker.Registrations">
             <summary>
             Gets the registered components.
@@ -4438,12 +4447,7 @@
             <param name="restrictedRootScopeLifetime">The scope to which registrations are restricted.</param>
         </member>
         <member name="M:Autofac.Core.Registration.ScopeRestrictedRegisteredServicesTracker.AddRegistration(Autofac.Core.IComponentRegistration,System.Boolean,System.Boolean)">
-            <summary>
-            Adds a registration to the list of registered services.
-            </summary>
-            <param name="registration">The registration to add.</param>
-            <param name="preserveDefaults">Indicates whehter the defaults should be preserved.</param>
-            <param name="originatedFromSource">Indicates whether this is an explicitly added registration or that it has been added by a different source.</param>
+            <inheritdoc/>
         </member>
         <member name="T:Autofac.Core.Registration.ServiceMiddlewareSourceRegistrar">
             <summary>
@@ -4510,11 +4514,6 @@
             Gets a value indicating whether the first time a service is requested, initialization (e.g. reading from sources)
             happens. This value will then be set to true. Calling many methods on this type before
             initialization is an error.
-            </summary>
-        </member>
-        <member name="P:Autofac.Core.Registration.ServiceRegistrationInfo.RedirectionTargetRegistration">
-            <summary>
-            Gets the target registration of a service redirection applied by a particular piece of middleware.
             </summary>
         </member>
         <member name="P:Autofac.Core.Registration.ServiceRegistrationInfo.InitializationDepth">
@@ -4607,6 +4606,13 @@
         <member name="M:Autofac.Core.Registration.ServiceRegistrationInfo.ToString">
             <inheritdoc/>
         </member>
+        <member name="M:Autofac.Core.Registration.ServiceRegistrationInfo.CloneUninitialized">
+            <summary>
+            Creates a copy of an uninitialized <see cref="T:Autofac.Core.Registration.ServiceRegistrationInfo"/>, preserving existing registrations and custom middleware.
+            </summary>
+            <returns>A new service registration info block.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown if the service registration has been initialized already.</exception>
+        </member>
         <member name="P:Autofac.Core.Registration.ServiceRegistrationInfo.Autofac#Core#Resolving#Pipeline#IResolvePipelineBuilder#Middleware">
             <inheritdoc/>
         </member>
@@ -4639,6 +4645,11 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Autofac.Core.Registration.ServiceRegistrationInfoResources.NotAfterInitialization">
+            <summary>
+              Looks up a localized string similar to The operation is only valid before the object is initialized..
             </summary>
         </member>
         <member name="P:Autofac.Core.Registration.ServiceRegistrationInfoResources.NotDuringInitialization">
@@ -5163,7 +5174,7 @@
         </member>
         <member name="F:Autofac.Core.Resolving.Middleware.ResolveEventType.OnRelease">
             <summary>
-            Event type for the OnRelease event registered by <see cref="M:Autofac.RegistrationExtensions.OnRelease``3(Autofac.Builder.IRegistrationBuilder{``0,``1,``2},System.Action{``0})"/>
+            Event type for the OnRelease event registered by <see cref="M:Autofac.RegistrationExtensions.OnRelease``3(Autofac.Builder.IRegistrationBuilder{``0,``1,``2},System.Action{``0})"/>.
             </summary>
         </member>
         <member name="T:Autofac.Core.Resolving.Pipeline.DefaultResolveRequestContext">
@@ -8381,11 +8392,6 @@
         <member name="P:Autofac.Features.OpenGenerics.OpenGenericServiceBinderResources.ImplementorMustBeOpenGenericTypeDefinition">
             <summary>
               Looks up a localized string similar to The implementation type &apos;{0}&apos; is not an open generic type definition..
-            </summary>
-        </member>
-        <member name="P:Autofac.Features.OpenGenerics.OpenGenericServiceBinderResources.InterfaceIsNotImplemented">
-            <summary>
-              Looks up a localized string similar to The implementation type &apos;{0}&apos; does not support the interface &apos;{1}&apos;..
             </summary>
         </member>
         <member name="P:Autofac.Features.OpenGenerics.OpenGenericServiceBinderResources.ServiceTypeMustBeOpenGenericTypeDefinition">
@@ -11668,6 +11674,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Autofac.TypeExtensionsResources.MemberNotFound">
+            <summary>
+              Looks up a localized string similar to Requested type member cannot be found..
+            </summary>
+        </member>
         <member name="P:Autofac.TypeExtensionsResources.NotOpenGenericType">
             <summary>
               Looks up a localized string similar to The type &apos;{0}&apos; is not an open generic class or interface type so it won&apos;t work with methods that act on open generics..
@@ -12314,6 +12325,124 @@
             <summary>
             Signal attribute for static analysis that indicates a helper method is
             validating arguments for <see langword="null" />.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes">
+            <summary>
+            Fake version for pre-net-5.0 targets.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicParameterlessConstructor">
+            <summary>
+            Specifies the default, parameterless public constructor.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicConstructors">
+            <summary>
+            Specifies all public constructors.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicConstructors">
+            <summary>
+            Specifies all non-public constructors.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicMethods">
+            <summary>
+            Specifies all public methods.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicMethods">
+            <summary>
+            Specifies all non-public methods.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicFields">
+            <summary>
+            Specifies all public fields.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicFields">
+            <summary>
+            Specifies all non-public fields.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicNestedTypes">
+            <summary>
+            Specifies all public nested types.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicNestedTypes">
+            <summary>
+            Specifies all non-public nested types.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicProperties">
+            <summary>
+            Specifies all public properties.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicProperties">
+            <summary>
+            Specifies all non-public properties.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.PublicEvents">
+            <summary>
+            Specifies all public events.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes.NonPublicEvents">
+            <summary>
+            Specifies all non-public events.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute">
+            <summary>
+            Fake attribute for older versions.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute.#ctor(System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute"/> class
+            with the specified member types.
+            </summary>
+            <param name="memberTypes">The types of members dynamically accessed.</param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMembersAttribute.MemberTypes">
+            <summary>
+            Gets the <see cref="T:System.Diagnostics.CodeAnalysis.DynamicallyAccessedMemberTypes"/> which specifies the type
+            of members dynamically accessed.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute">
+            <summary>
+            Indicates that the specified method requires dynamic access to code that is not referenced
+            statically, for example through <see cref="N:System.Reflection"/>.
+            </summary>
+            <remarks>
+            This allows tools to understand which methods are unsafe to call when removing unreferenced
+            code from an application.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute"/> class
+            with the specified message.
+            </summary>
+            <param name="message">
+            A message that contains information about the usage of unreferenced code.
+            </param>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.Message">
+            <summary>
+            Gets a message that contains information about the usage of unreferenced code.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.CodeAnalysis.RequiresUnreferencedCodeAttribute.Url">
+            <summary>
+            Gets or sets an optional URL that contains more information about the method,
+            why it requries unreferenced code, and what options a consumer has to deal with it.
             </summary>
         </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">

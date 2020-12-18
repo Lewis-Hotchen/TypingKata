@@ -16,3 +16,12 @@ E:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfo.cs
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.dll
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.deps.json
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csprojAssemblyReference.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csproj.CoreCompileInputs.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfoInputs.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfo.cs
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.pdb

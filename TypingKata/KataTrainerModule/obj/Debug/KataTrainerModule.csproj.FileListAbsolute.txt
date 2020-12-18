@@ -52,3 +52,33 @@ E:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll
 E:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.dll.config
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\log4net.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Buffers.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Memory.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\log4net.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Buffers.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Memory.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csprojAssemblyReference.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CoreCompileInputs.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.pdb

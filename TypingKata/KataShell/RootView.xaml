@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resx="clr-namespace:TypingKata.Properties"
+        xmlns:kataSpeedProfilerModule="clr-namespace:KataSpeedProfilerModule;assembly=KataSpeedProfilerModule"
         mc:Ignorable="d"
         Title="Typing Kata" 
         WindowState="Maximized"
@@ -79,6 +80,7 @@
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemLearning}">
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSpeedTest}">
+                    <kataSpeedProfilerModule:SpeedView></kataSpeedProfilerModule:SpeedView>
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSettings}">
                 </TabItem>

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using KataIocModule;
 using TypingKata;
 
 namespace KataShell {

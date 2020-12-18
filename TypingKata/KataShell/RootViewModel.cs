@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using KataIocModule;
 
 namespace TypingKata {
     public class RootViewModel : ViewModelBase, IRootViewModel {

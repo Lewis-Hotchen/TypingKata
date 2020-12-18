@@ -11,7 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainerModule", "KataTr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataShellUnitTests", "KataShellUnitTests\KataShellUnitTests.csproj", "{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataDataModule", "KataDataModule\KataDataModule.csproj", "{679815C8-195F-40DF-A59A-858C62A97C15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataDataModule", "KataDataModule\KataDataModule.csproj", "{679815C8-195F-40DF-A59A-858C62A97C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataIocModule", "KataIocModule\KataIocModule.csproj", "{44755BD8-0C13-4E0E-A38A-623D155A3BF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{679815C8-195F-40DF-A59A-858C62A97C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{679815C8-195F-40DF-A59A-858C62A97C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{679815C8-195F-40DF-A59A-858C62A97C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44755BD8-0C13-4E0E-A38A-623D155A3BF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44755BD8-0C13-4E0E-A38A-623D155A3BF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44755BD8-0C13-4E0E-A38A-623D155A3BF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44755BD8-0C13-4E0E-A38A-623D155A3BF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

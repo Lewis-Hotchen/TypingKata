@@ -1,4 +1,6 @@
 using Autofac;
+using KataIocModule;
+using KataShell;
 using KataShellUnitTests.HelperClasses;
 using Moq;
 using NUnit.Framework;
@@ -34,12 +36,12 @@ namespace KataShellUnitTests {
             _builder.Setup(x => x.RegisterType<It.IsAnyType, It.IsAnyType>()).Returns(containerBuilderFacade.Object);
             _builder.Setup(x => x.Build()).Returns(containerBuilderFacade.Object);
             _builder.Setup(x => x.GetCachedBuilder()).Returns(new ContainerBuilder());
-            BootStrapper.RegisterType<ResolveHelper, IResolveHelper>(_builder.Object);
+            BootStrapper.RegisterType<RootView, ResolveHelper, IResolveHelper>(_builder.Object);
             _builder.Verify();
         }
 
         public static void StartBootStrapper() {
-            BootStrapper.Start();
+            BootStrapper.Start<RootView>();
         }
     }
 }

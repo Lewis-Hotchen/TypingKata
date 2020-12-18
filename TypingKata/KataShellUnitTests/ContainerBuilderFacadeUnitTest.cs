@@ -1,9 +1,6 @@
-﻿using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+﻿using KataIocModule;
 using KataShellUnitTests.HelperClasses;
-using Moq;
 using NUnit.Framework;
-using TypingKata;
 
 namespace KataShellUnitTests {
 

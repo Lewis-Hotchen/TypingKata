@@ -1,6 +1,7 @@
 ﻿using Autofac;
+using log4net;
 
-namespace KataSpeedProfiler {
+namespace KataSpeedProfilerModule {
 
     public class KataSpeedProfilerModule : Module {
 
@@ -9,9 +10,8 @@ namespace KataSpeedProfiler {
         }
 
         protected sealed override void Load(ContainerBuilder builder) {
-
-            //stuff
-
+            builder.RegisterType<Cursor>().As<ICursor>();
+            builder.Register<ILog>(context => LogManager.GetLogger("SpeedProfilerLog"));
             base.Load(builder);
         }
     }
