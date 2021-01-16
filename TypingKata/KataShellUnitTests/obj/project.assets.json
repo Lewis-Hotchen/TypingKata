@@ -5781,11 +5781,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\KataShellUnitTests.csproj",
+      "projectUniqueName": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\KataShellUnitTests.csproj",
       "projectName": "KataShellUnitTests",
-      "projectPath": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\KataShellUnitTests.csproj",
+      "projectPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\KataShellUnitTests.csproj",
       "packagesPath": "C:\\Users\\Lewis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\obj\\",
+      "outputPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShellUnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5804,8 +5804,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShell\\KataShell.csproj": {
-              "projectPath": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShell\\KataShell.csproj"
+            "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShell\\KataShell.csproj": {
+              "projectPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataShell\\KataShell.csproj"
             }
           }
         }

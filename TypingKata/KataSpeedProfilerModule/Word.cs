@@ -6,5 +6,9 @@
         public Word(string word) {
             Chars = word.ToCharArray();
         }
+
+        public override string ToString() {
+            return new string(Chars);
+        }
     }
 }

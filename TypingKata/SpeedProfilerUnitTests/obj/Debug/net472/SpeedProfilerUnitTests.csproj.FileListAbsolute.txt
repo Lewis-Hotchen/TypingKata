@@ -1,0 +1,62 @@
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\SpeedProfilerUnitTests.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\SpeedProfilerUnitTests.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Autofac.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Castle.Core.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\CommonServiceLocator.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\log4net.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Moq.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.Extras.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Windows.Interactivity.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\nunit.framework.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Buffers.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Memory.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Numerics.Vectors.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Threading.Tasks.Extensions.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll.config
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.pdb
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csprojAssemblyReference.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CoreCompileInputs.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.AssemblyInfoInputs.cache
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.AssemblyInfo.cs
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CopyComplete
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.dll
+C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\SpeedProfilerUnitTests.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\SpeedProfilerUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Autofac.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Castle.Core.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\CommonServiceLocator.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\log4net.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Microsoft.Bcl.AsyncInterfaces.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Moq.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.Extras.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.Platform.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\GalaSoft.MvvmLight.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Windows.Interactivity.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\nunit.framework.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Buffers.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Diagnostics.DiagnosticSource.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Memory.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Numerics.Vectors.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Runtime.CompilerServices.Unsafe.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Threading.Tasks.Extensions.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll.config
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csprojAssemblyReference.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CoreCompileInputs.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.AssemblyInfoInputs.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.AssemblyInfo.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CopyComplete
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.pdb

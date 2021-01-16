@@ -184,11 +184,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\KataDataModule.csproj",
+      "projectUniqueName": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\KataDataModule.csproj",
       "projectName": "KataDataModule",
-      "projectPath": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\KataDataModule.csproj",
+      "projectPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\KataDataModule.csproj",
       "packagesPath": "C:\\Users\\Lewis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lewis\\Documents\\work backup\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\obj\\",
+      "outputPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\KataDataModule\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
