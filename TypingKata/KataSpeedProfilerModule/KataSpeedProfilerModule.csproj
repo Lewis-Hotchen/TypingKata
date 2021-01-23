@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Cursor.cs" />
     <Compile Include="ICursor.cs" />
+    <Compile Include="ITypingTimer.cs" />
     <Compile Include="IWord.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="SpeedModel.cs" />
@@ -106,6 +107,7 @@
       <DependentUpon>SpeedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpeedViewModel.cs" />
+    <Compile Include="TypingTimer.cs" />
     <Compile Include="Word.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -82,3 +82,33 @@ C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.dll.config
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\KataTrainerModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\log4net.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Buffers.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Memory.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Numerics.Vectors.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Threading.Tasks.Extensions.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Autofac.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\log4net.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\nunit.framework.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Buffers.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Memory.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Numerics.Vectors.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Threading.Tasks.Extensions.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csprojAssemblyReference.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CoreCompileInputs.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.pdb
