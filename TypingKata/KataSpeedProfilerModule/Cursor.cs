@@ -89,6 +89,12 @@ namespace KataSpeedProfilerModule {
             Setup();
         }
 
+        public void ResetCursor() {
+            CharPos = 0;
+            WordPos = 0;
+            CurrentWord = null;
+        }
+
         public Cursor(IWord firstWord) {
             Setup();
             CurrentWord = firstWord;

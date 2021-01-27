@@ -142,7 +142,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.g.resources
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.CoreCompileInputs.cache

@@ -83,7 +83,6 @@ namespace KataIocModule {
         /// Resolve a type with a given scope.
         /// </summary>
         /// <typeparam name="T">The interface to resolve.</typeparam>
-        /// <param name="scope">The scope to resolve the interface from.</param>
         /// <returns>Resolved type.</returns>
         public static T Resolve<T>() {
             return Scope.Resolve<T>();

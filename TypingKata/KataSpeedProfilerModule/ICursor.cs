@@ -8,5 +8,6 @@ namespace KataSpeedProfilerModule {
         event EventHandler WordCompletedEvent;
         bool NextChar(int increment);
         bool NextWord(int increment, IWord word);
+        void ResetCursor();
     }
 }

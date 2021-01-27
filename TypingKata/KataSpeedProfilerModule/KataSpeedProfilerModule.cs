@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using log4net;
 
 namespace KataSpeedProfilerModule {
 
@@ -8,9 +7,15 @@ namespace KataSpeedProfilerModule {
         }
 
         protected sealed override void Load(ContainerBuilder builder) {
-            builder.RegisterType<Cursor>().As<ICursor>();
 
-            //use p parameter in delegate to retrieve named parameter
+            //Parameterless registrations
+            builder.RegisterType<Cursor>().As<ICursor>();
+            builder.RegisterType<WordStack>().As<IWordStack>();
+
+            //Parameter registrations
+            builder.Register(
+                (c, p) => new Cursor(p.Named<IWord>("firstWord"))
+            ).As<ICursor>();
             builder.Register(
                 (c, p) => new TypingTimer(p.Named<double>("time"))
                 ).As<ITypingTimer>();
