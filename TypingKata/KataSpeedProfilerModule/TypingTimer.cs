@@ -2,9 +2,17 @@
 using System.Timers;
 
 namespace KataSpeedProfilerModule {
+
+    /// <summary>
+    /// Simple class that wraps a system timer.
+    /// </summary>
     public class TypingTimer : ITypingTimer {
 
         private readonly Timer _timer;
+
+        /// <summary>
+        /// Event that fires on the timer's elapsed event.
+        /// </summary>
         public event EventHandler TimeComplete;
 
         /// <summary>

@@ -20,17 +20,11 @@ namespace KataSpeedProfilerModule {
 
         public void StartTest(IWord firstWord, double seconds) {
 
-            //setup objects
-            //Timer = BootStrapper.Resolve<ITypingTimer>(new Parameter[] {new NamedParameter("time", seconds)});
-            //Cursor = firstWord != null ? 
-            //    BootStrapper.Resolve<ICursor>(new Parameter[] {new NamedParameter("firstWord", firstWord)}) : BootStrapper.Resolve<ICursor>();
+            
+        }
 
-            //UserWords = BootStrapper.Resolve<IWordStack>();
-            //ErrorWords = BootStrapper.Resolve<IWordStack>();
+        public void NextWord() {
 
-            //generate words
-
-            //start timer
         }
     }
 }
