@@ -20,7 +20,7 @@
         IWord[] GetWordsAsArray();
 
         /// <summary>
-        /// Word at the top of the stack. Acts as current word from <see cref="Cursor"/>
+        /// GeneratedWord at the top of the stack. Acts as current word from <see cref="Cursor"/>
         /// </summary>
         IWord Top { get; }
 

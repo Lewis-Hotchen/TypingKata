@@ -14,4 +14,8 @@
     <ProjectReference Include="..\KataSpeedProfilerModule\KataSpeedProfilerModule.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
 </Project>

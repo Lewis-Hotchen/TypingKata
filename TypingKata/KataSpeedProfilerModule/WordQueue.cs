@@ -49,7 +49,6 @@ namespace KataSpeedProfilerModule {
             _wordQueue.Enqueue(word);
         }
 
-
         /// <summary>
         /// Remove word from the queue.
         /// </summary>

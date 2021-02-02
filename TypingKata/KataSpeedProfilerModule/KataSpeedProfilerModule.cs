@@ -11,6 +11,9 @@ namespace KataSpeedProfilerModule {
             //Parameterless registrations
             builder.RegisterType<Cursor>().As<ICursor>();
             builder.RegisterType<WordStack>().As<IWordStack>();
+            builder.RegisterType<GeneratedWord>().As<IWord>();
+            builder.RegisterType<UserDefinedWord>().As<IWord>();
+
 
             //Parameter registrations
             builder.Register(

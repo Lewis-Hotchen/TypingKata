@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Windows.Input;
-using Autofac;
-using Autofac.Core;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using KataIocModule;
+using KataSpeedProfilerModule.Properties;
 using log4net;
 
 namespace KataSpeedProfilerModule {
@@ -24,6 +24,8 @@ namespace KataSpeedProfilerModule {
             //_model.TypingTimer.StartTimer();
         }
 
+        public string Words { get; set; }
+
         private void StartTestAction() {
             //setup test code here
             //_model.TypingTimer.StartTimer();
@@ -35,8 +37,20 @@ namespace KataSpeedProfilerModule {
         }
 
         private void NextWord() {
-            //Cursor.NextWord(0, new Word("Hello"));
-            //RaisePropertyChanged(nameof(CurrentWord));
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = "KataSpeedProfilerModule.Resources.words.txt";
+
+            using (var stream = assembly.GetManifestResourceStream(resourceName))
+            using (var reader = new StreamReader(stream ?? throw new InvalidOperationException())) {
+                var result = reader.ReadToEnd();
+                var words = MarkovChainTextGenerator.Markov(result.Split(
+                    new[] { Environment.NewLine },
+                    StringSplitOptions.None
+                ), 3, 50);
+
+                Words = words.Replace(" ", "_");
+                RaisePropertyChanged(nameof(Words));
+            }
         }
 
 

@@ -11,8 +11,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Label Foreground="AliceBlue" Grid.Row="0" Content="{Binding Cursor.WordPos}" />
+        <TextBlock Grid.Row="0" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap" />
         <Label Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
-        <Button Grid.Row="2" Content="Next Word" Command="{Binding NextWordCommand}" />
+        <Button Grid.Row="2" Content="Next GeneratedWord" Command="{Binding NextWordCommand}" />
     </Grid>
 </UserControl>

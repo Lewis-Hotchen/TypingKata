@@ -1,6 +1,8 @@
-﻿namespace KataSpeedProfilerModule {
+﻿using System.Collections.Generic;
+
+namespace KataSpeedProfilerModule {
     public interface IWord {
-        char[] Chars { get; }
+        IList<char> Chars { get; }
         int CharCount { get; }
     }
 }

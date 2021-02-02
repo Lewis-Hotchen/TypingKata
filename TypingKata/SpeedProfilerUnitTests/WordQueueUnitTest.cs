@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using KataSpeedProfilerModule;
+﻿using KataSpeedProfilerModule;
 using Moq;
 using NUnit.Framework;
 

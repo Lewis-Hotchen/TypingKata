@@ -12,7 +12,7 @@ namespace KataSpeedProfilerModule {
         private readonly Stack<IWord> _words;
 
         /// <summary>
-        /// Word at the top of the stack. Acts as current word from <see cref="Cursor"/>
+        /// GeneratedWord at the top of the stack. Acts as current word from <see cref="Cursor"/>
         /// </summary>
         public IWord Top => _words.Peek();
 

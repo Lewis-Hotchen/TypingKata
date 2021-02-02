@@ -144,7 +144,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Instantiate cursor with a word.
         /// </summary>
-        /// <param name="firstWord">Word to begin with.</param>
+        /// <param name="firstWord">GeneratedWord to begin with.</param>
         public Cursor(IWord firstWord) {
             Setup();
             CurrentWord = firstWord;

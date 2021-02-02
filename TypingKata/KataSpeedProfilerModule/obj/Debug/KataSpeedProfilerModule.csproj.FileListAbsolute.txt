@@ -148,3 +148,5 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.Properties.Resources.resources
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.GenerateResource.cache
