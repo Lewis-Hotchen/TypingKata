@@ -13,6 +13,15 @@ namespace KataSpeedProfilerModule {
     /// </summary>
     public static class MarkovChainTextGenerator {
 
+        /// <summary>
+        /// This markov chain text generator will chain words together
+        /// using a random list of words to create a somewhat english-like
+        /// flow of words.
+        /// </summary>
+        /// <param name="words">The words to generate from.</param>
+        /// <param name="keySize">The size of the chain.</param>
+        /// <param name="outputSize">The number of words to output.</param>
+        /// <returns></returns>
         public static string Markov(string[] words, int keySize, int outputSize) {
             if (keySize < 1) throw new ArgumentException("Key size can't be less than 1");
 
@@ -63,6 +72,12 @@ namespace KataSpeedProfilerModule {
             }
         }
 
+        /// <summary>
+        /// Join the strings together with a space.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
         private static string Join(string a, string b) {
             return a + " " + b;
         }
