@@ -2,4 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/TypingKata/.vs/TypingKata/v15/Server/sqlite3
+/TypingKata/.vs/
+/TypingKata/.vs/

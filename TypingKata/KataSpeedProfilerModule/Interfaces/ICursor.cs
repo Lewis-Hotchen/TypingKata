@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KataSpeedProfilerModule {
+namespace KataSpeedProfilerModule.Interfaces {
     /// <summary>
     /// Interface that will handle the logical cursor for the typing test
     /// </summary>

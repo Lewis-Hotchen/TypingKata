@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 

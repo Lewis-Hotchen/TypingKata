@@ -97,13 +97,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cursor.cs" />
-    <Compile Include="ICursor.cs" />
-    <Compile Include="ITypingProfiler.cs" />
-    <Compile Include="ITypingProfilerFactory.cs" />
-    <Compile Include="ITypingTimer.cs" />
-    <Compile Include="IWord.cs" />
-    <Compile Include="IWordQueue.cs" />
-    <Compile Include="IWordStack.cs" />
+    <Compile Include="Interfaces\ICursor.cs" />
+    <Compile Include="Interfaces\ITypingProfiler.cs" />
+    <Compile Include="Interfaces\ITypingProfilerFactory.cs" />
+    <Compile Include="Interfaces\ITypingTimer.cs" />
+    <Compile Include="Interfaces\IWord.cs" />
+    <Compile Include="Interfaces\IWordQueue.cs" />
+    <Compile Include="Interfaces\IWordStack.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyInputEventHandlerArgs.cs" />
     <Compile Include="MarkovChainTextGenerator.cs" />
@@ -151,6 +151,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\words.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

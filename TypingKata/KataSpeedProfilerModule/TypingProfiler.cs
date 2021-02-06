@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Autofac;
 using KataIocModule;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 

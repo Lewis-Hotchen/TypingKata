@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using KataIocModule;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 

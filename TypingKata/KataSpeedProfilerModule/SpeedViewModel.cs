@@ -6,13 +6,14 @@ using Autofac.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using KataIocModule;
+using KataSpeedProfilerModule.Interfaces;
 using log4net;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
         private readonly ITypingProfilerFactory _typingProfilerFactory;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
-        private SpeedModel _model { get; }
+        private readonly SpeedModel _model;
         private ITypingProfiler _profiler;
         public RelayCommand StartTestCommand { get; }
 

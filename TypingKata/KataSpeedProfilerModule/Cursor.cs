@@ -1,4 +1,5 @@
 ﻿using System;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 
