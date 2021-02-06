@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KataIocModule;
 
 namespace KataSpeedProfilerModule {
     /// <summary>
@@ -20,7 +21,7 @@ namespace KataSpeedProfilerModule {
     public partial class SpeedView : UserControl {
         public SpeedView() {
             InitializeComponent();
-            DataContext = new SpeedViewModel();
+            DataContext = new SpeedViewModel(BootStrapper.Resolve<ITypingProfilerFactory>());
         }
     }
 }

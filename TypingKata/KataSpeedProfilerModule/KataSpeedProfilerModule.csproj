@@ -99,11 +99,13 @@
     <Compile Include="Cursor.cs" />
     <Compile Include="ICursor.cs" />
     <Compile Include="ITypingProfiler.cs" />
+    <Compile Include="ITypingProfilerFactory.cs" />
     <Compile Include="ITypingTimer.cs" />
     <Compile Include="IWord.cs" />
     <Compile Include="IWordQueue.cs" />
     <Compile Include="IWordStack.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
+    <Compile Include="KeyInputEventHandlerArgs.cs" />
     <Compile Include="MarkovChainTextGenerator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,6 +119,7 @@
     </Compile>
     <Compile Include="SpeedViewModel.cs" />
     <Compile Include="TypingProfiler.cs" />
+    <Compile Include="TypingProfilerFactory.cs" />
     <Compile Include="TypingTimer.cs" />
     <Compile Include="GeneratedWord.cs" />
     <Compile Include="UserDefinedWord.cs" />

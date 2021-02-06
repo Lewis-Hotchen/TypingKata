@@ -32,10 +32,12 @@ namespace KataSpeedProfilerModule {
             get => _charPos;
             private set {
                 _charSetCallback = SetCharPos(value);
-                if (_charPos == CurrentWord.CharCount)
+                if (_charPos == CurrentWord?.CharCount)
                     WordCompletedEvent?.Invoke(this, new EventArgs());
             }
         }
+
+        public bool IsEndOfWord => WordPos == CurrentWord.CharCount - 1;
 
         /// <summary>
         /// The current word.
@@ -61,6 +63,10 @@ namespace KataSpeedProfilerModule {
         /// <param name="value">New character position.</param>
         /// <returns>True if successful, otherwise false.</returns>
         private bool SetCharPos(int value) {
+            if (CurrentWord == null) {
+                return false;
+            }
+
             if (value < 0) {
                 if (_charPos <= 0)
                     return false;
@@ -69,13 +75,12 @@ namespace KataSpeedProfilerModule {
                 return true;
             }
 
-            if (CurrentWord.CharCount < _charPos + value) {
-
+            if (CurrentWord.CharCount <= _charPos + value) {
+                 _charPos += value;
+                 return true;
             }
 
-            _charPos += value;
-
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -113,6 +118,11 @@ namespace KataSpeedProfilerModule {
         /// <param name="word">The new word.</param>
         /// <returns>True if successful, otherwise false.</returns>
         public bool NextWord(int increment, IWord word) {
+            if (CurrentWord == null && WordPos == 0) {
+                CurrentWord = word;
+                return true;
+            }
+
             WordPos = increment;
 
             //check if word pos 
@@ -129,7 +139,7 @@ namespace KataSpeedProfilerModule {
         /// Instantiate new cursor with no word.
         /// </summary>
         public Cursor() {
-            Setup();
+            ResetCursor();
         }
 
         /// <summary>
@@ -139,23 +149,6 @@ namespace KataSpeedProfilerModule {
             CharPos = 0;
             WordPos = 0;
             CurrentWord = null;
-        }
-
-        /// <summary>
-        /// Instantiate cursor with a word.
-        /// </summary>
-        /// <param name="firstWord">GeneratedWord to begin with.</param>
-        public Cursor(IWord firstWord) {
-            Setup();
-            CurrentWord = firstWord;
-        }
-
-        /// <summary>
-        /// Setup the cursor.
-        /// </summary>
-        private void Setup() {
-            _wordPos = 0;
-            _charPos = 0;
             _wordSetCallback = false;
             _charSetCallback = false;
         }

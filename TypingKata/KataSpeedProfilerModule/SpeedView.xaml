@@ -10,9 +10,16 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap" />
-        <Label Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
-        <Button Grid.Row="2" Content="Next GeneratedWord" Command="{Binding NextWordCommand}" />
+        <Label Grid.Column="0" Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
+        <TextBox Grid.Column="0" Background="#272727" Foreground="AliceBlue" Grid.Row="2" Text="{Binding TestTime, Mode=TwoWay}"></TextBox>
+        <Button Grid.Column="0" Grid.Row="3" Content="Start Test" Command="{Binding StartTestCommand}" />
     </Grid>
 </UserControl>

@@ -53,7 +53,7 @@ namespace SpeedProfilerUnitTests {
         }
 
         private Cursor CreateTargetWithWord(IWord word) {
-            return new Cursor(word);
+            return new Cursor();
         }
     }
 }

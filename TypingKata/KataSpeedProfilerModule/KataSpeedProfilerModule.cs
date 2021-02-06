@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using System.Collections.Generic;
+using Autofac;
+using Autofac.Core;
+using KataIocModule;
 
 namespace KataSpeedProfilerModule {
 
@@ -7,21 +10,21 @@ namespace KataSpeedProfilerModule {
         }
 
         protected sealed override void Load(ContainerBuilder builder) {
+            //Parameter registrations
+            builder.Register(
+                (c, p) => new TypingTimer(p.Named<double>("time"))
+            ).As<ITypingTimer>();
 
             //Parameterless registrations
             builder.RegisterType<Cursor>().As<ICursor>();
             builder.RegisterType<WordStack>().As<IWordStack>();
-            builder.RegisterType<GeneratedWord>().As<IWord>();
-            builder.RegisterType<UserDefinedWord>().As<IWord>();
+            builder.RegisterType<WordQueue>().As<IWordQueue>();
+            builder.RegisterType<GeneratedWord>().As<IWord>().Keyed<IWord>("Generated");
+            builder.RegisterType<UserDefinedWord>().As<IWord>().Keyed<IWord>("User");
+            builder.RegisterType<TypingProfiler>().As<ITypingProfiler>().InstancePerLifetimeScope();
+            builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
 
-
-            //Parameter registrations
-            builder.Register(
-                (c, p) => new Cursor(p.Named<IWord>("firstWord"))
-            ).As<ICursor>();
-            builder.Register(
-                (c, p) => new TypingTimer(p.Named<double>("time"))
-                ).As<ITypingTimer>();
+            
             base.Load(builder);
         }
     }

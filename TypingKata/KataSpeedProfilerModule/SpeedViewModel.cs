@@ -1,60 +1,54 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Windows.Input;
+using Autofac;
+using Autofac.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using KataSpeedProfilerModule.Properties;
+using KataIocModule;
 using log4net;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
+        private readonly ITypingProfilerFactory _typingProfilerFactory;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private SpeedModel _model { get; }
+        private ITypingProfiler _profiler;
+        public RelayCommand StartTestCommand { get; }
 
-        public RelayCommand NextWordCommand { get; }
-        public RelayCommand StartTest { get; }
-
-        public SpeedViewModel() {
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory) {
+            _typingProfilerFactory = typingProfilerFactory;
             _model = new SpeedModel();
             Log.Debug($"model is {_model}");
-            NextWordCommand = new RelayCommand(NextWord);
-            StartTest = new RelayCommand(StartTestAction);
-            //_model.TypingTimer.TimeComplete += TypingTimerOnTimeComplete;
-            //_model.TypingTimer.StartTimer();
+            StartTestCommand = new RelayCommand(StartTest);
         }
 
         public string Words { get; set; }
+        public double TestTime { get; set; }
+        public Key KeyPressed { get; set; }
+        public bool IsKeyCorrect { get; set; }
 
-        private void StartTestAction() {
-            //setup test code here
-            //_model.TypingTimer.StartTimer();
+        /// <summary>
+        /// Start the test.
+        /// </summary>
+        private void StartTest() {
+            _profiler = _typingProfilerFactory.CreateTypingProfiler(
+                BootStrapper.Resolve<ICursor>(),
+                BootStrapper.Resolve<IWordStack>(),
+                BootStrapper.Resolve<IWordQueue>(),
+                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime) }));
+            _profiler.KeyComplete += ProfilerOnKeyComplete;
+            _profiler.Start(5, 50);
+            var words = _profiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
+            Words = string.Join("_", words);
+            RaisePropertyChanged(nameof(Words));
         }
 
-        private void TypingTimerOnTimeComplete(object sender, EventArgs e) {
-            //logic here to stop test
-            
+        private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {
+            KeyPressed = e.InputKey;
+            IsKeyCorrect = e.IsCorrect;
+            RaisePropertyChanged(nameof(KeyPressed));
+            RaisePropertyChanged(nameof(IsKeyCorrect));
         }
-
-        private void NextWord() {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "KataSpeedProfilerModule.Resources.words.txt";
-
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            using (var reader = new StreamReader(stream ?? throw new InvalidOperationException())) {
-                var result = reader.ReadToEnd();
-                var words = MarkovChainTextGenerator.Markov(result.Split(
-                    new[] { Environment.NewLine },
-                    StringSplitOptions.None
-                ), 3, 50);
-
-                Words = words.Replace(" ", "_");
-                RaisePropertyChanged(nameof(Words));
-            }
-        }
-
-
-       // public string CurrentWord => Cursor.CurrentWord?.ToString();
-       // public ICursor Cursor => _model.Cursor;
     }
 }

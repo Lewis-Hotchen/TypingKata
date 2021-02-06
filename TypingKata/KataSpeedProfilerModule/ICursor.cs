@@ -17,6 +17,11 @@ namespace KataSpeedProfilerModule {
         int CharPos { get; }
 
         /// <summary>
+        /// Determine if the cursor is at the end of the word.
+        /// </summary>
+        bool IsEndOfWord { get; }
+
+        /// <summary>
         /// The current word.
         /// </summary>
         IWord CurrentWord { get; }

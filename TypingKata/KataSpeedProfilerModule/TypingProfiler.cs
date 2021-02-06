@@ -1,53 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Windows.Input;
 using Autofac;
-using Autofac.Core;
 using KataIocModule;
 
 namespace KataSpeedProfilerModule {
 
     /// <summary>
-    /// Class that will handle the typing test.
+    /// This class will handle the
+    /// initiation and tracking of the typing test.
     /// </summary>
     public class TypingProfiler : ITypingProfiler {
 
         public ICursor Cursor { get; }
         public IWordStack UserWords { get; }
-        public IWordStack ErrorWords { get; }
+        public IList<(IWord, IWord)> ErrorWords { get; }
         public ITypingTimer Timer { get; }
         public IWordQueue Queue { get; }
-        private bool endOfWord;
+        public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
 
         /// <summary>
         /// Instantiate new TypingProfiler.
         /// </summary>
         /// <param name="cursor">The Cursor.</param>
         /// <param name="userWords">The user words.</param>
-        /// <param name="errorWords">The error words.</param>
         /// <param name="queue">The word queue.</param>
         /// <param name="timer">The timer.</param>
-        public TypingProfiler(ICursor cursor,  IWordStack userWords, IWordStack errorWords, IWordQueue queue, ITypingTimer timer) {
+        public TypingProfiler(ICursor cursor,  IWordStack userWords, IWordQueue queue, ITypingTimer timer) {
             Cursor = cursor;
             UserWords = userWords;
-            ErrorWords = errorWords;
+            ErrorWords = new List<(IWord, IWord)>();
             Queue = queue;
             Timer = timer;
             Setup();
         }
 
+        /// <summary>
+        /// Setup the class.
+        /// </summary>
         private void Setup() {
             Cursor.WordCompletedEvent += CursorOnWordCompletedEvent;
             Timer.TimeComplete += TimerOnTimeComplete;
-            QueueNewWords();
-            endOfWord = false;
         }
 
+        /// <summary>
+        /// Stop the test when the timer is complete.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimerOnTimeComplete(object sender, EventArgs e) {
-            throw new NotImplementedException();
+            StopTest();
+        }
+
+        /// <summary>
+        /// Stop the test and reset values.
+        /// </summary>
+        private void StopTest() {
+            Cursor.ResetCursor();
+            Queue.ClearQueue();
         }
 
         /// <summary>
@@ -57,6 +69,15 @@ namespace KataSpeedProfilerModule {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CursorOnWordCompletedEvent(object sender, EventArgs e) {
+
+            var userWord = UserWords.Top;
+            var generatedWord = Queue.Top;
+
+            //Add word to Error words if they are not the same.
+            if (userWord.ToString() != generatedWord.ToString()) {
+                ErrorWords.Add((userWord, generatedWord));
+            }
+
             Queue.Dequeue();
             Cursor.NextWord(1, Queue.Top);
         }
@@ -65,7 +86,7 @@ namespace KataSpeedProfilerModule {
         /// Generate words from resource using Markov algorithm.
         /// </summary>
         /// <returns>Enumerable string of words.</returns>
-        private IEnumerable<string> GetWordsFromResource() {
+        private IEnumerable<string> GetWordsFromResource(int keySize, int outputSize) {
             var assembly = Assembly.GetExecutingAssembly();
             var resourceName = "KataSpeedProfilerModule.Resources.words.txt";
 
@@ -75,41 +96,45 @@ namespace KataSpeedProfilerModule {
                 var words = MarkovChainTextGenerator.Markov(result.Split(
                     new[] { Environment.NewLine },
                     StringSplitOptions.None
-                ), 3, 50);
+                ), keySize, outputSize);
 
                 return words.Split(' ');
             }
         }
 
         /// <summary>
-        /// Start the test.
+        /// Input a character.
         /// </summary>
-        public void StartTest() {
-
-        }
-
-        public bool CharacterInput(Key key) {
-            var currWord = Cursor.CurrentWord;
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public void CharacterInput(Key key) {
             if (key == Key.Space) {
-                return endOfWord;
+                if (Cursor.IsEndOfWord) {
+                    KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
+                }
             }
 
-            if (currWord.Chars[Cursor.CharPos] == key.ToString().ToCharArray()[0]) {
+            if (Cursor.CurrentWord.Chars[Cursor.CharPos] == key.ToString().ToCharArray()[0]) {
                 Cursor.NextChar(1);
                 UserWords.Top.Chars.Add(key.ToString().ToCharArray()[0]);
-                return true;
+                KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
             }
 
-            return false;
+            KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
+        }
+
+        public void Start(int keySize, int outputSize) {
+            QueueNewWords(keySize, outputSize);
+            Cursor.NextWord(0, Queue.Top);
         }
 
         /// <summary>
         /// Queue up new words from Markov generation.
         /// </summary>
-        private void QueueNewWords() {
-            var words = GetWordsFromResource();
+        private void QueueNewWords(int keySize, int outputSize) {
+            var words = GetWordsFromResource(keySize, outputSize);
             foreach (var word in words) {
-                Queue.Enqueue(BootStrapper.Resolve<IWord>(new Parameter[]{new NamedParameter("word", word)}));
+                Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word)));
             }
         }
     }
