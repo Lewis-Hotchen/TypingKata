@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Data;
 using Autofac;
 using Autofac.Core;
 using KataIocModule;
@@ -22,6 +23,7 @@ namespace KataSpeedProfilerModule {
             builder.RegisterType<WordQueue>().As<IWordQueue>();
             builder.RegisterType<GeneratedWord>().As<IWord>().Keyed<IWord>("Generated");
             builder.RegisterType<UserDefinedWord>().As<IWord>().Keyed<IWord>("User");
+            builder.RegisterType<KeyToCharacterConverter>().As<IValueConverter>().Keyed<IValueConverter>("KeyToChar");
             builder.RegisterType<TypingProfiler>().As<ITypingProfiler>().InstancePerLifetimeScope();
             builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
 

@@ -115,10 +115,14 @@ namespace KataSpeedProfilerModule {
                 }
             }
 
-            if (Cursor.CurrentWord.Chars[Cursor.CharPos] == key.ToString().ToCharArray()[0]) {
+            //Change the case as Key.ToString() returns upper case.
+            var casedChar = char.ToUpper(Cursor.CurrentWord[Cursor.CharPos]);
+
+            if (casedChar == key.ToString().ToCharArray()[0]) {
                 Cursor.NextChar(1);
-                UserWords.Top.Chars.Add(key.ToString().ToCharArray()[0]);
+                UserWords.Top.Chars.Add(Cursor.CurrentWord[Cursor.CharPos]);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
+                Cursor.NextChar(1);
             }
 
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));

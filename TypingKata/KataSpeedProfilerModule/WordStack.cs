@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 
@@ -26,6 +28,9 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         public WordStack() {
             _words = new Stack<IWord>();
+
+            //Push one item to start the stack.
+            _words.Push(new UserDefinedWord());
         }
 
         /// <summary>
@@ -33,6 +38,7 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="word">The word to be pushed.</param>
         public void Push(IWord word) {
+            if (word == null) throw new ArgumentNullException(nameof(word));
             _words.Push(word);
         }
 

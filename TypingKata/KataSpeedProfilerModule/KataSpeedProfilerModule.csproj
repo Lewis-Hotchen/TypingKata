@@ -106,6 +106,7 @@
     <Compile Include="Interfaces\IWordStack.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyInputEventHandlerArgs.cs" />
+    <Compile Include="KeyToCharacterConverter.cs" />
     <Compile Include="MarkovChainTextGenerator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,4 +1,6 @@
-﻿namespace KataSpeedProfilerModule {
+﻿using KataSpeedProfilerModule.Interfaces;
+
+namespace KataSpeedProfilerModule {
 
     /// <summary>
     /// Simple interface that wraps a C# Queue.

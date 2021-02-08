@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
     public class UserDefinedWord : IWord {
@@ -8,6 +9,8 @@ namespace KataSpeedProfilerModule {
         /// The list of characters in the word.
         /// </summary>
         public IList<char> Chars { get; }
+
+        public char this[int index] => Chars[index];
 
         /// <summary>
         /// The count of characters in the word.
@@ -26,6 +29,7 @@ namespace KataSpeedProfilerModule {
         /// Instantiate new UserDefinedWord.
         /// </summary>
         public UserDefinedWord() {
+            Chars = new List<char>();
         }
     }
 }

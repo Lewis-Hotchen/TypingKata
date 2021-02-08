@@ -1,4 +1,6 @@
-﻿namespace KataSpeedProfilerModule {
+﻿using KataSpeedProfilerModule.Interfaces;
+
+namespace KataSpeedProfilerModule {
     public interface IWordStack {
 
         /// <summary>

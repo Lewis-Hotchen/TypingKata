@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 

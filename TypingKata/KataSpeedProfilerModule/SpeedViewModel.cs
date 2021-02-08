@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
+using System.Windows.Data;
 using System.Windows.Input;
 using Autofac;
 using Autofac.Core;
@@ -16,9 +18,11 @@ namespace KataSpeedProfilerModule {
         private readonly SpeedModel _model;
         private ITypingProfiler _profiler;
         public RelayCommand StartTestCommand { get; }
+        private readonly IValueConverter _keyToCharConverter;
 
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory) {
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, IValueConverter keyToCharConverter) {
             _typingProfilerFactory = typingProfilerFactory;
+            _keyToCharConverter = keyToCharConverter;
             _model = new SpeedModel();
             Log.Debug($"model is {_model}");
             StartTestCommand = new RelayCommand(StartTest);
@@ -43,6 +47,10 @@ namespace KataSpeedProfilerModule {
             var words = _profiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
             Words = string.Join("_", words);
             RaisePropertyChanged(nameof(Words));
+            var c = _profiler.Cursor.CurrentWord[0];
+            // ReSharper disable once PossibleNullReferenceException
+            var key = (Key) _keyToCharConverter.ConvertBack(c, typeof(char), null, CultureInfo.InvariantCulture);
+            _profiler.CharacterInput(key);
         }
 
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {

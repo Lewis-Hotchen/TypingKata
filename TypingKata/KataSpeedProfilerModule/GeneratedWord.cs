@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 
@@ -14,6 +15,8 @@ namespace KataSpeedProfilerModule {
         /// The list of characters in the word.
         /// </summary>
         public IList<char> Chars { get; }
+
+        public char this[int index] => Chars[index];
 
         /// <summary>
         /// The count of characters in the word.
