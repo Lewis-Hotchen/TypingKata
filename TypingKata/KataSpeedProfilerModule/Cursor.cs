@@ -33,7 +33,7 @@ namespace KataSpeedProfilerModule {
             get => _charPos;
             private set {
                 _charSetCallback = SetCharPos(value);
-                if (_charPos == CurrentWord?.CharCount)
+                if (_charPos == CurrentWord?.CharCount && _charSetCallback == false)
                     WordCompletedEvent?.Invoke(this, new EventArgs());
             }
         }

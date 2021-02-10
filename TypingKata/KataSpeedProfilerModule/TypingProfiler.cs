@@ -111,6 +111,7 @@ namespace KataSpeedProfilerModule {
         public void CharacterInput(Key key) {
             if (key == Key.Space) {
                 if (Cursor.IsEndOfWord) {
+                    Cursor.NextChar(1);
                     KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
                 }
             }

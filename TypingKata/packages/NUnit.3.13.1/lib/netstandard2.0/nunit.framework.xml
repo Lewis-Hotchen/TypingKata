@@ -553,10 +553,7 @@
         </member>
         <member name="M:NUnit.Framework.Api.NUnitTestAssemblyRunner.WrapInNUnitCallContext(System.Action)">
             <summary>
-            Executes the action within an <see cref="T:NUnit.Framework.Internal.NUnitCallContext" />
-            which ensures the <see cref="T:System.Runtime.Remoting.Messaging.CallContext"/> is cleaned up
-            suitably at the end of the test run. This method only has an effect running
-            the full .NET Framework.
+            This method is a no-op in .NET Standard builds.
             </summary>
         </member>
         <member name="T:NUnit.Framework.Assert">
@@ -12721,8 +12718,7 @@
         </member>
         <member name="M:NUnit.Framework.Internal.AssemblyHelper.Load(System.String)">
             <summary>
-            Loads an assembly given a string, which may be the
-            path to the assembly or the AssemblyName
+            Loads an assembly given a string, which is the AssemblyName
             </summary>
         </member>
         <member name="M:NUnit.Framework.Internal.AssemblyHelper.GetAssemblyPathFromCodeBase(System.String)">
@@ -13665,6 +13661,13 @@
             <param name="innerCommand">The inner command</param>
             <param name="timeout">Timeout value</param>
             <param name="debugger">An <see cref="T:NUnit.Framework.Internal.Abstractions.IDebugger" /> instance</param>
+        </member>
+        <member name="M:NUnit.Framework.Internal.Commands.TimeoutCommand.Execute(NUnit.Framework.Internal.TestExecutionContext)">
+            <summary>
+            Runs the test, saving a TestResult in the supplied TestExecutionContext.
+            </summary>
+            <param name="context">The context in which the test should run.</param>
+            <returns>A TestResult</returns>
         </member>
         <member name="T:NUnit.Framework.Internal.ConstraintUtils">
             <summary>
@@ -16170,13 +16173,6 @@
         <member name="M:NUnit.Framework.Internal.MethodWrapper.ToString">
             <summary>
             Override ToString() so that error messages in NUnit's own tests make sense
-            </summary>
-        </member>
-        <member name="T:NUnit.Framework.Internal.NUnitCallContext">
-            <summary>
-            This class ensures the <see cref="T:System.Runtime.Remoting.Messaging.CallContext"/> is correctly cleared
-            or restored around framework actions. This is important if running multiple assemblies within the same
-            process, to ensure no leakage from one assembly to the next. See https://github.com/nunit/nunit-console/issues/325
             </summary>
         </member>
         <member name="T:NUnit.Framework.Internal.NUnitException">
@@ -19193,55 +19189,6 @@
             for working with threads.
             </summary>
         </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.Delay(System.Int32,System.Threading.WaitCallback,System.Object)">
-            <summary>
-            Pre-Task compatibility
-            </summary>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.Abort(System.Threading.Thread,System.Int32)">
-            <summary>
-            Abort a thread, helping to dislodging it if it is blocked in native code
-            </summary>
-            <param name="thread">The thread to abort</param>
-            <param name="nativeId">The native thread id (if known), otherwise 0.
-            If provided, allows the thread to be killed if it's in a message pump native blocking wait.
-            This must have previously been captured by calling <see cref="M:NUnit.Framework.Internal.ThreadUtility.GetCurrentThreadNativeId"/> from the running thread itself.</param>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.Kill(System.Threading.Thread,System.Int32)">
-            <summary>
-            Do our best to kill a thread
-            </summary>
-            <param name="thread">The thread to kill</param>
-            <param name="nativeId">The native thread id (if known), otherwise 0.
-            If provided, allows the thread to be killed if it's in a message pump native blocking wait.
-            This must have previously been captured by calling <see cref="M:NUnit.Framework.Internal.ThreadUtility.GetCurrentThreadNativeId"/> from the running thread itself.</param>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.Kill(System.Threading.Thread,System.Object,System.Int32)">
-            <summary>
-            Do our best to kill a thread, passing state info
-            </summary>
-            <param name="thread">The thread to kill</param>
-            <param name="stateInfo">Info for the ThreadAbortException handler</param>
-            <param name="nativeId">The native thread id (if known), otherwise 0.
-            If provided, allows the thread to be killed if it's in a message pump native blocking wait.
-            This must have previously been captured by calling <see cref="M:NUnit.Framework.Internal.ThreadUtility.GetCurrentThreadNativeId"/> from the running thread itself.</param>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.DislodgeThreadInNativeMessageWait(System.Threading.Thread,System.Int32)">
-            <summary>
-            Schedule a thread pool thread to check on the aborting thread in case it's in a message pump native blocking wait
-            </summary>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.GetCurrentThreadNativeId">
-            <summary>
-            Captures the current thread's native id. If provided to <see cref="M:NUnit.Framework.Internal.ThreadUtility.Kill(System.Threading.Thread,System.Int32)"/> later, allows the thread to be killed if it's in a message pump native blocking wait.
-            </summary>
-        </member>
-        <member name="M:NUnit.Framework.Internal.ThreadUtility.PostThreadCloseMessage(System.Int32)">
-            <summary>
-            Sends a message to the thread to dislodge it from native code and allow a return to managed code, where a ThreadAbortException can be generated.
-            The message is meaningless (WM_CLOSE without a window handle) but it will end any blocking message wait.
-            </summary>
-        </member>
         <member name="M:NUnit.Framework.Internal.ThreadUtility.GetCurrentThreadPrincipal">
             <summary>Gets <see cref="P:System.Threading.Thread.CurrentPrincipal"/> or <see langword="null" /> if the current platform does not support it.</summary>
         </member>
@@ -21233,6 +21180,24 @@
         </member>
         <member name="P:System.Diagnostics.CodeAnalysis.DoesNotReturnIfAttribute.ParameterValue">
             <summary>Gets the condition parameter value.</summary>
+        </member>
+        <member name="T:System.Web.UI.ICallbackEventHandler">
+            <summary>
+            A shim of the .NET interface for platforms that do not support it.
+            Used to indicate that a control can be the target of a callback event on the server.
+            </summary>
+        </member>
+        <member name="M:System.Web.UI.ICallbackEventHandler.RaiseCallbackEvent(System.String)">
+            <summary>
+            Processes a callback event that targets a control.
+            </summary>
+            <param name="report"></param>
+        </member>
+        <member name="M:System.Web.UI.ICallbackEventHandler.GetCallbackResult">
+            <summary>
+            Returns the results of a callback event that targets a control.
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>

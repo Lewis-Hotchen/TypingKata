@@ -107,7 +107,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Numerics.Vectors.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\bin\Debug\System.Threading.Tasks.Extensions.xml
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CoreCompileInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll

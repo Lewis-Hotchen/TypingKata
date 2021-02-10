@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
-using KataSpeedProfilerModule.Interfaces;
 
-namespace KataSpeedProfilerModule {
+namespace KataSpeedProfilerModule.Interfaces {
 
     /// <summary>
     /// This class will handle the

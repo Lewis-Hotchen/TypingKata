@@ -21170,6 +21170,59 @@
             Obtains a lifetime service object to control the lifetime policy for this instance.
             </summary>
         </member>
+        <member name="T:NUnit.Compatibility.TypeExtensions">
+            <summary>
+            Provides NUnit specific extensions to aid in Reflection
+            across multiple frameworks
+            </summary>
+            <remarks>
+            This version of the class supplies GetTypeInfo() on platforms
+            that don't support it.
+            </remarks>
+        </member>
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetTypeInfo(System.Type)">
+            <summary>
+            GetTypeInfo gives access to most of the Type information we take for granted
+            on .NET Core and Windows Runtime. Rather than #ifdef different code for different
+            platforms, it is easiest to just code all platforms as if they worked this way,
+            thus the simple passthrough.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NUnit.Compatibility.TypeExtensions.GetMethodInfo(System.Delegate)">
+            <summary>
+            See <see cref="M:System.Delegate.CreateDelegate(System.Type,System.Reflection.MethodInfo)"/>.
+            </summary>
+        </member>
+        <member name="T:NUnit.Compatibility.AssemblyExtensions">
+            <summary>
+            Extensions for Assembly that are not available in pre-4.5 .NET releases
+            </summary>
+        </member>
+        <member name="M:NUnit.Compatibility.AssemblyExtensions.GetCustomAttribute``1(System.Reflection.Assembly)">
+            <summary>
+            An easy way to get a single custom attribute from an assembly
+            </summary>
+            <typeparam name="T">The attribute Type</typeparam>
+            <param name="assembly">The assembly</param>
+            <returns>An attribute of Type T</returns>
+        </member>
+        <member name="T:NUnit.Compatibility.MethodInfoExtensions">
+            <summary>
+            Extensions for MethodInfo that are not available in pre-4.5 .NET releases
+            </summary>
+        </member>
+        <member name="M:NUnit.Compatibility.MethodInfoExtensions.CreateDelegate(System.Reflection.MethodInfo,System.Type)">
+            <summary>
+            See <see cref="M:System.Delegate.CreateDelegate(System.Type,System.Reflection.MethodInfo)"/>.
+            </summary>
+        </member>
+        <member name="M:NUnit.Compatibility.MethodInfoExtensions.CreateDelegate(System.Reflection.MethodInfo,System.Type,System.Object)">
+            <summary>
+            See <see cref="M:System.Delegate.CreateDelegate(System.Type,System.Object,System.Reflection.MethodInfo)"/>.
+            </summary>
+        </member>
         <member name="T:System.Diagnostics.CodeAnalysis.AllowNullAttribute">
             <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
         </member>
