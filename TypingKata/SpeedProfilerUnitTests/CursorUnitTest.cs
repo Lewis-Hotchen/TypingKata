@@ -1,4 +1,5 @@
-﻿using KataSpeedProfilerModule;
+﻿using System.Security.Cryptography.X509Certificates;
+using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -54,7 +55,9 @@ namespace SpeedProfilerUnitTests {
         }
 
         private Cursor CreateTargetWithWord(IWord word) {
-            return new Cursor();
+            var cursor = new Cursor();
+            cursor.NextWord(1, word);
+            return cursor;
         }
     }
 }

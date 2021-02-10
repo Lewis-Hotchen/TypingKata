@@ -33,3 +33,4 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfo.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csprojAssemblyReference.cache

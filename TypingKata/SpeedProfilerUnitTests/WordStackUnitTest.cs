@@ -25,7 +25,7 @@ namespace SpeedProfilerUnitTests {
 
         [Test]
         public void ShouldConvertStackToArray() {
-            var expected = new IWord[] {new GeneratedWord("hello")};
+            var expected = new IWord[] {new GeneratedWord("hello"), new GeneratedWord("") };
             var target = CreateTarget();
             
             target.Push(_mockWord.Object);
@@ -41,11 +41,11 @@ namespace SpeedProfilerUnitTests {
             var expected2 = new GeneratedWord("bye");
 
             target.Push(_mockWord.Object);
-            Assert.AreEqual(1, target.Count);
+            Assert.AreEqual(2, target.Count);
             Assert.AreEqual(expected.Chars, target.Top.Chars);
 
             target.Push(_mockWord2.Object);
-            Assert.AreEqual(2, target.Count);
+            Assert.AreEqual(3, target.Count);
             Assert.AreEqual(expected2.Chars, target.Top.Chars);
         }
 
