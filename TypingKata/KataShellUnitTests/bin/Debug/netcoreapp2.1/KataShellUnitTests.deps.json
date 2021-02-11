@@ -1042,7 +1042,8 @@
       },
       "KataSpeedProfilerModule/1.0.0": {
         "dependencies": {
-          "KataIocModule": "1.0.0"
+          "KataIocModule": "1.0.0",
+          "System.Windows.Interactivity": "4.5.0.0"
         },
         "runtime": {
           "KataSpeedProfilerModule.dll": {}
@@ -1058,6 +1059,14 @@
           "GalaSoft.MvvmLight.dll": {
             "assemblyVersion": "5.4.1.0",
             "fileVersion": "5.4.1.0"
+          }
+        }
+      },
+      "System.Windows.Interactivity.Reference/4.5.0.0": {
+        "runtime": {
+          "System.Windows.Interactivity.dll": {
+            "assemblyVersion": "4.5.0.0",
+            "fileVersion": "3.0.40218.0"
           }
         }
       }
@@ -1608,6 +1617,11 @@
       "sha512": ""
     },
     "GalaSoft.MvvmLight.Reference/5.4.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Windows.Interactivity.Reference/4.5.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

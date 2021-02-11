@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace KataSpeedProfilerModule {
+namespace KataSpeedProfilerModule.EventArgs {
     public class KeyInputEventHandlerArgs {
         public bool IsCorrect { get; set; }
         public Key InputKey { get; set; }

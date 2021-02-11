@@ -46,19 +46,6 @@ namespace SpeedProfilerUnitTests {
             _wordQueueMock.VerifyAll();
         }
 
-        [Test]
-        public void ShouldQueueNewWordWhenCursorWordComplete() {
-            _wordQueueMock.Setup(x => x.Top).Returns(_mockQueueWords[0].Object);
-            _wordStackMock.Setup(x => x.Top).Returns(_mockStackWords[0].Object);
-            _cursorMock.Setup(x => x.NextWord(1, _mockQueueWords[0].Object));
-            _wordQueueMock.Setup(x => x.Dequeue());
-
-            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object);
-            _cursorMock.Raise(x => x.WordCompletedEvent += null, null, new EventArgs());
-
-            _cursorMock.Verify(x => x.NextWord(1, _mockQueueWords[0].Object));
-            _wordQueueMock.Verify(x => x.Dequeue());
-        }
 
         [TestCase(1, 300)]
         [TestCase(3, 500)]

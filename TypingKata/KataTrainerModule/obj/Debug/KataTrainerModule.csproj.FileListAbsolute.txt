@@ -111,4 +111,3 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataTrainerModule\obj\Debug\KataTrainerModule.csprojAssemblyReference.cache

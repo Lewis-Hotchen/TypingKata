@@ -33,7 +33,7 @@ namespace KataSpeedProfilerModule {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TimerOnElapsed(object sender, ElapsedEventArgs e) {
-            TimeComplete?.Invoke(this, new EventArgs());
+            TimeComplete?.Invoke(this, new System.EventArgs());
             _timer.Stop();
         }
 

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows.Input;
 using Autofac;
 using KataIocModule;
+using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
@@ -21,6 +22,7 @@ namespace KataSpeedProfilerModule {
         public ITypingTimer Timer { get; }
         public IWordQueue Queue { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
+        public event EventHandler<CharacterChangedEventArgs> NextWordEvent;
 
         /// <summary>
         /// Instantiate new TypingProfiler.
@@ -42,7 +44,6 @@ namespace KataSpeedProfilerModule {
         /// Setup the class.
         /// </summary>
         private void Setup() {
-            Cursor.WordCompletedEvent += CursorOnWordCompletedEvent;
             Timer.TimeComplete += TimerOnTimeComplete;
         }
 
@@ -51,7 +52,7 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void TimerOnTimeComplete(object sender, EventArgs e) {
+        private void TimerOnTimeComplete(object sender, System.EventArgs e) {
             StopTest();
         }
 
@@ -63,14 +64,7 @@ namespace KataSpeedProfilerModule {
             Queue.ClearQueue();
         }
 
-        /// <summary>
-        /// When the cursor signals the word is complete, we move on to the next word logically in the
-        /// word queue, by dequeuing the last word and passing in the new top.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CursorOnWordCompletedEvent(object sender, EventArgs e) {
-
+        private void ConfirmSpace() {
             var userWord = UserWords.Top;
             var generatedWord = Queue.Top;
 
@@ -80,7 +74,9 @@ namespace KataSpeedProfilerModule {
             }
 
             Queue.Dequeue();
+            UserWords.Push(new UserDefinedWord());
             Cursor.NextWord(1, Queue.Top);
+            NextWordEvent?.Invoke(this, new CharacterChangedEventArgs(default(char), Cursor.CurrentWord[0]));
         }
 
         /// <summary>
@@ -111,7 +107,7 @@ namespace KataSpeedProfilerModule {
         public void CharacterInput(Key key) {
             if (key == Key.Space) {
                 if (Cursor.IsEndOfWord) {
-                    Cursor.NextChar(1);
+                    ConfirmSpace();
                     KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
                 }
             }
@@ -123,7 +119,7 @@ namespace KataSpeedProfilerModule {
                 Cursor.NextChar(1);
                 UserWords.Top.Chars.Add(Cursor.CurrentWord[Cursor.CharPos]);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
-                Cursor.NextChar(1);
+                return;
             }
 
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
@@ -140,7 +136,7 @@ namespace KataSpeedProfilerModule {
         private void QueueNewWords(int keySize, int outputSize) {
             var words = GetWordsFromResource(keySize, outputSize);
             foreach (var word in words) {
-                Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word)));
+                Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
             }
         }
     }

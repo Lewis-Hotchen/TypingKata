@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using KataSpeedProfilerModule.EventArgs;
 
 namespace KataSpeedProfilerModule.Interfaces {
 
@@ -18,5 +19,6 @@ namespace KataSpeedProfilerModule.Interfaces {
         void CharacterInput(Key key);
         void Start(int keySize, int outputSize);
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
+        event EventHandler<CharacterChangedEventArgs> NextWordEvent;
     }
 }

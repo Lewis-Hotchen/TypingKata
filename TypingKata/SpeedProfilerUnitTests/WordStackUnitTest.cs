@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using KataSpeedProfilerModule;
+﻿using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -54,5 +52,4 @@ namespace SpeedProfilerUnitTests {
         }
 
     }
-
 }

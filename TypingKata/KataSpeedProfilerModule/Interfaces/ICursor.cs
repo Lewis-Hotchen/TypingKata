@@ -1,4 +1,5 @@
 ﻿using System;
+using KataSpeedProfilerModule.EventArgs;
 
 namespace KataSpeedProfilerModule.Interfaces {
     /// <summary>
@@ -26,10 +27,7 @@ namespace KataSpeedProfilerModule.Interfaces {
         /// </summary>
         IWord CurrentWord { get; }
 
-        /// <summary>
-        /// Event that will fire when a word has been completed.
-        /// </summary>
-        event EventHandler WordCompletedEvent;
+        event EventHandler<CharacterChangedEventArgs> CharacterChangedEvent;
 
         /// <summary>
         /// Increment character position.

@@ -1,4 +1,5 @@
 ﻿using System;
+using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
@@ -14,9 +15,9 @@ namespace KataSpeedProfilerModule {
         private bool _charSetCallback;
 
         /// <summary>
-        /// Event that will fire when a word has been completed.
+        /// Event that will fire when a character is changed.
         /// </summary>
-        public event EventHandler WordCompletedEvent;
+        public event EventHandler<CharacterChangedEventArgs> CharacterChangedEvent;
 
         /// <summary>
         /// Current cursor word position.
@@ -33,12 +34,14 @@ namespace KataSpeedProfilerModule {
             get => _charPos;
             private set {
                 _charSetCallback = SetCharPos(value);
-                if (_charPos == CurrentWord?.CharCount && _charSetCallback == false)
-                    WordCompletedEvent?.Invoke(this, new EventArgs());
+
+                if (_charSetCallback) {
+                    CharacterChangedEvent?.Invoke(this, new CharacterChangedEventArgs(CurrentWord[_charPos -1], CurrentWord[_charPos]));
+                }
             }
         }
 
-        public bool IsEndOfWord => WordPos == CurrentWord.CharCount - 1;
+        public bool IsEndOfWord => CharPos == CurrentWord.CharCount - 1;
 
         /// <summary>
         /// The current word.
@@ -76,7 +79,7 @@ namespace KataSpeedProfilerModule {
                 return true;
             }
 
-            if (CurrentWord.CharCount <= _charPos + value) {
+            if (_charPos + value <= CurrentWord.CharCount - 1) {
                  _charPos += value;
                  return true;
             }

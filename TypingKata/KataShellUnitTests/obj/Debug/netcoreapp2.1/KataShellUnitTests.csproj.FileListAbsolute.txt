@@ -126,3 +126,4 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\System.Windows.Interactivity.dll

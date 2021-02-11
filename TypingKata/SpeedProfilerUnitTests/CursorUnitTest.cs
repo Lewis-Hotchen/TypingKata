@@ -14,6 +14,7 @@ namespace SpeedProfilerUnitTests {
         public void Setup() {
             _mockWord = new Mock<IWord>();
             _mockWord.Setup(x => x.Chars).Returns(new[] {'t', 'e', 's', 't'});
+            _mockWord.Setup(x => x.CharCount).Returns(4);
 
         }
 
