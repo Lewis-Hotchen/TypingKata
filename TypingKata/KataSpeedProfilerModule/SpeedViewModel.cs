@@ -44,7 +44,10 @@ namespace KataSpeedProfilerModule {
 
         public double TestTime {
             get => _testTime;
-            set => Set(ref _testTime, value);
+            set {
+                Set(ref _testTime, value);
+                StartTestCommand.RaiseCanExecuteChanged();
+            } 
         }
 
         public Key KeyPressed {
@@ -67,7 +70,11 @@ namespace KataSpeedProfilerModule {
             _keyToCharConverter = keyToCharConverter;
             _model = new SpeedModel();
             Log.Debug($"model is {_model}");
-            StartTestCommand = new RelayCommand(StartTest);
+            StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
+        }
+
+        private bool StartTestCanExecute() {
+            return _testTime >= 60;
         }
 
         /// <summary>
@@ -84,7 +91,6 @@ namespace KataSpeedProfilerModule {
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
             TypingProfiler.Start(5, 50);
-
             var words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
             Words = string.Join("_", words);
             TextFocus = true;
@@ -95,13 +101,7 @@ namespace KataSpeedProfilerModule {
         }
 
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
-            if (e.NewValue.ToString() == " ") {
-                CurrentChar = "space";
-            }
-            else {
-                CurrentChar = e.NewValue.ToString();
-            }
-
+            CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
         }
 
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {

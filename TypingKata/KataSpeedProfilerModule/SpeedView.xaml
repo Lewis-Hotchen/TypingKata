@@ -27,8 +27,8 @@
             </i:Interaction.Behaviors>
         </TextBlock>
         <Label Grid.Column="0" Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
-        <TextBox Grid.Column="0" Background="#272727" Foreground="AliceBlue" Grid.Row="2" Text="{Binding TestTime, Mode=TwoWay}"></TextBox>
-        <Button Grid.Column="0" Grid.Row="3" Content="Start Test" Command="{Binding StartTestCommand}" />
+        <TextBox Grid.Column="0" Background="#272727" Foreground="AliceBlue" Grid.Row="2" Text="{Binding TestTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Button ToolTipService.ShowOnDisabled="True" ToolTip="Test time must be at least 60 seconds" Grid.Column="0" Grid.Row="3" Content="Start Test" Command="{Binding StartTestCommand}" />
         <Label Grid.Column="1" Foreground="AliceBlue" Grid.Row="3" Content="{Binding IsKeyCorrect, Mode=OneWay}"></Label>
         <Label Grid.Column="2" Grid.Row="3" Foreground="AliceBlue" Content="{Binding CurrentChar}"></Label>
     </Grid>
