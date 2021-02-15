@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using Autofac;
@@ -9,6 +10,7 @@ using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using log4net;
+using Microsoft.Win32;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
@@ -90,10 +92,21 @@ namespace KataSpeedProfilerModule {
             TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
+            TypingProfiler.TestCompleteEvent += TypingProfilerOnTestCompleteEvent;
             TypingProfiler.Start(5, 50);
             var words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
             Words = string.Join("_", words);
             TextFocus = true;
+        }
+
+        private void TypingProfilerOnTestCompleteEvent(object sender, TestCompleteEventArgs e) {
+            Words = "";
+            var messageBoxText = $"Test Complete! Wpm was {e.Wpm}";
+            var caption = "Speed Profiler";
+            var button = MessageBoxButton.OK;
+            var icon = MessageBoxImage.Information;
+
+            MessageBox.Show(messageBoxText, caption, button, icon);
         }
 
         private void TypingProfilerOnNextWordEvent(object sender, CharacterChangedEventArgs e) {

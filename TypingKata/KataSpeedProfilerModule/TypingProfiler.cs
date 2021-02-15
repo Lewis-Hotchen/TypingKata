@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Input;
 using Autofac;
@@ -18,11 +19,12 @@ namespace KataSpeedProfilerModule {
 
         public ICursor Cursor { get; }
         public IWordStack UserWords { get; }
-        public IList<(IWord, IWord)> ErrorWords { get; }
+        public List<(IWord, IWord)> ErrorWords { get; }
         public ITypingTimer Timer { get; }
         public IWordQueue Queue { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<CharacterChangedEventArgs> NextWordEvent;
+        public event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
 
         /// <summary>
         /// Instantiate new TypingProfiler.
@@ -62,6 +64,21 @@ namespace KataSpeedProfilerModule {
         private void StopTest() {
             Cursor.ResetCursor();
             Queue.ClearQueue();
+
+            //Write out user stack and error stack.
+
+            CalculateWpm();
+        }
+
+        private void CalculateWpm() {
+            var words = UserWords.GetWordsAsArray();
+            var noOfCharsTyped = words.Sum(x => x.CharCount);
+            var grossWpm = Convert.ToInt32((noOfCharsTyped / 5) / Timer.Time.Minutes);
+            var wpm = grossWpm - (ErrorWords.Count / Timer.Time.Minutes);
+            var errorRate = ((double) UserWords.Count / 100) * ErrorWords.Count;
+
+            //Signal that test has stopped.
+            TestCompleteEvent?.Invoke(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm));
         }
 
         private void ConfirmSpace() {
@@ -128,6 +145,7 @@ namespace KataSpeedProfilerModule {
         public void Start(int keySize, int outputSize) {
             QueueNewWords(keySize, outputSize);
             Cursor.NextWord(0, Queue.Top);
+            Timer.StartTimer();
         }
 
         /// <summary>

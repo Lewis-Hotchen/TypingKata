@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KataSpeedProfilerModule {
+namespace KataSpeedProfilerModule.Interfaces {
 
     /// <summary>
     /// Simple interface that wraps a system timer.
@@ -11,6 +11,11 @@ namespace KataSpeedProfilerModule {
         /// Event that fires on the timer's elapsed event.
         /// </summary>
         event EventHandler TimeComplete;
+
+        /// <summary>
+        /// Gets time of timer, expressed in Milliseconds.
+        /// </summary>
+        TimeSpan Time { get; }
 
         /// <summary>
         /// Starts the timer.

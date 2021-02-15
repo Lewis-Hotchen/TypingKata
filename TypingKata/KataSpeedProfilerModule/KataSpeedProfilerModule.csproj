@@ -119,6 +119,7 @@
       <DependentUpon>SpeedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpeedViewModel.cs" />
+    <Compile Include="EventArgs\TestCompleteEventArgs.cs" />
     <Compile Include="TypingProfiler.cs" />
     <Compile Include="TypingProfilerFactory.cs" />
     <Compile Include="TypingTimer.cs" />

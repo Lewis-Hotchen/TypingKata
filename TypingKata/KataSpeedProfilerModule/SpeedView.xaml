@@ -20,7 +20,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Row="0" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap">
+        <TextBlock Grid.ColumnSpan="2" Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Row="0" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap">
             <i:Interaction.Behaviors>
                 <kataSpeedProfilerModule:KeyboardListenerBehaviour
                     TypingProfiler="{Binding RelativeSource={RelativeSource AncestorType={x:Type kataSpeedProfilerModule:SpeedView}}, Path=DataContext.TypingProfiler}" />

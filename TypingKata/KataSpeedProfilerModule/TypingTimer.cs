@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Timers;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 
     /// <summary>
     /// Simple class that wraps a system timer.
-    /// </summary>
+    /// </summary>  
     public class TypingTimer : ITypingTimer {
 
         private readonly Timer _timer;
@@ -16,13 +17,18 @@ namespace KataSpeedProfilerModule {
         public event EventHandler TimeComplete;
 
         /// <summary>
+        /// Gets time of timer, expressed in Milliseconds.
+        /// </summary>
+        public TimeSpan Time { get; }
+
+        /// <summary>
         /// Instantiates new TypingTimer.
         /// </summary>
         /// <param name="time">Time in seconds.</param>
         public TypingTimer(double time) {
             _timer = new Timer(time * 1000);
             _timer.Elapsed += TimerOnElapsed;
-
+            Time = new TimeSpan(0, 0, (int) (time * 1000 / 60), (int) (time * 1000), (int) time);
             //Make sure that the timer elapsed will only fire once.
             _timer.AutoReset = false;
         }
@@ -36,6 +42,7 @@ namespace KataSpeedProfilerModule {
             TimeComplete?.Invoke(this, new System.EventArgs());
             _timer.Stop();
         }
+
 
         /// <summary>
         /// Starts the timer.
