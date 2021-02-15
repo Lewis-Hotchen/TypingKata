@@ -10,6 +10,7 @@ namespace SpeedProfilerUnitTests {
 
     [TestFixture]
     public class TypingProfilerUnitTest {
+        private Mock<IMarkovChainGenerator> _mockMarkovGenerator;
         private Mock<IWordStack> _wordStackMock;
         private Mock<IWordQueue> _wordQueueMock;
         private Mock<ICursor> _cursorMock;
@@ -20,7 +21,7 @@ namespace SpeedProfilerUnitTests {
 
         [SetUp]
         public void Setup() {
-
+            _mockMarkovGenerator = new Mock<IMarkovChainGenerator>();
             var mockWord1 = new Mock<IWord>();
             mockWord1.Setup(x => x.Chars).Returns(new List<char> {'t', 'e', 's', 't'});
             mockWord1.Setup(x => x.CharCount).Returns(4);
@@ -48,7 +49,7 @@ namespace SpeedProfilerUnitTests {
 
         [Test]
         public void ShouldResetOnCompletionOfTimer() {
-            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object);
+            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object, _mockMarkovGenerator.Object);
             var testCompleteActual = false;
             target.TestCompleteEvent += (sender, args) => testCompleteActual = true;
             _cursorMock.Setup(x => x.ResetCursor());
@@ -63,7 +64,7 @@ namespace SpeedProfilerUnitTests {
         [Test]
         [Ignore("Incomplete test.")]
         public void ShouldReturnCorrectWpm() {
-            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object);
+            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object, _mockMarkovGenerator.Object);
             _timerMock.SetupGet(x => x.Time).Returns(new TimeSpan(0, 1, 0));
             _timerMock.Raise(x => x.TimeComplete += null, null, new EventArgs());
 
@@ -71,22 +72,8 @@ namespace SpeedProfilerUnitTests {
             _timerMock.Verify(x => x.Time, Times.Exactly(2));
         }
 
-
-        [TestCase(1, 300)]
-        [TestCase(3, 500)]
-        [TestCase(2, 100)]
-        [Ignore("Unknown error, needs fixed or deleted.")]
-        public void ShouldPopulateQueueUsingMarkovTextGenerator(int keySize, int outputSize) {
-            var target = CreateTarget(_wordStackMock.Object, _wordQueueMock.Object, _cursorMock.Object, _timerMock.Object);
-            _wordQueueMock.Setup(x => x.Enqueue(It.IsAny<IWord>()));
-            target.Start(keySize, outputSize);
-            
-
-            _wordQueueMock.Verify(x => x.Enqueue(It.IsAny<IWord>()), Times.Exactly(outputSize));
-        }
-
-        private TypingProfiler CreateTarget(IWordStack  wordStack, IWordQueue queue, ICursor cursor, ITypingTimer timer) {
-            return new TypingProfiler(cursor, wordStack, queue, timer);
+        private TypingProfiler CreateTarget(IWordStack  wordStack, IWordQueue queue, ICursor cursor, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator) {
+            return new TypingProfiler(cursor, wordStack, queue, timer, markovChainGenerator);
         }
 
     }

@@ -17,6 +17,11 @@ namespace KataSpeedProfilerModule {
                 (c, p) => new TypingTimer(p.Named<double>("time"))
             ).As<ITypingTimer>();
 
+            builder.Register(
+                (c, p) => new MarkovChainGenerator(p.Named<string>("path"))
+            ).As<IMarkovChainGenerator>();
+            base.Load(builder);
+
             //Parameterless registrations
             builder.RegisterType<Cursor>().As<ICursor>();
             builder.RegisterType<WordStack>().As<IWordStack>();
@@ -28,7 +33,6 @@ namespace KataSpeedProfilerModule {
             builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
 
             
-            base.Load(builder);
         }
     }
 }

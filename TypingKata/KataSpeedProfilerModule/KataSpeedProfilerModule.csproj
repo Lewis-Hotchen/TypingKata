@@ -52,6 +52,9 @@
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="MarkVSharp">
+      <HintPath>C:\Users\Lewis\source\repos\MarkVSharp\MarkVSharp\bin\Debug\MarkVSharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -96,6 +99,7 @@
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="FocusExtension.cs" />
+    <Compile Include="IMarkovChainGenerator.cs" />
     <Compile Include="Interfaces\ICursor.cs" />
     <Compile Include="Interfaces\ITypingProfiler.cs" />
     <Compile Include="Interfaces\ITypingProfilerFactory.cs" />
@@ -107,7 +111,7 @@
     <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="EventArgs\KeyInputEventHandlerArgs.cs" />
     <Compile Include="KeyToCharacterConverter.cs" />
-    <Compile Include="MarkovChainTextGenerator.cs" />
+    <Compile Include="MarkovChainGenerator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

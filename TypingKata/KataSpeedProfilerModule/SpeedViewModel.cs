@@ -26,6 +26,7 @@ namespace KataSpeedProfilerModule {
         private Key _keyPressed;
         private bool _isKeyCorrect;
         private string _currentChar;
+        private string _textPath = "KataSpeedProfilerModule.Resources.words.txt";
 
         public RelayCommand StartTestCommand { get; }
 
@@ -88,12 +89,13 @@ namespace KataSpeedProfilerModule {
                 BootStrapper.Resolve<ICursor>(),
                 BootStrapper.Resolve<IWordStack>(),
                 BootStrapper.Resolve<IWordQueue>(),
-                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime) }));
+                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime)}),
+                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] {new NamedParameter("path", _textPath)}));
             TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
             TypingProfiler.TestCompleteEvent += TypingProfilerOnTestCompleteEvent;
-            TypingProfiler.Start(5, 50);
+            TypingProfiler.Start();
             var words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
             Words = string.Join("_", words);
             TextFocus = true;

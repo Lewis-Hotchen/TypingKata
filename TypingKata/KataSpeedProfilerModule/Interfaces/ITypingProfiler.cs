@@ -17,7 +17,7 @@ namespace KataSpeedProfilerModule.Interfaces {
         ITypingTimer Timer { get; }
         IWordQueue Queue { get; }
         void CharacterInput(Key key);
-        void Start(int keySize, int outputSize);
+        void Start();
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         event EventHandler<CharacterChangedEventArgs> NextWordEvent;
         event EventHandler<TestCompleteEventArgs> TestCompleteEvent;

@@ -8,6 +8,7 @@ using Autofac;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
+using MarkVSharp;
 
 namespace KataSpeedProfilerModule {
 
@@ -17,6 +18,7 @@ namespace KataSpeedProfilerModule {
     /// </summary>
     public class TypingProfiler : ITypingProfiler {
 
+        private readonly IMarkovChainGenerator _markovChainGenerator;
         public ICursor Cursor { get; }
         public IWordStack UserWords { get; }
         public List<(IWord, IWord)> ErrorWords { get; }
@@ -33,7 +35,9 @@ namespace KataSpeedProfilerModule {
         /// <param name="userWords">The user words.</param>
         /// <param name="queue">The word queue.</param>
         /// <param name="timer">The timer.</param>
-        public TypingProfiler(ICursor cursor,  IWordStack userWords, IWordQueue queue, ITypingTimer timer) {
+        /// <param name="markovChainGenerator"></param>
+        public TypingProfiler(ICursor cursor,  IWordStack userWords, IWordQueue queue, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator) {
+            _markovChainGenerator = markovChainGenerator;
             Cursor = cursor;
             UserWords = userWords;
             ErrorWords = new List<(IWord, IWord)>();
@@ -97,26 +101,6 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
-        /// Generate words from resource using Markov algorithm.
-        /// </summary>
-        /// <returns>Enumerable string of words.</returns>
-        private IEnumerable<string> GetWordsFromResource(int keySize, int outputSize) {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "KataSpeedProfilerModule.Resources.words.txt";
-
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            using (var reader = new StreamReader(stream ?? throw new InvalidOperationException())) {
-                var result = reader.ReadToEnd();
-                var words = MarkovChainTextGenerator.Markov(result.Split(
-                    new[] { Environment.NewLine },
-                    StringSplitOptions.None
-                ), keySize, outputSize);
-
-                return words.Split(' ');
-            }
-        }
-
-        /// <summary>
         /// Input a character.
         /// </summary>
         /// <param name="key"></param>
@@ -142,8 +126,8 @@ namespace KataSpeedProfilerModule {
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
         }
 
-        public void Start(int keySize, int outputSize) {
-            QueueNewWords(keySize, outputSize);
+        public void Start() {
+            QueueNewWords();
             Cursor.NextWord(0, Queue.Top);
             Timer.StartTimer();
         }
@@ -151,9 +135,9 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Queue up new words from Markov generation.
         /// </summary>
-        private void QueueNewWords(int keySize, int outputSize) {
-            var words = GetWordsFromResource(keySize, outputSize);
-            foreach (var word in words) {
+        private void QueueNewWords() {
+            var splitWords =_markovChainGenerator.GetText(20).Split(' ');
+            foreach (var word in splitWords) {
                 Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
             }
         }

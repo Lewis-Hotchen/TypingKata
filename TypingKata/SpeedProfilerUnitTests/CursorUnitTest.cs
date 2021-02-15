@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using KataSpeedProfilerModule;
+﻿using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;

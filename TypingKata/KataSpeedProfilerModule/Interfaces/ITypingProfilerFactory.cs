@@ -9,6 +9,7 @@ namespace KataSpeedProfilerModule {
         ITypingProfiler CreateTypingProfiler(ICursor cursor, 
             IWordStack userWords, 
             IWordQueue queue,
-            ITypingTimer timer);
+            ITypingTimer timer,
+            IMarkovChainGenerator generator);
     }
 }

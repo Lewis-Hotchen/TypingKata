@@ -60,3 +60,5 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.pdb
