@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;

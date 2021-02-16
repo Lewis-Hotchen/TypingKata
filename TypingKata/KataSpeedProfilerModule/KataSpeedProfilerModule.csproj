@@ -110,6 +110,7 @@
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="EventArgs\KeyInputEventHandlerArgs.cs" />
+    <Compile Include="KeyConverter.cs" />
     <Compile Include="KeyToCharacterConverter.cs" />
     <Compile Include="MarkovChainGenerator.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

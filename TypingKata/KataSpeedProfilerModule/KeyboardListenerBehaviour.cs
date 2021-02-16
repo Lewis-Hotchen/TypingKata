@@ -15,17 +15,23 @@ namespace KataSpeedProfilerModule {
         }
 
         protected override void OnAttached() {
-            AssociatedObject.KeyDown += AssociatedObjectOnKeyDown;
+            AssociatedObject.KeyUp += AssociatedObjectOnKeyDown;
             base.OnAttached();
         }
 
         protected override void OnDetaching() {
-            AssociatedObject.KeyDown -= AssociatedObjectOnKeyDown;
+            AssociatedObject.KeyUp -= AssociatedObjectOnKeyDown;
             base.OnDetaching();
         }
 
         private void AssociatedObjectOnKeyDown(object sender, KeyEventArgs e) {
-            TypingProfiler.CharacterInput(e.Key);
+
+            if (e.Key == Key.Space) {
+                TypingProfiler.CharacterInput(' ');
+            }
+
+            var c = KeyConverter.GetCharFromKey(e.Key);
+            TypingProfiler.CharacterInput(c);
             e.Handled = true;
         }
     }

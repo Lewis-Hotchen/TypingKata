@@ -28,7 +28,7 @@ namespace KataSpeedProfilerModule {
         public TypingTimer(double time) {
             _timer = new Timer(time * 1000);
             _timer.Elapsed += TimerOnElapsed;
-            Time = new TimeSpan(0, 0, (int) (time * 1000 / 60), (int) (time * 1000), (int) time);
+            Time = new TimeSpan(0, 0, 0, (int)time);
             //Make sure that the timer elapsed will only fire once.
             _timer.AutoReset = false;
         }

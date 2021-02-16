@@ -19,6 +19,10 @@ namespace KataSpeedProfilerModule {
     public class TypingProfiler : ITypingProfiler {
 
         private readonly IMarkovChainGenerator _markovChainGenerator;
+
+        //Choose 200 as an upper bound. Highly unlikely that anyone could type more
+        //than 200wpm.
+        private int _generatedTextCount;
         public ICursor Cursor { get; }
         public IWordStack UserWords { get; }
         public List<(IWord, IWord)> ErrorWords { get; }
@@ -77,8 +81,8 @@ namespace KataSpeedProfilerModule {
         private void CalculateWpm() {
             var words = UserWords.GetWordsAsArray();
             var noOfCharsTyped = words.Sum(x => x.CharCount);
-            var grossWpm = Convert.ToInt32((noOfCharsTyped / 5) / Timer.Time.Minutes);
-            var wpm = grossWpm - (ErrorWords.Count / Timer.Time.Minutes);
+            var grossWpm = Convert.ToInt32((noOfCharsTyped / 5) / Timer.Time.TotalMinutes);
+            var wpm = (int) (grossWpm - (ErrorWords.Count / Timer.Time.TotalMinutes));
             var errorRate = ((double) UserWords.Count / 100) * ErrorWords.Count;
 
             //Signal that test has stopped.
@@ -105,8 +109,8 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public void CharacterInput(Key key) {
-            if (key == Key.Space) {
+        public void CharacterInput(char key) {
+            if (key == ' ') {
                 if (Cursor.IsEndOfWord) {
                     ConfirmSpace();
                     KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
@@ -116,9 +120,9 @@ namespace KataSpeedProfilerModule {
             //Change the case as Key.ToString() returns upper case.
             var casedChar = char.ToUpper(Cursor.CurrentWord[Cursor.CharPos]);
 
-            if (casedChar == key.ToString().ToCharArray()[0]) {
-                Cursor.NextChar(1);
+            if (casedChar == char.ToUpper(key)) {
                 UserWords.Top.Chars.Add(Cursor.CurrentWord[Cursor.CharPos]);
+                Cursor.NextChar(1);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
                 return;
             }
@@ -127,16 +131,22 @@ namespace KataSpeedProfilerModule {
         }
 
         public void Start() {
+            
+            //Determine number of words to generate.
+            var minutes = Timer.Time.TotalMinutes;
+            _generatedTextCount = (int) (200 * minutes);
+
             QueueNewWords();
             Cursor.NextWord(0, Queue.Top);
             Timer.StartTimer();
+
         }
 
         /// <summary>
         /// Queue up new words from Markov generation.
         /// </summary>
         private void QueueNewWords() {
-            var splitWords =_markovChainGenerator.GetText(20).Split(' ');
+            var splitWords =_markovChainGenerator.GetText(_generatedTextCount).Split(' ');
             foreach (var word in splitWords) {
                 Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
             }

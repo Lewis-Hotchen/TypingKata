@@ -20,13 +20,13 @@ namespace KataSpeedProfilerModule {
         private readonly SpeedModel _model;
         private readonly IValueConverter _keyToCharConverter;
         private ITypingProfiler _profiler;
-        private string _words;
+        private string[] _words;
         private bool _textFocus;
         private double _testTime;
-        private Key _keyPressed;
+        private char _keyPressed;
         private bool _isKeyCorrect;
         private string _currentChar;
-        private string _textPath = "KataSpeedProfilerModule.Resources.words.txt";
+        private const string TextPath = "KataSpeedProfilerModule.Resources.words.txt";
 
         public RelayCommand StartTestCommand { get; }
 
@@ -40,10 +40,7 @@ namespace KataSpeedProfilerModule {
             set => Set(ref _textFocus, value);
         }
 
-        public string Words {
-            get => _words;
-            set => Set(ref _words, value);
-        }
+        public string DisplayWords => string.Join("_", _words);
 
         public double TestTime {
             get => _testTime;
@@ -53,7 +50,7 @@ namespace KataSpeedProfilerModule {
             } 
         }
 
-        public Key KeyPressed {
+        public char KeyPressed {
             get => _keyPressed;
             set => Set(ref _keyPressed, value);
         }
@@ -69,6 +66,7 @@ namespace KataSpeedProfilerModule {
         }
 
         public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, IValueConverter keyToCharConverter) {
+            _words = new string[] { }; 
             _typingProfilerFactory = typingProfilerFactory;
             _keyToCharConverter = keyToCharConverter;
             _model = new SpeedModel();
@@ -85,24 +83,27 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         private void StartTest() {
             Log.Debug($"Test started with {TestTime} time");
+            CreateProfiler();
+            TypingProfiler?.Start();
+            RefreshWords();
+            TextFocus = true;
+        }
+
+        private void CreateProfiler() {
             TypingProfiler = _typingProfilerFactory.CreateTypingProfiler(
                 BootStrapper.Resolve<ICursor>(),
                 BootStrapper.Resolve<IWordStack>(),
                 BootStrapper.Resolve<IWordQueue>(),
-                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime)}),
-                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] {new NamedParameter("path", _textPath)}));
+                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime) }),
+                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] { new NamedParameter("path", TextPath) }));
             TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
             TypingProfiler.TestCompleteEvent += TypingProfilerOnTestCompleteEvent;
-            TypingProfiler.Start();
-            var words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString());
-            Words = string.Join("_", words);
-            TextFocus = true;
         }
 
         private void TypingProfilerOnTestCompleteEvent(object sender, TestCompleteEventArgs e) {
-            Words = "";
+            RefreshWords();
             var messageBoxText = $"Test Complete! Wpm was {e.Wpm}";
             var caption = "Speed Profiler";
             var button = MessageBoxButton.OK;
@@ -113,10 +114,16 @@ namespace KataSpeedProfilerModule {
 
         private void TypingProfilerOnNextWordEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString();
+            RefreshWords();
         }
 
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
+        }
+
+        private void RefreshWords() {
+            _words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString()).ToArray();
+            RaisePropertyChanged(nameof(DisplayWords));
         }
 
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {

@@ -8,8 +8,6 @@ using KataSpeedProfilerModule.Interfaces;
 namespace KataSpeedProfilerModule {
 
     public class KataSpeedProfilerModule : Module {
-        public KataSpeedProfilerModule() {
-        }
 
         protected sealed override void Load(ContainerBuilder builder) {
             //Parameter registrations
@@ -31,8 +29,6 @@ namespace KataSpeedProfilerModule {
             builder.RegisterType<KeyToCharacterConverter>().As<IValueConverter>().Keyed<IValueConverter>("KeyToChar");
             builder.RegisterType<TypingProfiler>().As<ITypingProfiler>().InstancePerLifetimeScope();
             builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
-
-            
         }
     }
 }
