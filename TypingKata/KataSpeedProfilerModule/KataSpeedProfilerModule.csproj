@@ -96,6 +96,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterStatus.cs" />
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="FocusExtension.cs" />

@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
 using Autofac;
 using Autofac.Core;
 using GalaSoft.MvvmLight;
@@ -10,7 +12,6 @@ using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using log4net;
-using Microsoft.Win32;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
@@ -19,8 +20,8 @@ namespace KataSpeedProfilerModule {
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private readonly SpeedModel _model;
         private readonly IValueConverter _keyToCharConverter;
+        private ObservableCollection<IWord> _observableWords;
         private ITypingProfiler _profiler;
-        private string[] _words;
         private bool _textFocus;
         private double _testTime;
         private char _keyPressed;
@@ -40,7 +41,7 @@ namespace KataSpeedProfilerModule {
             set => Set(ref _textFocus, value);
         }
 
-        public string DisplayWords => string.Join("_", _words);
+        public string Words => string.Join("", _observableWords.Select(x => x.ToString()).ToArray());
 
         public double TestTime {
             get => _testTime;
@@ -66,12 +67,17 @@ namespace KataSpeedProfilerModule {
         }
 
         public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, IValueConverter keyToCharConverter) {
-            _words = new string[] { }; 
+            _observableWords = new ObservableCollection<IWord>();
+            _observableWords.CollectionChanged += ObservableWordsOnCollectionChanged;
             _typingProfilerFactory = typingProfilerFactory;
             _keyToCharConverter = keyToCharConverter;
             _model = new SpeedModel();
             Log.Debug($"model is {_model}");
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
+        }
+
+        private void ObservableWordsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            RaisePropertyChanged(nameof(Words));
         }
 
         private bool StartTestCanExecute() {
@@ -85,8 +91,9 @@ namespace KataSpeedProfilerModule {
             Log.Debug($"Test started with {TestTime} time");
             CreateProfiler();
             TypingProfiler?.Start();
-            RefreshWords();
             TextFocus = true;
+            _observableWords = new ObservableCollection<IWord>(TypingProfiler.Queue);
+            RaisePropertyChanged(nameof(Words));
         }
 
         private void CreateProfiler() {
@@ -103,7 +110,6 @@ namespace KataSpeedProfilerModule {
         }
 
         private void TypingProfilerOnTestCompleteEvent(object sender, TestCompleteEventArgs e) {
-            RefreshWords();
             var messageBoxText = $"Test Complete! Wpm was {e.Wpm}";
             var caption = "Speed Profiler";
             var button = MessageBoxButton.OK;
@@ -114,16 +120,10 @@ namespace KataSpeedProfilerModule {
 
         private void TypingProfilerOnNextWordEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString();
-            RefreshWords();
         }
 
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
-        }
-
-        private void RefreshWords() {
-            _words = TypingProfiler.Queue.GetWordQueueAsArray().Select(x => x.ToString()).ToArray();
-            RaisePropertyChanged(nameof(DisplayWords));
         }
 
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {

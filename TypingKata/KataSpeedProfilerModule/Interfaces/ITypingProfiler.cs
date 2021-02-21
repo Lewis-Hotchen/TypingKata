@@ -15,7 +15,7 @@ namespace KataSpeedProfilerModule.Interfaces {
         IWordStack UserWords { get; }
         List<(IWord, IWord)> ErrorWords { get; }
         ITypingTimer Timer { get; }
-        IWordQueue Queue { get; }
+        LinkedList<IWord> Queue { get; }
         void CharacterInput(char key);
         void Start();
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;

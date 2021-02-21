@@ -36,7 +36,7 @@ namespace KataSpeedProfilerModule {
                 _charSetCallback = SetCharPos(value);
 
                 if (_charSetCallback && CharPos != 0) {
-                    CharacterChangedEvent?.Invoke(this, new CharacterChangedEventArgs(CurrentWord[_charPos -1], CurrentWord[_charPos]));
+                    CharacterChangedEvent?.Invoke(this, new CharacterChangedEventArgs(CurrentWord[_charPos -1].Item1, CurrentWord[_charPos].Item1));
                 }
             }
         }

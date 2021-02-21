@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Input;
+using System.Text;
 using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
@@ -14,9 +13,14 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// The list of characters in the word.
         /// </summary>
-        public IList<char> Chars { get; }
+        public List<(char, CharacterStatus)> Chars { get; }
 
-        public char this[int index] => Chars[index];
+        /// <summary>
+        /// Get element by index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public (char, CharacterStatus) this[int index] => Chars[index];
 
         /// <summary>
         /// The count of characters in the word.
@@ -28,7 +32,10 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="word"></param>
         public GeneratedWord(string word) {
-            Chars = word.ToCharArray();
+            Chars = new List<(char, CharacterStatus)>();
+            foreach (var t in word) {
+                Chars.Add((t, CharacterStatus.Unmodified));
+            }
         }
 
         /// <summary>
@@ -36,7 +43,12 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <returns>String of characters.</returns>
         public override string ToString() {
-            return new string(Chars.ToArray());
+            StringBuilder sb = new StringBuilder();
+            foreach (var c in Chars) {
+                sb.Append(c.Item1);
+            }
+
+            return sb.ToString();
         }
     }
 }

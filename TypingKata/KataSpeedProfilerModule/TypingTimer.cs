@@ -43,7 +43,6 @@ namespace KataSpeedProfilerModule {
             _timer.Stop();
         }
 
-
         /// <summary>
         /// Starts the timer.
         /// </summary>

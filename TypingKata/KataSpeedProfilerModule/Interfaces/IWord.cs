@@ -9,18 +9,19 @@ namespace KataSpeedProfilerModule.Interfaces {
         /// <summary>
         /// The list of characters in the word.
         /// </summary>
-        IList<char> Chars { get; }
+        List<(char character, CharacterStatus status)> Chars { get; }
 
         /// <summary>
         /// Get characters from the word by index.
         /// </summary>
         /// <param name="index">The index.</param>
         /// <returns>The character.</returns>
-        char this[int index] { get; }
+        (char, CharacterStatus) this[int index] { get; }
 
         /// <summary>
         /// The count of characters in the word.
         /// </summary>
         int CharCount { get; }
+
     }
 }

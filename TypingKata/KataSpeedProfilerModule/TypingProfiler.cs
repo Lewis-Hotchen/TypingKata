@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Windows.Input;
 using Autofac;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
-using MarkVSharp;
 
 namespace KataSpeedProfilerModule {
 
@@ -27,7 +23,7 @@ namespace KataSpeedProfilerModule {
         public IWordStack UserWords { get; }
         public List<(IWord, IWord)> ErrorWords { get; }
         public ITypingTimer Timer { get; }
-        public IWordQueue Queue { get; }
+        public LinkedList<IWord> Queue { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<CharacterChangedEventArgs> NextWordEvent;
         public event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
@@ -45,7 +41,7 @@ namespace KataSpeedProfilerModule {
             Cursor = cursor;
             UserWords = userWords;
             ErrorWords = new List<(IWord, IWord)>();
-            Queue = queue;
+            Queue = new LinkedList<IWord>();
             Timer = timer;
             Setup();
         }
@@ -71,7 +67,7 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         private void StopTest() {
             Cursor.ResetCursor();
-            Queue.ClearQueue();
+            Queue.Clear();
 
             //Write out user stack and error stack.
 
@@ -91,17 +87,17 @@ namespace KataSpeedProfilerModule {
 
         private void ConfirmSpace() {
             var userWord = UserWords.Top;
-            var generatedWord = Queue.Top;
+            var generatedWord = Queue.First;
 
             //Add word to Error words if they are not the same.
             if (userWord.ToString() != generatedWord.ToString()) {
-                ErrorWords.Add((userWord, generatedWord));
+                ErrorWords.Add((userWord, generatedWord.Value));
             }
 
-            Queue.Dequeue();
+            Queue.RemoveFirst();
             UserWords.Push(new UserDefinedWord());
-            Cursor.NextWord(1, Queue.Top);
-            NextWordEvent?.Invoke(this, new CharacterChangedEventArgs(default(char), Cursor.CurrentWord[0]));
+            Cursor.NextWord(1, Queue.First.Value);
+            NextWordEvent?.Invoke(this, new CharacterChangedEventArgs(default(char), Cursor.CurrentWord[0].Item1));
         }
 
         /// <summary>
@@ -118,10 +114,10 @@ namespace KataSpeedProfilerModule {
             }
 
             //Change the case as Key.ToString() returns upper case.
-            var casedChar = char.ToUpper(Cursor.CurrentWord[Cursor.CharPos]);
+            var casedChar = char.ToUpper(Cursor.CurrentWord[Cursor.CharPos].Item1);
 
             if (casedChar == char.ToUpper(key)) {
-                UserWords.Top.Chars.Add(Cursor.CurrentWord[Cursor.CharPos]);
+                UserWords.Top.Chars.Add((key, CharacterStatus.Correct));
                 Cursor.NextChar(1);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
                 return;
@@ -137,9 +133,8 @@ namespace KataSpeedProfilerModule {
             _generatedTextCount = (int) (200 * minutes);
 
             QueueNewWords();
-            Cursor.NextWord(0, Queue.Top);
+            Cursor.NextWord(0, Queue.First.Value);
             Timer.StartTimer();
-
         }
 
         /// <summary>
@@ -148,7 +143,7 @@ namespace KataSpeedProfilerModule {
         private void QueueNewWords() {
             var splitWords =_markovChainGenerator.GetText(_generatedTextCount).Split(' ');
             foreach (var word in splitWords) {
-                Queue.Enqueue(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
+                Queue.AddLast(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
             }
         }
     }
