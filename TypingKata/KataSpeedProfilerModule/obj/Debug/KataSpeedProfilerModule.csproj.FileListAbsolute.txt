@@ -151,3 +151,5 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\CharacterMVVM\CharacterView.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\CharacterMVVM\CharacterView.baml

@@ -19,13 +19,14 @@ namespace KataSpeedProfilerModule {
         //Choose 200 as an upper bound. Highly unlikely that anyone could type more
         //than 200wpm.
         private int _generatedTextCount;
+        private string[] _generatedWords;
         public ICursor Cursor { get; }
         public IWordStack UserWords { get; }
         public List<(IWord, IWord)> ErrorWords { get; }
         public ITypingTimer Timer { get; }
         public LinkedList<IWord> Queue { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
-        public event EventHandler<CharacterChangedEventArgs> NextWordEvent;
+        public event EventHandler<WordChangedEventArgs> NextWordEvent;
         public event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
 
         /// <summary>
@@ -74,6 +75,9 @@ namespace KataSpeedProfilerModule {
             CalculateWpm();
         }
 
+        /// <summary>
+        /// Calculate the wpm.
+        /// </summary>
         private void CalculateWpm() {
             var words = UserWords.GetWordsAsArray();
             var noOfCharsTyped = words.Sum(x => x.CharCount);
@@ -85,6 +89,9 @@ namespace KataSpeedProfilerModule {
             TestCompleteEvent?.Invoke(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm));
         }
 
+        /// <summary>
+        /// Handle spacebar input.
+        /// </summary>
         private void ConfirmSpace() {
             var userWord = UserWords.Top;
             var generatedWord = Queue.First;
@@ -97,7 +104,7 @@ namespace KataSpeedProfilerModule {
             Queue.RemoveFirst();
             UserWords.Push(new UserDefinedWord());
             Cursor.NextWord(1, Queue.First.Value);
-            NextWordEvent?.Invoke(this, new CharacterChangedEventArgs(default(char), Cursor.CurrentWord[0].Item1));
+            NextWordEvent?.Invoke(this, new WordChangedEventArgs(generatedWord.Value, Queue.First.Value));
         }
 
         /// <summary>
@@ -126,24 +133,28 @@ namespace KataSpeedProfilerModule {
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
         }
 
-        public void Start() {
+        /// <summary>
+        /// Start the test.
+        /// </summary>
+        /// <param name="startingQueueCount">Number of words to start with</param>
+        public void Start(int startingQueueCount) {
             
             //Determine number of words to generate.
             var minutes = Timer.Time.TotalMinutes;
             _generatedTextCount = (int) (200 * minutes);
-
-            QueueNewWords();
+            _generatedWords = _markovChainGenerator.GetText(_generatedTextCount).Split(' ');
+            QueueNewWords(startingQueueCount);
             Cursor.NextWord(0, Queue.First.Value);
             Timer.StartTimer();
         }
 
         /// <summary>
-        /// Queue up new words from Markov generation.
+        /// Queue up new words.
         /// </summary>
-        private void QueueNewWords() {
-            var splitWords =_markovChainGenerator.GetText(_generatedTextCount).Split(' ');
-            foreach (var word in splitWords) {
-                Queue.AddLast(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", word + " ")));
+        /// <param name="amount">The amount of words to queue.</param>
+        private void QueueNewWords(int amount) {
+            for (var i = 0; i < amount; i++) {
+                Queue.AddLast(BootStrapper.Container.ResolveKeyed<IWord>("Generated", new NamedParameter("word", _generatedWords[i] + " ")));
             }
         }
     }

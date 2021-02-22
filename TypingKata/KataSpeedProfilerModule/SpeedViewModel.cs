@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows;
@@ -77,6 +76,7 @@ namespace KataSpeedProfilerModule {
         }
 
         private void ObservableWordsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            var type = e.Action;
             RaisePropertyChanged(nameof(Words));
         }
 
@@ -90,9 +90,13 @@ namespace KataSpeedProfilerModule {
         private void StartTest() {
             Log.Debug($"Test started with {TestTime} time");
             CreateProfiler();
-            TypingProfiler?.Start();
+            TypingProfiler?.Start(50);
             TextFocus = true;
-            _observableWords = new ObservableCollection<IWord>(TypingProfiler.Queue);
+            _observableWords = new ObservableCollection<IWord>();
+            foreach (var word in TypingProfiler.Queue) {
+                _observableWords.Add(new GeneratedWord(new string(word.Chars.Select(x => x.character).ToArray())));
+            }
+
             RaisePropertyChanged(nameof(Words));
         }
 
@@ -118,8 +122,9 @@ namespace KataSpeedProfilerModule {
             MessageBox.Show(messageBoxText, caption, button, icon);
         }
 
-        private void TypingProfilerOnNextWordEvent(object sender, CharacterChangedEventArgs e) {
-            CurrentChar = e.NewValue.ToString();
+        private void TypingProfilerOnNextWordEvent(object sender, WordChangedEventArgs e) {
+            _observableWords.RemoveAt(0);
+            RaisePropertyChanged(nameof(Words));
         }
 
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
@@ -130,6 +135,11 @@ namespace KataSpeedProfilerModule {
             KeyPressed = e.InputKey;
             IsKeyCorrect = e.IsCorrect;
             Log.Debug($"Key pressed : {e.InputKey}");
+
+            if (e.InputKey != ' ' && e.IsCorrect) {
+                _observableWords[0].Chars.RemoveAt(0);
+                RaisePropertyChanged(nameof(Words));
+            }
         }
     }
 }
