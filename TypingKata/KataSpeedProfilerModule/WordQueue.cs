@@ -4,7 +4,7 @@ using KataSpeedProfilerModule.Interfaces;
 namespace KataSpeedProfilerModule {
 
     /// <summary>
-    /// Simple class that wraps a C# Queue.
+    /// Simple class that wraps a C# GeneratedWords.
     /// </summary>
     public class WordQueue : IWordQueue {
 

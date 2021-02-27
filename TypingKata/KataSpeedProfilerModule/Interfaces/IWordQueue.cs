@@ -3,7 +3,7 @@
 namespace KataSpeedProfilerModule {
 
     /// <summary>
-    /// Simple interface that wraps a C# Queue.
+    /// Simple interface that wraps a C# GeneratedWords.
     /// </summary>
     public interface IWordQueue {
 

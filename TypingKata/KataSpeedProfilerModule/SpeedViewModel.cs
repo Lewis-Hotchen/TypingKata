@@ -80,8 +80,8 @@ namespace KataSpeedProfilerModule {
             TypingProfiler?.Start(50);
             TextFocus = true;
             _words = new ObservableCollection<IWord>();
-            if (TypingProfiler?.Queue != null)
-                foreach (var word in TypingProfiler?.Queue) {
+            if (TypingProfiler?.GeneratedWords != null)
+                foreach (var word in TypingProfiler?.GeneratedWords) {
                     _words.Add(new GeneratedWord(string.Join("", word.Chars.Select(x => x.CurrentCharacter))));
                 }
 
@@ -99,6 +99,24 @@ namespace KataSpeedProfilerModule {
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
             TypingProfiler.TestCompleteEvent += TypingProfilerOnTestCompleteEvent;
+            TypingProfiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
+        }
+
+        private void TypingProfilerOnBackspaceCompleteEvent(object sender, BackspaceComleteEvent e) {
+            var para = (Paragraph)Document.Blocks.FirstOrDefault(p => p.GetType() == typeof(Paragraph));
+            var inline = (Run) para?.Inlines.LastInline;
+
+            if (inline != null) {
+                if (inline.Text.Length > 0) {
+                    inline.Text = inline.Text.Remove(inline.Text.Length - 1);
+                }
+            }
+
+            if (inline?.Text.Length == 0) {
+                para.Inlines.Remove(inline);
+            }
+
+            RaisePropertyChanged(nameof(Document));
         }
 
         private void TypingProfilerOnTestCompleteEvent(object sender, TestCompleteEventArgs e) {
@@ -134,7 +152,7 @@ namespace KataSpeedProfilerModule {
 
             var status = isKeyCorrect ? CharacterStatus.Correct : CharacterStatus.Incorrect;
 
-            if (e.InputKey != ' ') {
+            if (e.InputKey != ' ' && e.InputKey != '\b') {
                 RaisePropertyChanged(nameof(Words));
                 var tr = new TextRange(Document.ContentEnd, Document.ContentEnd)
                     {Text = new string(new[] {e.InputKey})};
