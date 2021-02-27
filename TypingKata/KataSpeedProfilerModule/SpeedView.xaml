@@ -20,12 +20,15 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="3" Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Row="0" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap">
-            <i:Interaction.Behaviors>
-                <kataSpeedProfilerModule:KeyboardListenerBehaviour
-                    TypingProfiler="{Binding RelativeSource={RelativeSource AncestorType={x:Type kataSpeedProfilerModule:SpeedView}}, Path=DataContext.TypingProfiler}" />
-            </i:Interaction.Behaviors>
+
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="1" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap">
         </TextBlock>
+
+        <FlowDocumentScrollViewer FontSize="0.1" Padding="0" VerticalScrollBarVisibility="Hidden" Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#272727" Foreground="AliceBlue" Document="{Binding Document}">
+            <i:Interaction.Behaviors>
+                <kataSpeedProfilerModule:KeyboardListenerBehaviour TypingProfiler="{Binding TypingProfiler}" />
+            </i:Interaction.Behaviors>
+        </FlowDocumentScrollViewer>
 
         <Label Grid.Column="0" Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
         <TextBox Grid.Column="0" Background="#272727" Foreground="AliceBlue" Grid.Row="2" Text="{Binding TestTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>

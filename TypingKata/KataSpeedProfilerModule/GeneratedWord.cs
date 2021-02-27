@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KataSpeedProfilerModule.Interfaces;
@@ -13,14 +14,14 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// The list of characters in the word.
         /// </summary>
-        public List<(char, CharacterStatus)> Chars { get; }
+        public List<CharacterDescriptor> Chars { get; }
 
         /// <summary>
         /// Get element by index.
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public (char, CharacterStatus) this[int index] => Chars[index];
+        public CharacterDescriptor this[int index] => Chars[index];
 
         /// <summary>
         /// The count of characters in the word.
@@ -32,9 +33,9 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="word"></param>
         public GeneratedWord(string word) {
-            Chars = new List<(char, CharacterStatus)>();
+            Chars = new List<CharacterDescriptor>();
             foreach (var t in word) {
-                Chars.Add((t, CharacterStatus.Unmodified));
+                Chars.Add(new CharacterDescriptor (new string(new [] {t}), CharacterStatus.Unmodified));
             }
         }
 
@@ -45,7 +46,7 @@ namespace KataSpeedProfilerModule {
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
             foreach (var c in Chars) {
-                sb.Append(c.Item1);
+                sb.Append(c.CurrentCharacter);
             }
 
             return sb.ToString();

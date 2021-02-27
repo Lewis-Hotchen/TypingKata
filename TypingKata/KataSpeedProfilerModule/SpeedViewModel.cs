@@ -1,8 +1,10 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Media;
 using Autofac;
 using Autofac.Core;
 using GalaSoft.MvvmLight;
@@ -11,24 +13,25 @@ using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using log4net;
+using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
 
         private readonly ITypingProfilerFactory _typingProfilerFactory;
+        private readonly ITinyMessengerHub _messengerHub;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private readonly SpeedModel _model;
-        private readonly IValueConverter _keyToCharConverter;
-        private ObservableCollection<IWord> _observableWords;
         private ITypingProfiler _profiler;
         private bool _textFocus;
         private double _testTime;
-        private char _keyPressed;
-        private bool _isKeyCorrect;
         private string _currentChar;
+        private ObservableCollection<IWord> _words;
         private const string TextPath = "KataSpeedProfilerModule.Resources.words.txt";
 
         public RelayCommand StartTestCommand { get; }
+
+        public FlowDocument Document { get; set; }
 
         public ITypingProfiler TypingProfiler {
             get => _profiler;
@@ -40,24 +43,14 @@ namespace KataSpeedProfilerModule {
             set => Set(ref _textFocus, value);
         }
 
-        public string Words => string.Join("", _observableWords.Select(x => x.ToString()).ToArray());
+        public string Words => _words == null ? null : string.Join("", _words.Select(x => x.ToString()));
 
         public double TestTime {
             get => _testTime;
             set {
                 Set(ref _testTime, value);
                 StartTestCommand.RaiseCanExecuteChanged();
-            } 
-        }
-
-        public char KeyPressed {
-            get => _keyPressed;
-            set => Set(ref _keyPressed, value);
-        }
-
-        public bool IsKeyCorrect {
-            get => _isKeyCorrect;
-            set => Set(ref _isKeyCorrect, value);
+            }
         }
 
         public string CurrentChar {
@@ -65,19 +58,13 @@ namespace KataSpeedProfilerModule {
             set => Set(ref _currentChar, value);
         }
 
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, IValueConverter keyToCharConverter) {
-            _observableWords = new ObservableCollection<IWord>();
-            _observableWords.CollectionChanged += ObservableWordsOnCollectionChanged;
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub) {
             _typingProfilerFactory = typingProfilerFactory;
-            _keyToCharConverter = keyToCharConverter;
+            _messengerHub = messengerHub;
             _model = new SpeedModel();
             Log.Debug($"model is {_model}");
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
-        }
-
-        private void ObservableWordsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            var type = e.Action;
-            RaisePropertyChanged(nameof(Words));
+            Document = new FlowDocument {FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
         }
 
         private bool StartTestCanExecute() {
@@ -92,10 +79,11 @@ namespace KataSpeedProfilerModule {
             CreateProfiler();
             TypingProfiler?.Start(50);
             TextFocus = true;
-            _observableWords = new ObservableCollection<IWord>();
-            foreach (var word in TypingProfiler.Queue) {
-                _observableWords.Add(new GeneratedWord(new string(word.Chars.Select(x => x.character).ToArray())));
-            }
+            _words = new ObservableCollection<IWord>();
+            if (TypingProfiler?.Queue != null)
+                foreach (var word in TypingProfiler?.Queue) {
+                    _words.Add(new GeneratedWord(string.Join("", word.Chars.Select(x => x.CurrentCharacter))));
+                }
 
             RaisePropertyChanged(nameof(Words));
         }
@@ -105,8 +93,8 @@ namespace KataSpeedProfilerModule {
                 BootStrapper.Resolve<ICursor>(),
                 BootStrapper.Resolve<IWordStack>(),
                 BootStrapper.Resolve<IWordQueue>(),
-                BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", TestTime) }),
-                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] { new NamedParameter("path", TextPath) }));
+                BootStrapper.Resolve<ITypingTimer>(new Parameter[] {new NamedParameter("time", TestTime)}),
+                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] {new NamedParameter("path", TextPath)}));
             TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
@@ -123,22 +111,48 @@ namespace KataSpeedProfilerModule {
         }
 
         private void TypingProfilerOnNextWordEvent(object sender, WordChangedEventArgs e) {
-            _observableWords.RemoveAt(0);
+            CurrentChar = e.NewWord[0].CurrentCharacter;
+            //_words.RemoveAt(0);
             RaisePropertyChanged(nameof(Words));
+            var tr = new TextRange(Document.ContentEnd, Document.ContentEnd) { Text = " " };
+            RaisePropertyChanged(nameof(Document));
         }
+
 
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
         }
 
+        /// <summary>
+        /// Handle the key complete after typing profiler has processed it.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {
-            KeyPressed = e.InputKey;
-            IsKeyCorrect = e.IsCorrect;
+            var isKeyCorrect = e.IsCorrect;
             Log.Debug($"Key pressed : {e.InputKey}");
 
-            if (e.InputKey != ' ' && e.IsCorrect) {
-                _observableWords[0].Chars.RemoveAt(0);
+            var status = isKeyCorrect ? CharacterStatus.Correct : CharacterStatus.Incorrect;
+
+            if (e.InputKey != ' ') {
                 RaisePropertyChanged(nameof(Words));
+                var tr = new TextRange(Document.ContentEnd, Document.ContentEnd)
+                    {Text = new string(new[] {e.InputKey})};
+
+                switch (status) {
+                    case CharacterStatus.Correct:
+                        tr.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.AliceBlue);
+                        break;
+                    case CharacterStatus.Incorrect:
+                        tr.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Red);
+                        break;
+                    case CharacterStatus.Unmodified:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                RaisePropertyChanged(nameof(Document));
             }
         }
     }

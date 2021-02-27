@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using KataSpeedProfilerModule.Interfaces;
 
@@ -9,9 +8,9 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// The list of characters in the word.
         /// </summary>
-        public List<(char, CharacterStatus)> Chars { get; }
+        public List<CharacterDescriptor> Chars { get; }
 
-        public (char, CharacterStatus) this[int index] => Chars[index];
+        public CharacterDescriptor this[int index] => Chars[index];
 
         /// <summary>
         /// The count of characters in the word.
@@ -25,7 +24,7 @@ namespace KataSpeedProfilerModule {
         public override string ToString() {
             StringBuilder sb = new StringBuilder();
             foreach (var c in Chars) {
-                sb.Append(c.Item1);
+                sb.Append(c.CurrentCharacter);
             }
 
             return sb.ToString();
@@ -35,7 +34,7 @@ namespace KataSpeedProfilerModule {
         /// Instantiate new UserDefinedWord.
         /// </summary>
         public UserDefinedWord() {
-            Chars = new List<(char, CharacterStatus)>();
+            Chars = new List<CharacterDescriptor>();
         }
     }
 }

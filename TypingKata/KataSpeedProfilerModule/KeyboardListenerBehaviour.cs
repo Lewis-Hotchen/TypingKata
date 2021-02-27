@@ -28,6 +28,7 @@ namespace KataSpeedProfilerModule {
 
             if (e.Key == Key.Space) {
                 TypingProfiler.CharacterInput(' ');
+                e.Handled = true;
             }
 
             var c = KeyConverter.GetCharFromKey(e.Key);

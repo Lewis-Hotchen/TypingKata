@@ -114,22 +114,26 @@ namespace KataSpeedProfilerModule {
         /// <returns></returns>
         public void CharacterInput(char key) {
             if (key == ' ') {
-                if (Cursor.IsEndOfWord) {
+                if (UserWords.Top.CharCount != 0) {
                     ConfirmSpace();
                     KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
+                    return;
                 }
+
+                return;
             }
 
             //Change the case as Key.ToString() returns upper case.
-            var casedChar = char.ToUpper(Cursor.CurrentWord[Cursor.CharPos].Item1);
-
-            if (casedChar == char.ToUpper(key)) {
-                UserWords.Top.Chars.Add((key, CharacterStatus.Correct));
+            var casedChar = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter.ToUpper();
+            if (casedChar[0] == char.ToUpper(key)) {
+                UserWords.Top.Chars.Add(new CharacterDescriptor(new string(new []{key}), CharacterStatus.Correct));
                 Cursor.NextChar(1);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
                 return;
             }
 
+            UserWords.Top.Chars.Add(new CharacterDescriptor(new string(new[] { key }), CharacterStatus.Incorrect));
+            Cursor.NextChar(1);
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
         }
 

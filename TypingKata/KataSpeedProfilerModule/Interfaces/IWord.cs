@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KataSpeedProfilerModule.Interfaces {
 
@@ -6,17 +7,18 @@ namespace KataSpeedProfilerModule.Interfaces {
     /// Interface to store a word.
     /// </summary>
     public interface IWord {
+
         /// <summary>
         /// The list of characters in the word.
         /// </summary>
-        List<(char character, CharacterStatus status)> Chars { get; }
+        List<CharacterDescriptor> Chars { get; }
 
         /// <summary>
         /// Get characters from the word by index.
         /// </summary>
         /// <param name="index">The index.</param>
         /// <returns>The character.</returns>
-        (char, CharacterStatus) this[int index] { get; }
+        CharacterDescriptor this[int index] { get; }
 
         /// <summary>
         /// The count of characters in the word.

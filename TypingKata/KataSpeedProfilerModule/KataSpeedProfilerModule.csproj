@@ -96,17 +96,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterMVVM\CharacterModel.cs" />
-    <Compile Include="CharacterMVVM\CharacterViewModel.cs" />
     <Compile Include="CharacterStatus.cs" />
-    <Compile Include="CharacterMVVM\CharacterView.xaml.cs">
-      <DependentUpon>CharacterView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
     <Compile Include="EventArgs\WordChangedEventArgs.cs" />
     <Compile Include="FocusExtension.cs" />
     <Compile Include="IMarkovChainGenerator.cs" />
+    <Compile Include="CharacterDescriptor.cs" />
     <Compile Include="Interfaces\ICursor.cs" />
     <Compile Include="Interfaces\ITypingProfiler.cs" />
     <Compile Include="Interfaces\ITypingProfilerFactory.cs" />
@@ -120,6 +116,7 @@
     <Compile Include="KeyConverter.cs" />
     <Compile Include="KeyToCharacterConverter.cs" />
     <Compile Include="MarkovChainGenerator.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -132,6 +129,7 @@
     </Compile>
     <Compile Include="SpeedViewModel.cs" />
     <Compile Include="EventArgs\TestCompleteEventArgs.cs" />
+    <Compile Include="TinyMessenger.cs" />
     <Compile Include="TypingProfiler.cs" />
     <Compile Include="TypingProfilerFactory.cs" />
     <Compile Include="TypingTimer.cs" />
@@ -145,10 +143,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CharacterMVVM\CharacterView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="SpeedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

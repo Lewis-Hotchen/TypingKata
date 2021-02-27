@@ -2,6 +2,7 @@
 using System.Windows.Data;
 using Autofac;
 using KataIocModule;
+using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
     /// <summary>
@@ -11,7 +12,7 @@ namespace KataSpeedProfilerModule {
         public SpeedView() {
             InitializeComponent();
             DataContext = new SpeedViewModel(BootStrapper.Resolve<ITypingProfilerFactory>(),
-                BootStrapper.Container.ResolveKeyed<IValueConverter>("KeyToChar"));
+                BootStrapper.Resolve<ITinyMessengerHub>());
         }
     }
 }

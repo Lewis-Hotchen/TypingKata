@@ -4,6 +4,7 @@ using Autofac;
 using Autofac.Core;
 using KataIocModule;
 using KataSpeedProfilerModule.Interfaces;
+using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
 
@@ -29,6 +30,7 @@ namespace KataSpeedProfilerModule {
             builder.RegisterType<KeyToCharacterConverter>().As<IValueConverter>().Keyed<IValueConverter>("KeyToChar");
             builder.RegisterType<TypingProfiler>().As<ITypingProfiler>().InstancePerLifetimeScope();
             builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
+            builder.RegisterType<TinyMessengerHub>().As<ITinyMessengerHub>().InstancePerLifetimeScope();
         }
     }
 }
