@@ -14,26 +14,33 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="3"  Grid.Row="1" Text="{Binding Words}" FontSize="40" TextWrapping="NoWrap">
-        </TextBlock>
-
-        <FlowDocumentScrollViewer FontSize="0.1" Padding="0" VerticalScrollBarVisibility="Hidden" Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="#272727" Foreground="AliceBlue" Document="{Binding Document}">
+        <FlowDocumentScrollViewer FontSize="0.1" Padding="0" VerticalScrollBarVisibility="Hidden" Focusable="True" kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="0" Background="#272727" Foreground="AliceBlue" Document="{Binding Document}">
             <i:Interaction.Behaviors>
                 <kataSpeedProfilerModule:KeyboardListenerBehaviour TypingProfiler="{Binding TypingProfiler}" />
             </i:Interaction.Behaviors>
         </FlowDocumentScrollViewer>
 
-        <Label Grid.Column="0" Foreground="AliceBlue" Grid.Row="1" Content="{Binding CurrentWord}" />
+        <Canvas Grid.Row="1" Grid.Column="2">
+            <TextBlock Canvas.Left="0" Background="#272727" Foreground="AliceBlue" Text="{Binding Words}" />
+            <TextBlock Canvas.Left="-3" Canvas.Bottom="-75" Text="^" />
+        </Canvas>
+
         <TextBox Grid.Column="0" Background="#272727" Foreground="AliceBlue" Grid.Row="2" Text="{Binding TestTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <Button ToolTipService.ShowOnDisabled="True" ToolTip="Test time must be at least 60 seconds" Grid.Column="0" Grid.Row="3" Content="Start Test" Command="{Binding StartTestCommand}" />
         <Label Grid.Column="1" Foreground="AliceBlue" Grid.Row="3" Content="{Binding IsKeyCorrect, Mode=OneWay}"></Label>
-        <Label Grid.Column="2" Grid.Row="3" Foreground="AliceBlue" Content="{Binding CurrentChar}"></Label>
+        <Label Grid.Column="1" Grid.Row="4" Foreground="AliceBlue" Content="Character: "></Label>
+        <Label Grid.Column="2" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentChar}"></Label>
+        <Label Grid.Column="0" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentWord}">
+        </Label>
     </Grid>
 </UserControl>

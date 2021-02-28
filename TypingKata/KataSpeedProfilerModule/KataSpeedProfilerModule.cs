@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Windows.Data;
+﻿using System.Windows.Data;
 using Autofac;
-using Autofac.Core;
-using KataIocModule;
 using KataSpeedProfilerModule.Interfaces;
 using TinyMessenger;
 
@@ -24,7 +21,6 @@ namespace KataSpeedProfilerModule {
             //Parameterless registrations
             builder.RegisterType<Cursor>().As<ICursor>();
             builder.RegisterType<WordStack>().As<IWordStack>();
-            builder.RegisterType<WordQueue>().As<IWordQueue>();
             builder.RegisterType<GeneratedWord>().As<IWord>().Keyed<IWord>("Generated");
             builder.RegisterType<UserDefinedWord>().As<IWord>().Keyed<IWord>("User");
             builder.RegisterType<KeyToCharacterConverter>().As<IValueConverter>().Keyed<IValueConverter>("KeyToChar");

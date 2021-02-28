@@ -96,7 +96,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventArgs\BackspaceComleteEvent.cs" />
+    <Compile Include="EventArgs\BackspaceCompleteEvent.cs" />
     <Compile Include="CharacterStatus.cs" />
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
@@ -109,7 +109,6 @@
     <Compile Include="Interfaces\ITypingProfilerFactory.cs" />
     <Compile Include="Interfaces\ITypingTimer.cs" />
     <Compile Include="Interfaces\IWord.cs" />
-    <Compile Include="Interfaces\IWordQueue.cs" />
     <Compile Include="Interfaces\IWordStack.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyboardListenerBehaviour.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="TypingTimer.cs" />
     <Compile Include="GeneratedWord.cs" />
     <Compile Include="UserDefinedWord.cs" />
-    <Compile Include="WordQueue.cs" />
     <Compile Include="WordStack.cs" />
   </ItemGroup>
   <ItemGroup>

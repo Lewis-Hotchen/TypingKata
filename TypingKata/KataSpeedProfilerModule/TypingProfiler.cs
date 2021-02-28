@@ -29,17 +29,16 @@ namespace KataSpeedProfilerModule {
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<WordChangedEventArgs> NextWordEvent;
         public event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
-        public event EventHandler<BackspaceComleteEvent> BackspaceCompleteEvent;
+        public event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
 
         /// <summary>
         /// Instantiate new TypingProfiler.
         /// </summary>
         /// <param name="cursor">The Cursor.</param>
         /// <param name="userWords">The user words.</param>
-        /// <param name="queue">The word queue.</param>
         /// <param name="timer">The timer.</param>
         /// <param name="markovChainGenerator"></param>
-        public TypingProfiler(ICursor cursor,  IWordStack userWords, IWordQueue queue, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator) {
+        public TypingProfiler(ICursor cursor,  IWordStack userWords, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator) {
             _markovChainGenerator = markovChainGenerator;
             Cursor = cursor;
             UserWords = userWords;
@@ -72,9 +71,11 @@ namespace KataSpeedProfilerModule {
         private void StopTest() {
             Cursor.ResetCursor();
             GeneratedWords.Clear();
-
+            RemovedWords.Clear();
+            
             //Write out user stack and error stack.
 
+            //Calculate wpm
             CalculateWpm();
         }
 
@@ -93,25 +94,30 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
-        /// Handle backspace input
+        /// Handle backspace input.
         /// </summary>
         private void HandleBackspace() {
+            if (Cursor.WordPos == 0 && Cursor.CharPos == 0) return;
+
             var userWord = UserWords.Top;
 
             if (userWord.CharCount == 0) {
                 //go back a word
                 GeneratedWords.AddFirst(new LinkedListNode<IWord>(RemovedWords.Last.Value));
-                GeneratedWords.RemoveLast();
+                RemovedWords.RemoveLast();
                 UserWords.Pop();
                 Cursor.NextWord(-1, GeneratedWords.First.Value);
                 Cursor.NextChar(Cursor.CurrentWord.CharCount - 1);
-                BackspaceCompleteEvent?.Invoke(this, new BackspaceComleteEvent());
+                var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
+                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, CharacterStatus.Correct));
             }
             else if(userWord.CharCount > 0) {
                 //go back a character
-                UserWords.Top.Chars.RemoveAt(Cursor.CharPos - 1);
+                var status = UserWords.Top.Chars[UserWords.Top.CharCount - 1].Status;
+                UserWords.Top.Chars.RemoveAt(UserWords.Top.CharCount - 1);
                 Cursor.NextChar(-1);
-                BackspaceCompleteEvent?.Invoke(this, new BackspaceComleteEvent());
+                var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
+                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, status));
             }
         }
 
@@ -140,7 +146,6 @@ namespace KataSpeedProfilerModule {
         /// <param name="key"></param>
         /// <returns></returns>
         public void CharacterInput(char key) {
-
             if (key == '\b') {
                 HandleBackspace();
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
@@ -174,14 +179,13 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Start the test.
         /// </summary>
-        /// <param name="startingQueueCount">Number of words to start with</param>
-        public void Start(int startingQueueCount) {
+        public void Start() {
             
             //Determine number of words to generate.
             var minutes = Timer.Time.TotalMinutes;
             _generatedTextCount = (int) (200 * minutes);
             _generatedWords = _markovChainGenerator.GetText(_generatedTextCount).Split(' ');
-            QueueNewWords(startingQueueCount);
+            QueueNewWords(_generatedTextCount);
             Cursor.NextWord(0, GeneratedWords.First.Value);
             Timer.StartTimer();
         }

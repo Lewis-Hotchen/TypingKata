@@ -15,14 +15,12 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <param name="cursor">The cursor.</param>
         /// <param name="userWords">The User words stack.</param>
-        /// <param name="queue">The generated words queue.</param>
         /// <param name="timer">The Timer.</param>
         /// <returns>New ITypingProfiler.</returns>
-        public ITypingProfiler CreateTypingProfiler(ICursor cursor, IWordStack userWords, IWordQueue queue, ITypingTimer timer, IMarkovChainGenerator generator) {
+        public ITypingProfiler CreateTypingProfiler(ICursor cursor, IWordStack userWords, ITypingTimer timer, IMarkovChainGenerator generator) {
             return BootStrapper.Resolve<ITypingProfiler>(new Parameter[] {
                 new NamedParameter("cursor", cursor),
                 new NamedParameter("userWords", userWords),
-                new NamedParameter("queue", queue),
                 new NamedParameter("timer", timer),
                 new NamedParameter("markovChainGenerator", generator), 
             });
