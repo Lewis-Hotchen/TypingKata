@@ -20,7 +20,6 @@ namespace KataSpeedProfilerModule.Interfaces {
         void Start();
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         event EventHandler<WordChangedEventArgs> NextWordEvent;
-        event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
         event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
     }
 }

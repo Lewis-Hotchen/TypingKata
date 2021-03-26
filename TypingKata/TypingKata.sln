@@ -7,15 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataShell", "KataShell\Kata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataSpeedProfilerModule", "KataSpeedProfilerModule\KataSpeedProfilerModule.csproj", "{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataTrainerModule", "KataTrainerModule\KataTrainerModule.csproj", "{5A3D658B-B676-421C-81C0-68B914746488}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataShellUnitTests", "KataShellUnitTests\KataShellUnitTests.csproj", "{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataDataModule", "KataDataModule\KataDataModule.csproj", "{679815C8-195F-40DF-A59A-858C62A97C15}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataIocModule", "KataIocModule\KataIocModule.csproj", "{44755BD8-0C13-4E0E-A38A-623D155A3BF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedProfilerUnitTests", "SpeedProfilerUnitTests\SpeedProfilerUnitTests.csproj", "{6D392B13-3F29-41EA-9094-A95882154631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedProfilerUnitTests", "SpeedProfilerUnitTests\SpeedProfilerUnitTests.csproj", "{6D392B13-3F29-41EA-9094-A95882154631}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A3D658B-B676-421C-81C0-68B914746488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A3D658B-B676-421C-81C0-68B914746488}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A3D658B-B676-421C-81C0-68B914746488}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Release|Any CPU.ActiveCfg = Release|Any CPU

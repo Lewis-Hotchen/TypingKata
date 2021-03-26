@@ -100,6 +100,7 @@
     <Compile Include="CharacterStatus.cs" />
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
+    <Compile Include="EventArgs\TestCompleteMessage.cs" />
     <Compile Include="EventArgs\WordChangedEventArgs.cs" />
     <Compile Include="FocusExtension.cs" />
     <Compile Include="IMarkovChainGenerator.cs" />

@@ -1617,8 +1617,7 @@
         "type": "project",
         "dependencies": {
           "KataIocModule": "1.0.0",
-          "KataSpeedProfilerModule": "1.0.0",
-          "KataTrainerModule": "1.0.0"
+          "KataSpeedProfilerModule": "1.0.0"
         },
         "compile": {
           "bin/placeholder/KataShell.dll": {}
@@ -1637,15 +1636,6 @@
         },
         "runtime": {
           "bin/placeholder/KataSpeedProfilerModule.dll": {}
-        }
-      },
-      "KataTrainerModule/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/KataTrainerModule.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/KataTrainerModule.dll": {}
         }
       }
     }
@@ -5755,11 +5745,6 @@
       "type": "project",
       "path": "../KataSpeedProfilerModule/KataSpeedProfilerModule.csproj",
       "msbuildProject": "../KataSpeedProfilerModule/KataSpeedProfilerModule.csproj"
-    },
-    "KataTrainerModule/1.0.0": {
-      "type": "project",
-      "path": "../KataTrainerModule/KataTrainerModule.csproj",
-      "msbuildProject": "../KataTrainerModule/KataTrainerModule.csproj"
     }
   },
   "projectFileDependencyGroups": {

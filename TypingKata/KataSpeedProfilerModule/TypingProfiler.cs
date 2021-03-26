@@ -5,6 +5,7 @@ using Autofac;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
+using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
 
@@ -15,6 +16,7 @@ namespace KataSpeedProfilerModule {
     public class TypingProfiler : ITypingProfiler {
 
         private readonly IMarkovChainGenerator _markovChainGenerator;
+        private readonly ITinyMessengerHub _messengerHub;
 
         //Choose 200 as an upper bound. Highly unlikely that anyone could type more
         //than 200wpm.
@@ -28,7 +30,6 @@ namespace KataSpeedProfilerModule {
         private LinkedList<IWord> RemovedWords { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<WordChangedEventArgs> NextWordEvent;
-        public event EventHandler<TestCompleteEventArgs> TestCompleteEvent;
         public event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
 
         /// <summary>
@@ -38,8 +39,10 @@ namespace KataSpeedProfilerModule {
         /// <param name="userWords">The user words.</param>
         /// <param name="timer">The timer.</param>
         /// <param name="markovChainGenerator"></param>
-        public TypingProfiler(ICursor cursor,  IWordStack userWords, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator) {
+        /// <param name="messengerHub"></param>
+        public TypingProfiler(ICursor cursor,  IWordStack userWords, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator, ITinyMessengerHub messengerHub) {
             _markovChainGenerator = markovChainGenerator;
+            _messengerHub = messengerHub;
             Cursor = cursor;
             UserWords = userWords;
             ErrorWords = new List<(IWord, IWord)>();
@@ -89,8 +92,7 @@ namespace KataSpeedProfilerModule {
             var wpm = (int) (grossWpm - (ErrorWords.Count / Timer.Time.TotalMinutes));
             var errorRate = ((double) UserWords.Count / 100) * ErrorWords.Count;
 
-            //Signal that test has stopped.
-            TestCompleteEvent?.Invoke(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm));
+            _messengerHub.Publish(new TestCompleteMessage(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm)));
         }
 
         /// <summary>
@@ -128,8 +130,11 @@ namespace KataSpeedProfilerModule {
             var userWord = UserWords.Top;
             var generatedWord = GeneratedWords.First;
 
+            var userWordString = UserWords.Top.ToString() + ' ';
+            var generatedWordString = GeneratedWords.First.Value.ToString();
+
             //Add word to Error words if they are not the same.
-            if (userWord.ToString() != generatedWord.ToString()) {
+            if (!string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase)) {
                 ErrorWords.Add((userWord, generatedWord.Value));
             }
 

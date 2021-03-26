@@ -167,10 +167,6 @@
       <Project>{4e1515e8-5e6f-4891-b21a-c8d10e2251bc}</Project>
       <Name>KataSpeedProfilerModule</Name>
     </ProjectReference>
-    <ProjectReference Include="..\KataTrainerModule\KataTrainerModule.csproj">
-      <Project>{5a3d658b-b676-421c-81c0-68b914746488}</Project>
-      <Name>KataTrainerModule</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
