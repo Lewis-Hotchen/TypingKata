@@ -201,6 +201,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Threading.Tasks.Extensions.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Windows.Interactivity.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\MarkVSharp.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataIocModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataSpeedProfilerModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataSpeedProfilerModule.dll.config
@@ -214,7 +215,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\log4net.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\nunit.framework.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\nunit.framework.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Buffers.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Diagnostics.DiagnosticSource.xml
@@ -222,6 +222,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Numerics.Vectors.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.Threading.Tasks.Extensions.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\MarkVSharp.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\KataShell.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TabControlNice.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\App.baml
@@ -239,5 +240,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\KataShell.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata.exe
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\MarkVSharp.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\MarkVSharp.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataDataModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataDataModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\Newtonsoft.Json.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\Newtonsoft.Json.xml

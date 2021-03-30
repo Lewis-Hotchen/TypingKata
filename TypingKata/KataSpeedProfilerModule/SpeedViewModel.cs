@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Documents;
@@ -8,18 +10,20 @@ using Autofac;
 using Autofac.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using KataDataModule;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using log4net;
+using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
 
         private readonly ITypingProfilerFactory _typingProfilerFactory;
+        private readonly IDataSerializer _dataSerializer;
         private const string TextPath = "KataSpeedProfilerModule.Resources.words.txt";
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
-
         private ITypingProfiler _profiler;
         private bool _textFocus;
         private double _testTime;
@@ -93,13 +97,57 @@ namespace KataSpeedProfilerModule {
         /// Instantiate new SpeedViewModel.
         /// </summary>
         /// <param name="typingProfilerFactory"></param>
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory) {
+        /// <param name="messengerHub"></param>
+        /// <param name="dataSerializer"></param>
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer) {
             _typingProfilerFactory = typingProfilerFactory;
+            _dataSerializer = dataSerializer;
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             _isRunning = false;
+            messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
         }
 
+        /// <summary>
+        /// Handle event for test complete.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void TestCompleteAction(TestCompleteMessage obj) {
+            Words = " ";
+            RaisePropertyChanged(nameof(Words));
+            CurrentWord = "";
+            RaisePropertyChanged(nameof(CurrentWord));
+            CurrentChar = "";
+            RaisePropertyChanged(nameof(CurrentChar));
+
+            Document.Dispatcher.Invoke(() => {
+                Document.Blocks.Clear();
+                RaisePropertyChanged(nameof(Document));
+            });
+
+            _isRunning = false;
+
+            //This method is running on a different thread to the UI thread, which the command must run on.
+            //To fix this we get the current Dispatcher (UI Thread) and execute the code on there.
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TypingKataData\typingresults.json";
+
+            var wpmObjs = _dataSerializer.DeserializeObject<List<WPMJsonObject>>(File.ReadAllText(path));
+            if (wpmObjs == null) {
+                wpmObjs = new List<WPMJsonObject>();
+            }
+            var errorWords = new List<(string, string)>();
+            foreach (var (item1, item2) in obj.Content.ErrorWords) {
+                errorWords.Add((item1.ToString(), item2.ToString()));
+            }
+
+            var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,
+                errorWords, DateTime.UtcNow, _testTime);
+            wpmObjs.Add(newResult);
+
+            _dataSerializer.SerializeObject(wpmObjs, path);
+        }
+        
         /// <summary>
         /// Predicate to determine if you can start test.
         /// </summary>
@@ -139,7 +187,6 @@ namespace KataSpeedProfilerModule {
             TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
             TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
-            TypingProfiler.TestCompleteEvent += TypingProfilerOnTestCompleteEvent;
             TypingProfiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
         }
 
@@ -155,6 +202,9 @@ namespace KataSpeedProfilerModule {
             }
         }
 
+        /// <summary>
+        /// Get the inline of the FlowDocument, and remove the last character from it.
+        /// </summary>
         private void BackspaceDocumentText() {
             var para = (Paragraph) Document.Blocks.FirstOrDefault(p => p.GetType() == typeof(Paragraph));
             var inline = (Run) para?.Inlines.LastInline;
@@ -171,26 +221,6 @@ namespace KataSpeedProfilerModule {
             }
 
             RaisePropertyChanged(nameof(Document));
-        }
-
-        /// <summary>
-        /// Handle end of test event.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TypingProfilerOnTestCompleteEvent(object sender, TestCompleteEventArgs e) {
-
-            Words = " ";
-            RaisePropertyChanged(nameof(Words));
-
-            Document.Dispatcher.Invoke(() =>
-            {
-                Document.Blocks.Clear();
-                RaisePropertyChanged(nameof(Document));
-            });
-            
-            _isRunning = false;
-            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
         }
 
         /// <summary>

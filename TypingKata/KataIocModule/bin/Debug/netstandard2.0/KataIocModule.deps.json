@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "8f32a6a231b71b37b971601ed5537037d658a60c"
+    "signature": "9e4d3d0bb14a041561dc7d2f07b8fd1df8e5fd0c"
   },
   "compilationOptions": {},
   "targets": {
@@ -12,6 +12,7 @@
           "Autofac": "6.1.0",
           "MvvmLight": "5.4.1.1",
           "NETStandard.Library": "2.0.3",
+          "NUnit": "3.13.1",
           "log4net": "2.0.12"
         },
         "runtime": {
@@ -57,6 +58,17 @@
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "NUnit/3.13.1": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/nunit.framework.dll": {
+            "assemblyVersion": "3.13.1.0",
+            "fileVersion": "3.13.1.0"
+          }
         }
       },
       "System.Buffers/4.5.1": {
@@ -220,6 +232,13 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "NUnit/3.13.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vWBvrSelmTYwqHWvO3dA63z7cOpaFR/3nJ9MMVLBkWeaWa7oiglPPm5g1h96B4i2XXqjFexxhR5MyMjmIJYPfg==",
+      "path": "nunit/3.13.1",
+      "hashPath": "nunit.3.13.1.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

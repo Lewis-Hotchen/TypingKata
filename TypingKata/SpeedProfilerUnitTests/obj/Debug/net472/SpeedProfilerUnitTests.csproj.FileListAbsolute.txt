@@ -50,9 +50,11 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\System.Threading.Tasks.Extensions.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataSpeedProfilerModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CoreCompileInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.AssemblyInfoInputs.cache
@@ -60,5 +62,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\SpeedProfilerUnitTests.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\MarkVSharp.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\Newtonsoft.Json.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataDataModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\KataDataModule.pdb

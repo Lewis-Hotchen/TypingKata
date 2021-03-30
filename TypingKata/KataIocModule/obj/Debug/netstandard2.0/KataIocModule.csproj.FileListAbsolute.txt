@@ -10,9 +10,9 @@ C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\netstandard2.0\KataIocModule.deps.json
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\netstandard2.0\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\netstandard2.0\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.csproj.CoreCompileInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.AssemblyInfoInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.AssemblyInfo.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\netstandard2.0\KataIocModule.csprojAssemblyReference.cache

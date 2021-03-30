@@ -28,9 +28,9 @@ C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.deps.json
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\netstandard2.0\KataDataModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csproj.CoreCompileInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfoInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.AssemblyInfo.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\netstandard2.0\KataDataModule.csprojAssemblyReference.cache

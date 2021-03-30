@@ -131,7 +131,9 @@ namespace KataSpeedProfilerModule {
             var generatedWord = GeneratedWords.First;
 
             var userWordString = UserWords.Top.ToString() + ' ';
-            var generatedWordString = GeneratedWords.First.Value.ToString();
+            string generatedWordString = "";
+            if(GeneratedWords.First.Value != null)
+                 generatedWordString = GeneratedWords.First.Value.ToString();
 
             //Add word to Error words if they are not the same.
             if (!string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase)) {

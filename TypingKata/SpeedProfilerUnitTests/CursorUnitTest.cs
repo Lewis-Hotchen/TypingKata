@@ -1,4 +1,5 @@
-﻿using KataSpeedProfilerModule;
+﻿using System.Collections.Generic;
+using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -12,7 +13,12 @@ namespace SpeedProfilerUnitTests {
         [SetUp]
         public void Setup() {
             _mockWord = new Mock<IWord>();
-            _mockWord.Setup(x => x.Chars).Returns(new[] {'t', 'e', 's', 't'});
+            _mockWord.Setup(x => x.Chars).Returns(new List<CharacterDescriptor> {
+                new CharacterDescriptor("t", CharacterStatus.Unmodified),
+                new CharacterDescriptor("e", CharacterStatus.Unmodified),
+                new CharacterDescriptor("s", CharacterStatus.Unmodified),
+                new CharacterDescriptor("t", CharacterStatus.Unmodified)
+            });
             _mockWord.Setup(x => x.CharCount).Returns(4);
 
         }

@@ -111,6 +111,8 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\GalaSoft.MvvmLight.Platform.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\log4net.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\nunit.framework.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Buffers.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Diagnostics.DiagnosticSource.dll
@@ -128,6 +130,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\log4net.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\nunit.framework.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Buffers.xml
@@ -136,9 +139,11 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Numerics.Vectors.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csprojAssemblyReference.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.g.resources
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.Properties.Resources.resources
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.GenerateResource.cache
@@ -146,8 +151,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\MarkVSharp.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataDataModule.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataDataModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\Newtonsoft.Json.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\Newtonsoft.Json.xml
