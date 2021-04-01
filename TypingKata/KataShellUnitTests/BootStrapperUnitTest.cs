@@ -1,6 +1,5 @@
 using Autofac;
 using KataIocModule;
-using KataShell;
 using KataShellUnitTests.HelperClasses;
 using Moq;
 using NUnit.Framework;

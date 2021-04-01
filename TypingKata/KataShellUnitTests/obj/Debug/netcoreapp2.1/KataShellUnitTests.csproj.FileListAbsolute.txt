@@ -91,6 +91,10 @@ C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.core.dll
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataIocModule.dll
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csprojAssemblyReference.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csproj.CoreCompileInputs.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.AssemblyInfoInputs.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.AssemblyInfo.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\testhost.exe
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\testhost.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\Microsoft.TestPlatform.PlatformAbstractions.dll
@@ -105,6 +109,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataShellUnitTests.runtimeconfig.dev.json
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataShellUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataShellUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataDataModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataSpeedProfilerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\TypingKata.exe
@@ -113,18 +118,15 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\MarkVSharp.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\TypingKata.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\TypingKata.exe.config
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataDataModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataDataModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataIocModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataSpeedProfilerModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataSpeedProfilerModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\MarkVSharp.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csprojAssemblyReference.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csproj.CoreCompileInputs.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.AssemblyInfoInputs.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.AssemblyInfo.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\obj\Debug\netcoreapp2.1\KataShellUnitTests.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataDataModule.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShellUnitTests\bin\Debug\netcoreapp2.1\KataDataModule.pdb

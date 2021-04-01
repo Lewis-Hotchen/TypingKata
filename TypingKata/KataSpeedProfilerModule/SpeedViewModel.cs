@@ -14,6 +14,7 @@ using KataDataModule;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
+using KataSpeedProfilerModule.Properties;
 using log4net;
 using TinyMessenger;
 
@@ -130,7 +131,7 @@ namespace KataSpeedProfilerModule {
             //This method is running on a different thread to the UI thread, which the command must run on.
             //To fix this we get the current Dispatcher (UI Thread) and execute the code on there.
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\TypingKataData\typingresults.json";
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.TypingKataWpmJson;
 
             var wpmObjs = _dataSerializer.DeserializeObject<List<WPMJsonObject>>(File.ReadAllText(path));
             if (wpmObjs == null) {

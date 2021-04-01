@@ -1,8 +1,7 @@
 ﻿using System.Windows;
 using KataIocModule;
-using TypingKata;
 
-namespace KataShell {
+namespace TypingKata {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

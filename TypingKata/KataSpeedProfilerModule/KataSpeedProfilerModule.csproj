@@ -152,16 +152,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KataDataModule\KataDataModule.csproj">
-      <Project>{679815C8-195F-40DF-A59A-858C62A97C15}</Project>
-      <Name>KataDataModule</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KataIocModule\KataIocModule.csproj">
-      <Project>{44755BD8-0C13-4E0E-A38A-623D155A3BF8}</Project>
-      <Name>KataIocModule</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -170,7 +160,16 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\words.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KataDataModule\KataDataModule.csproj">
+      <Project>{d816723b-2376-4f34-bb0d-758711670964}</Project>
+      <Name>KataDataModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KataIocModule\KataIocModule.csproj">
+      <Project>{779e97cf-5d91-4940-8406-05fdfdf9cfd8}</Project>
+      <Name>KataIocModule</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

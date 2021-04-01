@@ -61,6 +61,15 @@ namespace TypingKata.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analytics.
+        /// </summary>
+        public static string TabItemAnalytics {
+            get {
+                return ResourceManager.GetString("TabItemAnalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Learn.
         /// </summary>
         public static string TabItemLearning {

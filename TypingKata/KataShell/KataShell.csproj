@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KataIocModule\KataIocModule.csproj">
-      <Project>{44755BD8-0C13-4E0E-A38A-623D155A3BF8}</Project>
+      <Project>{779e97cf-5d91-4940-8406-05fdfdf9cfd8}</Project>
       <Name>KataIocModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\KataSpeedProfilerModule\KataSpeedProfilerModule.csproj">

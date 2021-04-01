@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using KataIocModule;
-using KataShell;
 
 namespace TypingKata {
     /// <summary>

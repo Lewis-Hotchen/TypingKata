@@ -1,4 +1,4 @@
-﻿<Window x:Class="KataShell.RootView"
+﻿<Window x:Class="TypingKata.RootView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -77,12 +77,12 @@
                         </Setter>
                     </Style>
                 </TabControl.Resources>
-                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemLearning}">
-                </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSpeedTest}">
                     <kataSpeedProfilerModule:SpeedView></kataSpeedProfilerModule:SpeedView>
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSettings}">
+                </TabItem>
+                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemAnalytics}">
                 </TabItem>
             </TabControl>
         </Grid>
