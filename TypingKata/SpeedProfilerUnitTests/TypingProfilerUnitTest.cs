@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using KataIocModule;
 using KataSpeedProfilerModule;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;
-using TinyMessenger;
 
 namespace SpeedProfilerUnitTests {
 

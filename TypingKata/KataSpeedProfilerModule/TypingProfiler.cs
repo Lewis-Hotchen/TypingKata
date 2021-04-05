@@ -5,7 +5,6 @@ using Autofac;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
-using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
 
@@ -132,7 +131,7 @@ namespace KataSpeedProfilerModule {
 
             var userWordString = UserWords.Top.ToString() + ' ';
             string generatedWordString = "";
-            if(GeneratedWords.First.Value != null)
+            if(GeneratedWords.First != null)
                  generatedWordString = GeneratedWords.First.Value.ToString();
 
             //Add word to Error words if they are not the same.

@@ -16,7 +16,6 @@ using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using KataSpeedProfilerModule.Properties;
 using log4net;
-using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
@@ -137,9 +136,9 @@ namespace KataSpeedProfilerModule {
             if (wpmObjs == null) {
                 wpmObjs = new List<WPMJsonObject>();
             }
-            var errorWords = new List<(string, string)>();
+            var errorWords = new List<Tuple<string, string>>();
             foreach (var (item1, item2) in obj.Content.ErrorWords) {
-                errorWords.Add((item1.ToString(), item2.ToString()));
+                errorWords.Add(new Tuple<string, string>(item1.ToString(), item2.ToString()));
             }
 
             var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,

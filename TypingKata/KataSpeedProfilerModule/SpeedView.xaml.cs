@@ -2,7 +2,6 @@
 using KataDataModule;
 using KataIocModule;
 //using KataIocModule;
-using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
 

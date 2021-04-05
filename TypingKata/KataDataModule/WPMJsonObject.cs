@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 namespace KataDataModule {
 
+    /// <summary>
+    /// Simple class to store json.
+    /// </summary>
     [JsonObject]
     public class WPMJsonObject {
 
@@ -15,13 +18,22 @@ namespace KataDataModule {
         [JsonProperty("ErrorRate")]
         public double ErrorRate { get; }
         [JsonProperty("ErrorWords")]
-        public List<(string, string)> IncorrectWords { get; }
+        public List<Tuple<string, string>> IncorrectWords { get; }
         [JsonProperty("Date")]
         public DateTime Date { get; }
         [JsonProperty("Time")]
         public double Time { get; }
 
-        public WPMJsonObject(int wpm, int errors, double errorRate, List<(string, string)> incorrectWords, DateTime date, double time) {
+        /// <summary>
+        /// Create new WPMJsonObject.
+        /// </summary>
+        /// <param name="wpm"></param>
+        /// <param name="errors"></param>
+        /// <param name="errorRate"></param>
+        /// <param name="incorrectWords"></param>
+        /// <param name="date"></param>
+        /// <param name="time"></param>
+        public WPMJsonObject(int wpm, int errors, double errorRate, List<Tuple<string, string>> incorrectWords, DateTime date, double time) {
             Wpm = wpm;
             Errors = errors;
             ErrorRate = errorRate;
@@ -30,6 +42,10 @@ namespace KataDataModule {
             Time = time;
         }
 
+        /// <summary>
+        /// Return the object as a string.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString() {
             var sb = new StringBuilder();
             sb.Append("Errors: \n");

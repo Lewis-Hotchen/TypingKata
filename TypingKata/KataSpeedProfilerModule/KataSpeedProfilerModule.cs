@@ -1,7 +1,7 @@
 ﻿using System.Windows.Data;
 using Autofac;
+using KataIocModule;
 using KataSpeedProfilerModule.Interfaces;
-using TinyMessenger;
 
 namespace KataSpeedProfilerModule {
 

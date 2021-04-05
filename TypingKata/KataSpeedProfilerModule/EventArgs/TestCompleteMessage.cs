@@ -1,4 +1,4 @@
-﻿using TinyMessenger;
+﻿using KataIocModule;
 
 namespace KataSpeedProfilerModule.EventArgs {
     public class TestCompleteMessage : GenericTinyMessage<TestCompleteEventArgs> {

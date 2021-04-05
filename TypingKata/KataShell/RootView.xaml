@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:resx="clr-namespace:TypingKata.Properties"
         xmlns:kataSpeedProfilerModule="clr-namespace:KataSpeedProfilerModule;assembly=KataSpeedProfilerModule"
+        xmlns:kataDataModule="clr-namespace:KataDataModule;assembly=KataDataModule"
         mc:Ignorable="d"
         Title="Typing Kata" 
         WindowState="Maximized"
@@ -83,6 +84,7 @@
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSettings}">
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemAnalytics}">
+                    <kataDataModule:AnalyticsView></kataDataModule:AnalyticsView>
                 </TabItem>
             </TabControl>
         </Grid>

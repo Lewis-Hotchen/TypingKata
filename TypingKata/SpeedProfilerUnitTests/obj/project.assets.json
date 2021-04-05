@@ -42,7 +42,7 @@
           "lib/net461/Microsoft.Bcl.AsyncInterfaces.dll": {}
         }
       },
-      "Moq/4.15.2": {
+      "Moq/4.16.1": {
         "type": "package",
         "dependencies": {
           "Castle.Core": "4.4.0",
@@ -260,10 +260,10 @@
         "version.txt"
       ]
     },
-    "Moq/4.15.2": {
-      "sha512": "wegOsLAWslb4Qm/ER1hl7pd9M5fiolsnSVEZuNZgVl8iVGm/PRHXrLY/2YCnFmNHnMiX3X/+em404mGZi2ofQw==",
+    "Moq/4.16.1": {
+      "sha512": "bw3R9q8cVNhWXNpnvWb0OGP4HadS4zvClq+T1zf7AF+tLY1haZ2AvbHidQekf4PDv1T40c6brZeT/V0IBq7cEQ==",
       "type": "package",
-      "path": "moq/4.15.2",
+      "path": "moq/4.16.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -271,7 +271,9 @@
         "lib/net45/Moq.xml",
         "lib/netstandard2.0/Moq.dll",
         "lib/netstandard2.0/Moq.xml",
-        "moq.4.15.2.nupkg.sha512",
+        "lib/netstandard2.1/Moq.dll",
+        "lib/netstandard2.1/Moq.xml",
+        "moq.4.16.1.nupkg.sha512",
         "moq.nuspec",
         "moq.png"
       ]
@@ -513,7 +515,7 @@
     ".NETFramework,Version=v4.7.2": [
       "Autofac >= 6.1.0",
       "KataSpeedProfilerModule >= 1.0.0",
-      "Moq >= 4.15.2",
+      "Moq >= 4.16.1",
       "NUnit >= 3.13.1"
     ]
   },
@@ -568,7 +570,7 @@
           },
           "Moq": {
             "target": "Package",
-            "version": "[4.15.2, )"
+            "version": "[4.16.1, )"
           },
           "NUnit": {
             "target": "Package",
