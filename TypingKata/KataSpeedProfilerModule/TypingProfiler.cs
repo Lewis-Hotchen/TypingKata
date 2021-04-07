@@ -26,7 +26,7 @@ namespace KataSpeedProfilerModule {
         public List<(IWord, IWord)> ErrorWords { get; }
         public ITypingTimer Timer { get; }
         public LinkedList<IWord> GeneratedWords { get; }
-        private LinkedList<IWord> RemovedWords { get; }
+        public LinkedList<IWord> RemovedWords { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<WordChangedEventArgs> NextWordEvent;
         public event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
@@ -111,8 +111,8 @@ namespace KataSpeedProfilerModule {
                 Cursor.NextChar(Cursor.CurrentWord.CharCount - 1);
                 var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
                 BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, CharacterStatus.Correct));
-            }
-            else if(userWord.CharCount > 0) {
+            } else
+            if (userWord.CharCount > 0 && userWord[Cursor.CharPos - 1].Status == CharacterStatus.Incorrect) {
                 //go back a character
                 var status = UserWords.Top.Chars[UserWords.Top.CharCount - 1].Status;
                 UserWords.Top.Chars.RemoveAt(UserWords.Top.CharCount - 1);
@@ -131,9 +131,10 @@ namespace KataSpeedProfilerModule {
 
             var userWordString = UserWords.Top.ToString() + ' ';
             string generatedWordString = "";
-            if(GeneratedWords.First != null)
-                 generatedWordString = GeneratedWords.First.Value.ToString();
+            if (GeneratedWords.First == null || generatedWord == null)
+                return;
 
+            generatedWordString = GeneratedWords.First.Value.ToString();
             //Add word to Error words if they are not the same.
             if (!string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase)) {
                 ErrorWords.Add((userWord, generatedWord.Value));

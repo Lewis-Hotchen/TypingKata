@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="TypingKata.TouchTypingInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TypingKata"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+          <Grid.RowDefinitions>
+              <RowDefinition Height="*" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="*" />
+              <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+        
+
+        <StackPanel Grid.Row="0">
+            <TextBlock FontSize="80" Text="What is touch typing?" />
+
+            <Separator Width="1000" HorizontalAlignment="Left" />
+            <TextBlock TextWrapping="Wrap" FontSize="20">
+                Touch typing is the technique of typing with all 10 fingers. Each finger will be mapped to a certain set of keys.
+                <LineBreak /> This way you use all fingers to type. This can be challenging at first, but when you build up the muscle memory you'll
+                be typing like a pro! See below on the notation for each finger.
+            </TextBlock>
+
+            <Separator Width="1000" HorizontalAlignment="Left" />
+
+            <!-- IMAGE SOURCE FROM www.typing.academy/10-finger-typing -->
+            <Image Stretch="None" HorizontalAlignment="Left" Grid.Row="2">
+                <Image.Source>
+                    <BitmapImage UriSource="keyboard.png"/>
+                </Image.Source>
+            </Image>
+
+            <StackPanel>
+                <TextBlock TextWrapping="Wrap" FontSize="20">
+                    Here we can a keyboard and each of the finger's attributes to a key:
+                </TextBlock>
+
+                <BulletDecorator>
+                        <Label FontSize="20" Content="Pinkies" Foreground="Orange"></Label>
+                    </BulletDecorator>
+                    <BulletDecorator>
+                        <Label FontSize="20" Content="Ring fingers" Foreground="IndianRed"></Label>
+                    </BulletDecorator>
+                    <BulletDecorator>
+                        <Label FontSize="20" Content="Middle fingers" Foreground="LightGreen"></Label>
+                    </BulletDecorator>
+                    <BulletDecorator>
+                        <Label FontSize="20" Content="Indexes" Foreground="SteelBlue"></Label>
+                    </BulletDecorator>
+            </StackPanel>
+
+            <TextBlock TextWrapping="Wrap" FontSize="20">
+                This will be reflected in the test when learning to type. You will see the character and it's associated colours. <LineBreak/>
+                Remember the colour and build up the muscle memory! This option can then be turned off in settings.
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

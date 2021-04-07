@@ -6,6 +6,7 @@
         xmlns:resx="clr-namespace:TypingKata.Properties"
         xmlns:kataSpeedProfilerModule="clr-namespace:KataSpeedProfilerModule;assembly=KataSpeedProfilerModule"
         xmlns:kataDataModule="clr-namespace:KataDataModule;assembly=KataDataModule"
+        xmlns:typingKata="clr-namespace:TypingKata"
         mc:Ignorable="d"
         Title="Typing Kata" 
         WindowState="Maximized"
@@ -53,7 +54,7 @@
         </StackPanel>
 
         <Grid >
-            <TabControl Background="#272727">
+            <TabControl BorderBrush="#272727" Background="#272727">
                 <TabControl.Resources>
                     <Style TargetType="{x:Type TabItem}" x:Key="TabItemStyle">
                         <Setter Property="Background" Value="Transparent" />
@@ -62,7 +63,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TabItem}">
-                                    <Border x:Name="PART_Border" Background="#272727" Margin="2">
+                                    <Border BorderBrush="#272727" x:Name="PART_Border" Background="#272727" Margin="2">
                                         <ContentPresenter ContentSource="Header" Margin="10" />
                                     </Border>
                                     <ControlTemplate.Triggers>
@@ -77,7 +78,14 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
+
+                    <Style TargetType="{x:Type TabPanel}">
+                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    </Style>
                 </TabControl.Resources>
+                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemLearning}">
+                    <typingKata:TouchTypingInfo></typingKata:TouchTypingInfo>
+                </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSpeedTest}">
                     <kataSpeedProfilerModule:SpeedView></kataSpeedProfilerModule:SpeedView>
                 </TabItem>

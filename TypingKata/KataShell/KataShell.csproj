@@ -108,8 +108,8 @@
     </ApplicationDefinition>
     <Compile Include="IRootViewModel.cs" />
     <Compile Include="RootViewModel.cs" />
-    <Compile Include="TabControlNice.xaml.cs">
-      <DependentUpon>TabControlNice.xaml</DependentUpon>
+    <Compile Include="TouchTypingInfo.xaml.cs">
+      <DependentUpon>TouchTypingInfo.xaml</DependentUpon>
     </Compile>
     <Page Include="RootView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -123,7 +123,7 @@
       <DependentUpon>RootView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TabControlNice.xaml">
+    <Page Include="TouchTypingInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,6 +147,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Resource Include="keyboard.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

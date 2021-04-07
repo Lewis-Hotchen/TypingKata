@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
 using KataSpeedProfilerModule.EventArgs;
 
 namespace KataSpeedProfilerModule.Interfaces {
@@ -14,6 +13,7 @@ namespace KataSpeedProfilerModule.Interfaces {
         ICursor Cursor { get; }
         IWordStack UserWords { get; }
         List<(IWord, IWord)> ErrorWords { get; }
+        LinkedList<IWord> RemovedWords { get; }
         ITypingTimer Timer { get; }
         LinkedList<IWord> GeneratedWords { get; }
         void CharacterInput(char key);

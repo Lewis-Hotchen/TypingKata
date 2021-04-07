@@ -31,6 +31,8 @@ namespace KataSpeedProfilerModule {
         private string _words;
         private bool _isRunning;
         private string _word;
+        private string _removedWords;
+        private int _maxWordCount;
 
         /// <summary>
         /// Gets the Start Test Command.
@@ -64,6 +66,11 @@ namespace KataSpeedProfilerModule {
         public string Words {
             get => _words;
             set => Set(ref _words, value);
+        }
+
+        public string RemovedWords {
+            get => _removedWords;
+            set => Set(ref _removedWords, value);
         }
 
         /// <summary>
@@ -171,6 +178,8 @@ namespace KataSpeedProfilerModule {
                     Words += string.Join("", word.Chars.Select(x => x.CurrentCharacter));
                 }
 
+            _maxWordCount = Words.Length;
+
             _isRunning = true;
             StartTestCommand.RaiseCanExecuteChanged();
         }
@@ -201,6 +210,8 @@ namespace KataSpeedProfilerModule {
                 Words = Words.Insert(0, e.AddedChar.ToString());
             }
         }
+
+
 
         /// <summary>
         /// Get the inline of the FlowDocument, and remove the last character from it.
@@ -256,7 +267,10 @@ namespace KataSpeedProfilerModule {
             Log.Debug($"Key pressed : {e.InputKey}");
             var status = isKeyCorrect ? CharacterStatus.Correct : CharacterStatus.Incorrect;
 
-            if (e.InputKey == ' ' || e.InputKey == '\b') return;
+            if (e.InputKey == ' ' || e.InputKey == '\b') {
+                RemovedWords += e.InputKey;
+                return;
+            }
 
             var tr = new TextRange(Document.ContentEnd, Document.ContentEnd)
                 {Text = new string(new[] {e.InputKey})};
@@ -264,6 +278,7 @@ namespace KataSpeedProfilerModule {
             switch (status) {
                 case CharacterStatus.Correct:
                     tr.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.AliceBlue);
+                    RemovedWords += e.InputKey;
                     if (Words != "") {
                         Words = Words.Remove(0, 1);
                     }

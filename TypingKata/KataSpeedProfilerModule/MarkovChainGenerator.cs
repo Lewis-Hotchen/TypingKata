@@ -4,6 +4,11 @@ using System.Reflection;
 using MarkVSharp;
 
 namespace KataSpeedProfilerModule {
+
+    /// <summary>
+    /// Class to use MarkVSharp library implementation of Markov chain generator.
+    /// From: https://github.com/emacarie/MarkVSharp
+    /// </summary>
     public class MarkovChainGenerator : IMarkovChainGenerator {
 
         private readonly string _path;
@@ -21,7 +26,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Generate words from resource.
         /// The text found in this text document is generated from:
-        /// https://www.blindtextgenerator.com/lorem-ipsum [Accessed: 15/02/2021]
+        /// https://www.blindtextgenerator.com/lorem-ipsum
         /// </summary>
         /// <returns>Enumerable string of words.</returns>
         private string GetWordsFromResource() {
