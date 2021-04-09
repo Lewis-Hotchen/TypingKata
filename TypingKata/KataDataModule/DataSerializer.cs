@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Newtonsoft.Json;
 
 namespace KataDataModule {
@@ -6,6 +7,9 @@ namespace KataDataModule {
 
         public void SerializeObject(object data, string path) {
 
+            if (data == null) {
+                throw new ArgumentException("Data cannot be null");
+            }
             var serializer = new JsonSerializer();
 
             using (var sw = new StreamWriter(path))

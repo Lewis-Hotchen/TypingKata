@@ -32,7 +32,6 @@ namespace KataSpeedProfilerModule {
         private bool _isRunning;
         private string _word;
         private string _removedWords;
-        private int _maxWordCount;
 
         /// <summary>
         /// Gets the Start Test Command.
@@ -177,8 +176,6 @@ namespace KataSpeedProfilerModule {
                 foreach (var word in TypingProfiler?.GeneratedWords) {
                     Words += string.Join("", word.Chars.Select(x => x.CurrentCharacter));
                 }
-
-            _maxWordCount = Words.Length;
 
             _isRunning = true;
             StartTestCommand.RaiseCanExecuteChanged();
