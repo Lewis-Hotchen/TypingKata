@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Threading;
-using Autofac;
+using System.ComponentModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using KataDataModule.EventArgs;
@@ -18,20 +13,27 @@ namespace KataDataModule {
         private readonly IDataSerializer _serializer;
         private readonly IJSonLoader _loader;
         private readonly ITinyMessengerHub _messengerHub;
-        private SettingsModel _model;
-        private bool _dataResetVisible;
+        private readonly SettingsModel _model;
 
         public SettingsViewModel(IDataSerializer serializer, IJSonLoader loader, ITinyMessengerHub messengerHub) {
             _serializer = serializer;
             _loader = loader;
             _messengerHub = messengerHub;
-            _model = new SettingsModel(serializer);
+            _model = new SettingsModel(serializer, messengerHub);
             ResetDataCommand = new RelayCommand(ResetData);
+            _model.PropertyChanged += ModelOnPropertyChanged;
         }
 
-        public bool DataResetVisible {
-            get => _dataResetVisible;
-            set => Set(ref _dataResetVisible, value);
+        private void ModelOnPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            RaisePropertyChanged(nameof(IsLearnModeOn));
+        }
+
+        public bool IsLearnModeOn {
+            get => _model.IsLearnMode;
+            set  {
+                _messengerHub.Publish(new ToggleSettingUpdated(this, value));
+                _model.IsLearnMode = value;
+            } 
         }
 
         private void ResetData() {

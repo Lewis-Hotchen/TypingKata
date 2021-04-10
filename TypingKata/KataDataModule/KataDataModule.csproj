@@ -100,10 +100,12 @@
     <Compile Include="AnalyticsViewModel.cs" />
     <Compile Include="DataModule.cs" />
     <Compile Include="DataSerializer.cs" />
+    <Compile Include="EventArgs\ToggleSettingUpdated.cs" />
     <Compile Include="Interfaces\IDataSerializer.cs" />
     <Compile Include="Interfaces\IJSonLoader.cs" />
     <Compile Include="JsonLoader.cs" />
     <Compile Include="EventArgs\JsonUpdatedMessage.cs" />
+    <Compile Include="JsonObjects\SettingJsonObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs" />
     <Compile Include="SettingsModel.cs" />

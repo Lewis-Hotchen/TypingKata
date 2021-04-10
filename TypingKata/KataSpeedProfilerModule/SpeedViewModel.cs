@@ -6,11 +6,9 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Threading;
-using Autofac;
-using Autofac.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using KataDataModule;
+using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
@@ -32,6 +30,7 @@ namespace KataSpeedProfilerModule {
         private string _word;
         private string _removedWords;
         private readonly SpeedModel _model;
+        private bool _learnMode;
 
         /// <summary>
         /// Gets the Start Test Command.
@@ -109,6 +108,19 @@ namespace KataSpeedProfilerModule {
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             _isRunning = false;
             messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
+            messengerHub.Subscribe<ToggleSettingUpdated>(DeliveryAction);
+        }
+
+        private void DeliveryAction(ToggleSettingUpdated obj) {
+                
+        }
+
+        /// <summary>
+        /// Flag to determine to start in learn mode.
+        /// </summary>
+        public bool LearnMode {
+            get => _learnMode;
+            set => Set(ref _learnMode, value);
         }
 
         /// <summary>

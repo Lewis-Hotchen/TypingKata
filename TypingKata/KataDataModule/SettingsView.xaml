@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
       <Label Grid.Row="0" Grid.Column="0" Content="Learning Mode" Foreground="AliceBlue" />
-        <ToggleButton Grid.Row="0" Grid.Column="1">
+        <ToggleButton IsChecked="{Binding IsLearnModeOn, Mode=TwoWay}" Grid.Row="0" Grid.Column="1">
             <ToggleButton.Resources>
                     <Style TargetType="{x:Type ToggleButton}">
                         <Setter Property="Template">
