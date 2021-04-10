@@ -1,6 +1,6 @@
 ﻿using KataIocModule;
 
-namespace KataDataModule {
+namespace KataDataModule.EventArgs {
 
     /// <summary>
     /// Message to update json files.

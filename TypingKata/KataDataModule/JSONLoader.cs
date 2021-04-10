@@ -2,6 +2,8 @@
 using System.IO;
 using KataIocModule;
 using System.Linq;
+using KataDataModule.EventArgs;
+using KataDataModule.Interfaces;
 
 namespace KataDataModule {
 

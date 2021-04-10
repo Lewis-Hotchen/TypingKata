@@ -54,8 +54,11 @@
         </StackPanel>
 
         <Grid >
-            <TabControl BorderBrush="#272727" Background="#272727">
+            <TabControl BorderBrush="#303030" BorderThickness="0, 7, 0, 0" Background="#272727">
                 <TabControl.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="BorderThickness" Value="0, 10, 0, 0"></Setter>
+                    </Style>
                     <Style TargetType="{x:Type TabItem}" x:Key="TabItemStyle">
                         <Setter Property="Background" Value="Transparent" />
                         <Setter Property="Foreground" Value="Gray"></Setter>
@@ -84,15 +87,16 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemLearning}">
-                    <typingKata:TouchTypingInfo></typingKata:TouchTypingInfo>
+                    <typingKata:TouchTypingInfo />
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSpeedTest}">
-                    <kataSpeedProfilerModule:SpeedView></kataSpeedProfilerModule:SpeedView>
+                    <kataSpeedProfilerModule:SpeedView />
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSettings}">
+                    <kataDataModule:SettingsView />
                 </TabItem>
                 <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemAnalytics}">
-                    <kataDataModule:AnalyticsView></kataDataModule:AnalyticsView>
+                    <kataDataModule:AnalyticsView />
                 </TabItem>
             </TabControl>
         </Grid>

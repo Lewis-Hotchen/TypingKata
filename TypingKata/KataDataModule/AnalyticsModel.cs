@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
+using KataDataModule.EventArgs;
+using KataDataModule.JsonObjects;
 using KataIocModule;
 
 namespace KataDataModule {
-    public class AnalyticsModel {
+    public class AnalyticsModel : ViewModelBase {
 
         private readonly IJSonLoader _jSonLoader;
 
@@ -14,9 +17,9 @@ namespace KataDataModule {
 
         private void DeliveryAction(JsonUpdatedMessage obj) {
             WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults);
+            RaisePropertyChanged(nameof(WpmResults));
         }
 
         public List<WPMJsonObject> WpmResults { get; private set; }
-
     }
 }

@@ -11,6 +11,8 @@ using Autofac.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using KataDataModule;
+using KataDataModule.Interfaces;
+using KataDataModule.JsonObjects;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
@@ -20,11 +22,8 @@ using log4net;
 namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
 
-        private readonly ITypingProfilerFactory _typingProfilerFactory;
         private readonly IDataSerializer _dataSerializer;
-        private const string TextPath = "KataSpeedProfilerModule.Resources.words.txt";
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
-        private ITypingProfiler _profiler;
         private bool _textFocus;
         private double _testTime;
         private string _currentChar;
@@ -32,6 +31,7 @@ namespace KataSpeedProfilerModule {
         private bool _isRunning;
         private string _word;
         private string _removedWords;
+        private readonly SpeedModel _model;
 
         /// <summary>
         /// Gets the Start Test Command.
@@ -46,10 +46,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Gets the typing profiler.
         /// </summary>
-        public ITypingProfiler TypingProfiler {
-            get => _profiler;
-            private set => Set(ref _profiler, value);
-        }
+        public ITypingProfiler TypingProfiler => _model.TypingProfiler;
 
         /// <summary>
         /// Gets the text focus.
@@ -106,7 +103,7 @@ namespace KataSpeedProfilerModule {
         /// <param name="messengerHub"></param>
         /// <param name="dataSerializer"></param>
         public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer) {
-            _typingProfilerFactory = typingProfilerFactory;
+            _model = new SpeedModel(typingProfilerFactory);
             _dataSerializer = dataSerializer;
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
@@ -182,18 +179,16 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
-        /// Create the profiler.
+        /// Create the profiler and subscribe to events.
         /// </summary>
         private void CreateProfiler() {
-            TypingProfiler = _typingProfilerFactory.CreateTypingProfiler(
-                BootStrapper.Resolve<ICursor>(),
-                BootStrapper.Resolve<IWordStack>(),
-                BootStrapper.Resolve<ITypingTimer>(new Parameter[] {new NamedParameter("time", TestTime)}),
-                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] {new NamedParameter("path", TextPath)}));
-            TypingProfiler.KeyComplete += ProfilerOnKeyComplete;
-            TypingProfiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
-            TypingProfiler.NextWordEvent += TypingProfilerOnNextWordEvent;
-            TypingProfiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
+            var profiler = _model.ConstructProfiler(TestTime);
+            profiler.KeyComplete += ProfilerOnKeyComplete;
+            profiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
+            profiler.NextWordEvent += TypingProfilerOnNextWordEvent;
+            profiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
+
+            RaisePropertyChanged(nameof(TypingProfiler));
         }
 
         /// <summary>
@@ -207,8 +202,6 @@ namespace KataSpeedProfilerModule {
                 Words = Words.Insert(0, e.AddedChar.ToString());
             }
         }
-
-
 
         /// <summary>
         /// Get the inline of the FlowDocument, and remove the last character from it.

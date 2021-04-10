@@ -100,13 +100,18 @@
     <Compile Include="AnalyticsViewModel.cs" />
     <Compile Include="DataModule.cs" />
     <Compile Include="DataSerializer.cs" />
-    <Compile Include="IDataSerializer.cs" />
-    <Compile Include="IJSonLoader.cs" />
+    <Compile Include="Interfaces\IDataSerializer.cs" />
+    <Compile Include="Interfaces\IJSonLoader.cs" />
     <Compile Include="JsonLoader.cs" />
-    <Compile Include="JsonUpdatedMessage.cs" />
+    <Compile Include="EventArgs\JsonUpdatedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs" />
-    <Compile Include="WPMJsonObject.cs" />
+    <Compile Include="SettingsModel.cs" />
+    <Compile Include="SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsViewModel.cs" />
+    <Compile Include="JsonObjects\WPMJsonObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx" />
@@ -126,6 +131,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

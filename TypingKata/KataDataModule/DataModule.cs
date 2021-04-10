@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using KataDataModule.Interfaces;
 using KataIocModule;
 
 namespace KataDataModule {
@@ -12,6 +13,7 @@ namespace KataDataModule {
                     .As<IJSonLoader>();
             builder.RegisterType<TinyMessengerHub>().As<ITinyMessengerHub>().InstancePerLifetimeScope();
             builder.RegisterType<DataSerializer>().As<IDataSerializer>();
+
             base.Load(builder);
         }
     }

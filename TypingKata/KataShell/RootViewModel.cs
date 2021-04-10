@@ -6,7 +6,7 @@ namespace TypingKata {
         private IContainerBuilderFacade _builder;
 
         public RootViewModel(IContainerBuilderFacade builder) {
-            this._builder = builder;
+            _builder = builder;
         }
     }
 }

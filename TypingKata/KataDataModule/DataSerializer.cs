@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using KataDataModule.Interfaces;
 using Newtonsoft.Json;
 
 namespace KataDataModule {

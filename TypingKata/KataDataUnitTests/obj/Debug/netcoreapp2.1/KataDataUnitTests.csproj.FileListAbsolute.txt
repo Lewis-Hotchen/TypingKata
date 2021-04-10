@@ -25,3 +25,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\obj\Debug\netcoreapp2.1\KataDataUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\obj\Debug\netcoreapp2.1\KataDataUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\obj\Debug\netcoreapp2.1\KataDataUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.xml

@@ -47,3 +47,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule_MarkupCompile.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\AnalyticsView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule.g.resources
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\SettingsView.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule_MarkupCompile.lref
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\SettingsView.baml

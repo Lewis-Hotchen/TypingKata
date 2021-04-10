@@ -1,21 +1,34 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using GalaSoft.MvvmLight;
+using KataDataModule.JsonObjects;
 using KataIocModule;
 
 namespace KataDataModule {
-    public class AnalyticsViewModel {
+    public class AnalyticsViewModel : ViewModelBase {
 
         private readonly AnalyticsModel _model;
 
         public AnalyticsViewModel(IJSonLoader loader, ITinyMessengerHub messenger) {
             _model = new AnalyticsModel(loader, messenger);
+            _model.PropertyChanged += ModelOnPropertyChanged;
             WpmResults = new ObservableCollection<WPMJsonObject>(_model.WpmResults);
             MostMisspelledWord();
         }
 
-        public ObservableCollection<WPMJsonObject> WpmResults { get; private set; }
+        private void ModelOnPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            RaisePropertyChanged(nameof(WpmResults));
+            RaisePropertyChanged(nameof(WpmAverage));
+            RaisePropertyChanged(nameof(MostMisspelled));
+        }
 
+        public ObservableCollection<WPMJsonObject> WpmResults { get; }
+
+        /// <summary>
+        /// Most misspelled word.
+        /// </summary>
         public string MostMisspelled {
             get {
                 var (item1, item2) = MostMisspelledWord();
@@ -23,8 +36,15 @@ namespace KataDataModule {
             }
         }
 
+        /// <summary>
+        /// Get's the wpm average from results.
+        /// </summary>
         public double WpmAverage {
-            get { return _model.WpmResults.Average(x => x.Wpm); }
+            get {
+                if(_model.WpmResults.Any())
+                    return _model.WpmResults.Average(x => x.Wpm);
+                return 0;
+            }
         }
 
         /// <summary>
@@ -33,8 +53,8 @@ namespace KataDataModule {
         /// <returns></returns>
         public Tuple<string, int> MostMisspelledWord() {
 
-            if (_model?.WpmResults == null) {
-                return null;
+            if (_model.WpmResults == null || _model.WpmResults.Count == 0) {
+                return new Tuple<string, int>("No Data", 0);
             }
 
             var incorrectWords = _model.WpmResults.Select(x => x.IncorrectWords).SelectMany(x => x);

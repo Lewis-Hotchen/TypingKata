@@ -77,5 +77,14 @@ namespace KataDataModule {
                 return ResourceManager.GetString("TypingResults", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to settingsdata.json.
+        /// </summary>
+        internal static string SettingsData {
+            get {
+                return ResourceManager.GetString("SettingsData", resourceCulture);
+            }
+        }
     }
 }
