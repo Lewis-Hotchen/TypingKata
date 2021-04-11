@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using KataDataModule.EventArgs;
+using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
 

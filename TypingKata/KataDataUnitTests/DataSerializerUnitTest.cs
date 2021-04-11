@@ -1,6 +1,5 @@
 using System;
 using KataDataModule;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace KataDataUnitTests {
@@ -36,15 +35,6 @@ namespace KataDataUnitTests {
 
         public DataSerializer CreateTarget() {
             return new DataSerializer();
-        }
-    }
-
-    internal class TestObj {
-        [JsonProperty]
-        public string TestString { get; }
-
-        public TestObj(string testString) {
-            TestString = testString;
         }
     }
 }

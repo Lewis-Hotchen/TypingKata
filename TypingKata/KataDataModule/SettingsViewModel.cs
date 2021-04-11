@@ -19,7 +19,7 @@ namespace KataDataModule {
             _serializer = serializer;
             _loader = loader;
             _messengerHub = messengerHub;
-            _model = new SettingsModel(serializer, messengerHub);
+            _model = new SettingsModel(serializer, messengerHub, loader);
             ResetDataCommand = new RelayCommand(ResetData);
             _model.PropertyChanged += ModelOnPropertyChanged;
         }
@@ -31,7 +31,6 @@ namespace KataDataModule {
         public bool IsLearnModeOn {
             get => _model.IsLearnMode;
             set  {
-                _messengerHub.Publish(new ToggleSettingUpdated(this, value));
                 _model.IsLearnMode = value;
             } 
         }
@@ -41,7 +40,7 @@ namespace KataDataModule {
             results?.Clear();
             var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.TypingResults;
             _serializer.SerializeObject(results, path);
-            _messengerHub.Publish(new JsonUpdatedMessage(this));
+            _loader.RefreshJsonFiles();
         }
 
         public RelayCommand ResetDataCommand { get; }

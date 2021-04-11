@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO.Abstractions;
 using System.Windows.Controls;
 using Autofac;
 using Autofac.Core;
@@ -13,7 +14,12 @@ namespace KataDataModule {
         public SettingsView() {
             InitializeComponent();
             DataContext = new SettingsViewModel(BootStrapper.Resolve<IDataSerializer>(),
-                BootStrapper.Resolve<IJSonLoader>(new Parameter[] { new NamedParameter("directory", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + KataDataModule.Resources.TypingKataData), new NamedParameter("messengerHub", BootStrapper.Resolve<ITinyMessengerHub>())}),
+                BootStrapper.Resolve<IJSonLoader>(new Parameter[] {
+                    new NamedParameter("directory", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + KataDataModule.Resources.TypingKataData),
+                    new NamedParameter("messengerHub", BootStrapper.Resolve<ITinyMessengerHub>()),
+                    new NamedParameter("dataSerializer", BootStrapper.Resolve<IDataSerializer>()),
+                    new NamedParameter("fileSystem", BootStrapper.Resolve<IFileSystem>()) 
+                }),
                 BootStrapper.Resolve<ITinyMessengerHub>());
         }
     }

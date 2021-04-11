@@ -247,3 +247,4 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TouchTypingInfo.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TouchTypingInfo.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\GeneratedInternalTypeHelper.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\System.IO.Abstractions.dll

@@ -108,11 +108,6 @@ namespace KataSpeedProfilerModule {
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             _isRunning = false;
             messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
-            messengerHub.Subscribe<ToggleSettingUpdated>(DeliveryAction);
-        }
-
-        private void DeliveryAction(ToggleSettingUpdated obj) {
-                
         }
 
         /// <summary>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using GalaSoft.MvvmLight;
 using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
@@ -9,25 +8,63 @@ using KataIocModule;
 
 namespace KataDataModule {
     public class SettingsModel : ViewModelBase {
-        private ITinyMessengerHub _messengerHub { get; }
-
-        private IDataSerializer _serializer;
+        private readonly ITinyMessengerHub _messengerHub;
+        private readonly IDataSerializer _serializer;
+        private readonly IJSonLoader _loader;
         private bool _isLearnMode;
+        private readonly string _settingsPath =
+            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.SettingsData;
 
-        public SettingsModel(IDataSerializer serializer, ITinyMessengerHub messengerHub) {
+        public SettingsModel(IDataSerializer serializer, ITinyMessengerHub messengerHub, IJSonLoader loader) {
             _messengerHub = messengerHub;
             _serializer = serializer;
+            _loader = loader;
+            TryLoadSettings();
         }
 
+        private void TryLoadSettings() {
+            var settings = _loader.LoadTypeFromJson<List<SettingJsonObject>>(Resources.SettingsData);
+
+            if (settings == null) {
+                settings = new List<SettingJsonObject>();
+                _serializer.SerializeObject(settings, _settingsPath);
+            }
+            else {
+                foreach (var settingJsonObject in settings) {
+                    //As more settings are added, add here to load them.
+                    if (settingJsonObject.Name == nameof(IsLearnMode)) {
+                        IsLearnMode = (bool) settingJsonObject.Data;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Toggle Learn mode for the test.
+        /// </summary>
         public bool IsLearnMode {
             get => _isLearnMode;
             set {
-                _messengerHub.Publish(new ToggleSettingUpdated(this, value));
-                var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.SettingsData;
-                _serializer.SerializeObject(new SettingJsonObject(value, nameof(IsLearnMode)), path);
-                _messengerHub.Publish(new JsonUpdatedMessage(this));
+                UpdateSetting(value, nameof(IsLearnMode));
                 Set(ref _isLearnMode, value);
             }
+        }
+
+        public void UpdateSetting<T>(T value, string property) {
+            var settings = _loader.LoadTypeFromJson<List<SettingJsonObject>>(Resources.SettingsData);
+
+            var setting = settings.Find(x => x.Name == property);
+
+            if (setting != null) {
+                setting.Data = value;
+                _serializer.SerializeObject(settings, _settingsPath);
+            }
+            else {
+                settings.Add(new SettingJsonObject(value, property));
+                _serializer.SerializeObject(settings, _settingsPath);
+            }
+
+            _loader.RefreshJsonFiles();
         }
     }
 }
