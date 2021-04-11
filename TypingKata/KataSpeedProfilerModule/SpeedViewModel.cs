@@ -8,7 +8,6 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
@@ -21,6 +20,7 @@ namespace KataSpeedProfilerModule {
     public class SpeedViewModel : ViewModelBase {
 
         private readonly IDataSerializer _dataSerializer;
+        private readonly ISettingsRepository _settingsRepository;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private bool _textFocus;
         private double _testTime;
@@ -56,13 +56,16 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
-        /// Gets the Words.
+        /// Gets the Words to be typed.
         /// </summary>
         public string Words {
             get => _words;
             set => Set(ref _words, value);
         }
 
+        /// <summary>
+        /// Get string of removed words after being typed.
+        /// </summary>
         public string RemovedWords {
             get => _removedWords;
             set => Set(ref _removedWords, value);
@@ -96,26 +99,56 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
+        /// Flag to determine to start in learn mode.
+        /// </summary>
+        public bool IsLearnMode {
+            get => _learnMode;
+            set => Set(ref _learnMode, value);
+        }
+
+        /// <summary>
         /// Instantiate new SpeedViewModel.
         /// </summary>
         /// <param name="typingProfilerFactory"></param>
         /// <param name="messengerHub"></param>
         /// <param name="dataSerializer"></param>
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer) {
+        /// <param name="settingsRepository"></param>
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer, ISettingsRepository settingsRepository) {
             _model = new SpeedModel(typingProfilerFactory);
             _dataSerializer = dataSerializer;
+            _settingsRepository = settingsRepository;
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             _isRunning = false;
             messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
+            LoadSettings();
+            _settingsRepository.SettingsUpdatedEvent += SettingsRepositoryOnSettingsUpdatedEvent;
         }
 
         /// <summary>
-        /// Flag to determine to start in learn mode.
+        /// Refresh settings on the update event.
         /// </summary>
-        public bool LearnMode {
-            get => _learnMode;
-            set => Set(ref _learnMode, value);
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SettingsRepositoryOnSettingsUpdatedEvent(object sender, System.EventArgs e) {
+            foreach (var settingsRepositorySetting in _settingsRepository.Settings) {
+                if (settingsRepositorySetting.Name == nameof(IsLearnMode)) {
+                    //The more settings addded to this class, add them here for loading.
+                    IsLearnMode = (bool)settingsRepositorySetting.Data;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Load settings at startup.
+        /// </summary>
+        private void LoadSettings() {
+            foreach (var settingsRepositorySetting in _settingsRepository.Settings) {
+                if (settingsRepositorySetting.Name == nameof(IsLearnMode)) {
+                    //The more settings addded to this class, add them here for loading.
+                    IsLearnMode = (bool) settingsRepositorySetting.Data;
+                }
+            }
         }
 
         /// <summary>
@@ -214,6 +247,7 @@ namespace KataSpeedProfilerModule {
         /// Get the inline of the FlowDocument, and remove the last character from it.
         /// </summary>
         private void BackspaceDocumentText() {
+            if (!_isRunning) return;
             var para = (Paragraph) Document.Blocks.FirstOrDefault(p => p.GetType() == typeof(Paragraph));
             var inline = (Run) para?.Inlines.LastInline;
 
@@ -259,6 +293,9 @@ namespace KataSpeedProfilerModule {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {
+
+            if (!_isRunning) return;
+
             CurrentWord = TypingProfiler.Cursor.CurrentWord.ToString();
             var isKeyCorrect = e.IsCorrect;
             Log.Debug($"Key pressed : {e.InputKey}");

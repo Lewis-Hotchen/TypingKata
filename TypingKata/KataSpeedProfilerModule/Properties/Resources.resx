@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SettingsData" xml:space="preserve">
+    <value>typingsettings.json</value>
+  </data>
   <data name="TypingKataData" xml:space="preserve">
     <value>TypingKataData</value>
   </data>
   <data name="TypingKataWpmJson" xml:space="preserve">
     <value>typingresults.json</value>
-  </data>
-  <data name="words" xml:space="preserve">
-    <value />
   </data>
 </root>

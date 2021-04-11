@@ -7,7 +7,7 @@ namespace KataSpeedProfilerModule {
     /// <summary>
     /// Simple class that wraps a system timer.
     /// </summary>  
-    public class TypingTimer : ITypingTimer {
+    public class TypingTimer : ITypingTimer, IDisposable   {
 
         private readonly Timer _timer;
 
@@ -48,6 +48,13 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         public void StartTimer() {
             _timer.Start();
+        }
+
+        /// <summary>
+        /// Dispose the timer.
+        /// </summary>
+        public void Dispose() {
+            _timer?.Dispose();
         }
     }
 }

@@ -9,13 +9,21 @@ namespace KataDataModule {
 
         protected override void Load(ContainerBuilder builder) {
 
+            var defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData;
 
             builder.Register(
-                (c, p) => new JsonLoader(p.Named<string>("directory"),
-                    p.Named<ITinyMessengerHub>("messengerHub"),
-                    p.Named<IDataSerializer>("dataSerializer"),
-                    p.Named<IFileSystem>("fileSystem")))
+                (c, p) => new JsonLoader(defaultPath,
+                    BootStrapper.Resolve<ITinyMessengerHub>(),
+                    BootStrapper.Resolve<IDataSerializer>(),
+                    BootStrapper.Resolve<IFileSystem>()))
                     .As<IJSonLoader>();
+
+            builder.Register(
+                    (c, p) => new SettingsRepository(defaultPath,
+                        BootStrapper.Resolve<IDataSerializer>(),
+                        BootStrapper.Resolve<IJSonLoader>()))
+                .As<ISettingsRepository>().InstancePerLifetimeScope();
+
             builder.RegisterType<TinyMessengerHub>().As<ITinyMessengerHub>().InstancePerLifetimeScope();
             builder.RegisterType<DataSerializer>().As<IDataSerializer>();
             builder.RegisterType<FileSystem>().As<IFileSystem>();

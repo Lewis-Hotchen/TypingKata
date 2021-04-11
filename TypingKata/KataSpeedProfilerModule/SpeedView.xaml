@@ -66,7 +66,7 @@
             <Label Grid.Column="2" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentChar}"></Label>
             <Label Grid.Column="0" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentWord}" />
             <Label Grid.Column="3" Grid.Row="4" Foreground="AliceBlue" Content="{Binding RemovedWords.Length}"></Label>
-            <Label Grid.Column="4" Grid.Row="4" Foreground="AliceBlue" Content="{Binding Words.Length}"></Label>
+            <Label Grid.Column="4" Grid.Row="4" Foreground="AliceBlue" Content="{Binding IsLearnMode}"></Label>
         </Grid>
             
     </Grid>

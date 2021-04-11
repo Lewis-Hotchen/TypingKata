@@ -61,6 +61,15 @@ namespace KataSpeedProfilerModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to typingsettings.json.
+        /// </summary>
+        internal static string SettingsData {
+            get {
+                return ResourceManager.GetString("SettingsData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TypingKataData.
         /// </summary>
         internal static string TypingKataData {
@@ -75,15 +84,6 @@ namespace KataSpeedProfilerModule.Properties {
         internal static string TypingKataWpmJson {
             get {
                 return ResourceManager.GetString("TypingKataWpmJson", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string words {
-            get {
-                return ResourceManager.GetString("words", resourceCulture);
             }
         }
     }

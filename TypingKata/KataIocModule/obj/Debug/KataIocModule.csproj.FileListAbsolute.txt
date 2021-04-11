@@ -20,8 +20,9 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\System.Numerics.Vectors.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\System.Threading.Tasks.Extensions.xml
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\KataIocModule.csprojAssemblyReference.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\KataIocModule.csproj.CoreCompileInputs.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\KataIocModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\KataIocModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\obj\Debug\KataIocModule.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\KataIocModule.dll.CodeAnalysisLog.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataIocModule\bin\Debug\KataIocModule.dll.lastcodeanalysissucceeded
