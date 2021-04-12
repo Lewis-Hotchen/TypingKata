@@ -111,8 +111,7 @@ namespace KataSpeedProfilerModule {
                 Cursor.NextChar(Cursor.CurrentWord.CharCount - 1);
                 var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
                 BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, CharacterStatus.Correct));
-            } else
-            if (userWord.CharCount > 0 && userWord[Cursor.CharPos - 1].Status == CharacterStatus.Incorrect) {
+            } else if (userWord.CharCount > 0) {
                 //go back a character
                 var status = UserWords.Top.Chars[UserWords.Top.CharCount - 1].Status;
                 UserWords.Top.Chars.RemoveAt(UserWords.Top.CharCount - 1);

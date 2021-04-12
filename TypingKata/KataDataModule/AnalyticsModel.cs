@@ -13,6 +13,9 @@ namespace KataDataModule {
         public AnalyticsModel(IJSonLoader jSonLoader, ITinyMessengerHub messengerHub) {
             _jSonLoader = jSonLoader;
             WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults);
+            if (WpmResults == null) {
+                WpmResults = new List<WPMJsonObject>();
+            }
             messengerHub.Subscribe<JsonUpdatedMessage>(DeliveryAction);
         }
 

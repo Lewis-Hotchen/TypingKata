@@ -51,6 +51,9 @@
                     <BulletDecorator>
                         <Label FontSize="20" Content="Indexes" Foreground="SteelBlue"></Label>
                     </BulletDecorator>
+                <BulletDecorator>
+                    <Label FontSize="20" Content="Thumbs (Just for Space!)" Foreground="AliceBlue"></Label>
+                </BulletDecorator>
             </StackPanel>
 
             <TextBlock TextWrapping="Wrap" FontSize="20">

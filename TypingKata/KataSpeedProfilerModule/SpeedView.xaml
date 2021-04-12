@@ -60,10 +60,21 @@
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
+
+            <Label Grid.Column="3" Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   Visibility="{Binding IsLearnMode, UpdateSourceTrigger=PropertyChanged}"
+                   HorizontalContentAlignment="Center"
+                   Content="{Binding CurrentFinger}"
+                   Foreground="{Binding CurrentFingerColor}">
+            </Label>
+
             <TextBox Margin="0, 0, 0, 10" BorderThickness="0, 0, 0, 1"
                      HorizontalContentAlignment="Center"
                      Grid.Column="3" Grid.Row="2"
@@ -83,12 +94,12 @@
                 </Button.Resources>
             </Button>
 
-                <!--<Label Grid.Column="1" Foreground="AliceBlue" Grid.Row="3" Content="{Binding IsKeyCorrect, Mode=OneWay}"></Label>
-            <Label Grid.Column="1" Grid.Row="4" Foreground="AliceBlue" Content="Character: "></Label>
+
+            <!--<Label Grid.Column="1" Foreground="AliceBlue" Grid.Row="3" Content="{Binding IsKeyCorrect, Mode=OneWay}"></Label>
+            <Label Grid.Column="1" Grid.Row="6" Foreground="AliceBlue" Content="Character: "></Label>
             <Label Grid.Column="2" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentChar}"></Label>
             <Label Grid.Column="0" Grid.Row="4" Foreground="AliceBlue" Content="{Binding CurrentWord}" />
-            <Label Grid.Column="3" Grid.Row="4" Foreground="AliceBlue" Content="{Binding RemovedWords.Length}"></Label>
-            <Label Grid.Column="4" Grid.Row="4" Foreground="AliceBlue" Content="{Binding IsLearnMode}"></Label>-->
+            <Label Grid.Column="3" Grid.Row="4" Foreground="AliceBlue" Content="{Binding RemovedWords.Length}"></Label>-->
         </Grid>
             
     </Grid>

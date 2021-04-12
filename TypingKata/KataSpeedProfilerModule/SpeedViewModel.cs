@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -32,6 +33,8 @@ namespace KataSpeedProfilerModule {
         private string _removedWords;
         private readonly SpeedModel _model;
         private bool _learnMode;
+        private Brush _currentFingerColor;
+        private string _currentFinger;
 
         /// <summary>
         /// Gets the Start Test Command.
@@ -203,6 +206,7 @@ namespace KataSpeedProfilerModule {
                 _jsonLoader.RefreshJsonFiles();
             }
 
+            TextFocus = false;
             IsRunning = false;
         }
         
@@ -287,6 +291,7 @@ namespace KataSpeedProfilerModule {
         /// <param name="e"></param>
         private void TypingProfilerOnNextWordEvent(object sender, WordChangedEventArgs e) {
             CurrentChar = e.NewWord[0].CurrentCharacter;
+            MapCharacterToFinger(CurrentChar);
             Words = Words.Remove(0, 1);
             RaisePropertyChanged(nameof(Words));
             var tr = new TextRange(Document.ContentEnd, Document.ContentEnd) { Text = " " };
@@ -300,6 +305,40 @@ namespace KataSpeedProfilerModule {
         /// <param name="e"></param>
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
+            MapCharacterToFinger(CurrentChar);
+        }
+
+        /// <summary>
+        /// Update finger information when the character changes.
+        /// </summary>
+        /// <param name="c"></param>
+        private void MapCharacterToFinger(string c) {
+            if (!IsLearnMode) return;
+            var currentFinger = FingerColourMapping.FingerMapping[c.ToUpper()];
+            CurrentFinger = currentFinger.GetDescription();
+            var color = currentFinger.GetColorValue();
+
+            //Setting a brush colour is a dependency property, meaning it must be done on a UI thread.
+            //This code makes sure that it's done on the same thread.
+            Application.Current.Dispatcher.BeginInvoke(new ThreadStart(() => {
+                CurrentFingerColor = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+            }));
+        }
+
+        /// <summary>
+        /// Current finger to display based on character.
+        /// </summary>
+        public string CurrentFinger {
+            get => _currentFinger;
+            set => Set(ref _currentFinger, value);
+        }
+
+        /// <summary>
+        /// Current colour to display with finger information.
+        /// </summary>
+        public Brush CurrentFingerColor {
+            get => _currentFingerColor;
+            set => Set(ref _currentFingerColor, value);
         }
 
         /// <summary>
