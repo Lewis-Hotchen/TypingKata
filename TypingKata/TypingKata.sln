@@ -7,15 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataShell", "KataShell\Kata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataSpeedProfilerModule", "KataSpeedProfilerModule\KataSpeedProfilerModule.csproj", "{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KataShellUnitTests", "KataShellUnitTests\KataShellUnitTests.csproj", "{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedProfilerUnitTests", "SpeedProfilerUnitTests\SpeedProfilerUnitTests.csproj", "{6D392B13-3F29-41EA-9094-A95882154631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypingKataSpeedProfilerUnitTests", "SpeedProfilerUnitTests\TypingKataSpeedProfilerUnitTests.csproj", "{6D392B13-3F29-41EA-9094-A95882154631}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataDataModule", "KataDataModule\KataDataModule.csproj", "{D816723B-2376-4F34-BB0D-758711670964}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataIocModule", "KataIocModule\KataIocModule.csproj", "{779E97CF-5D91-4940-8406-05FDFDF9CFD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataDataUnitTests", "KataDataUnitTests\KataDataUnitTests.csproj", "{CB22C685-EBEF-4018-86E3-012574441995}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypingKataDataUnitTests", "TypingKataDataUnitTests\TypingKataDataUnitTests.csproj", "{AFDA2210-77F5-4B83-BC69-C1E455E29D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypingKataShellUnitTests", "TypingKataShellUnitTests\TypingKataShellUnitTests.csproj", "{5F583C76-5234-4B36-8F69-94D01DAFCC70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E1515E8-5E6F-4891-B21A-C8D10E2251BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3E5DED7F-CD21-4FFF-A6EA-47BE70CDC77F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D392B13-3F29-41EA-9094-A95882154631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6D392B13-3F29-41EA-9094-A95882154631}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D392B13-3F29-41EA-9094-A95882154631}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,10 +43,14 @@ Global
 		{779E97CF-5D91-4940-8406-05FDFDF9CFD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{779E97CF-5D91-4940-8406-05FDFDF9CFD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{779E97CF-5D91-4940-8406-05FDFDF9CFD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB22C685-EBEF-4018-86E3-012574441995}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB22C685-EBEF-4018-86E3-012574441995}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB22C685-EBEF-4018-86E3-012574441995}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB22C685-EBEF-4018-86E3-012574441995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDA2210-77F5-4B83-BC69-C1E455E29D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDA2210-77F5-4B83-BC69-C1E455E29D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDA2210-77F5-4B83-BC69-C1E455E29D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDA2210-77F5-4B83-BC69-C1E455E29D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

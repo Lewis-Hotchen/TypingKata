@@ -17,7 +17,7 @@ namespace KataSpeedProfilerModule {
         private readonly IMarkovChainGenerator _markovChainGenerator;
         private readonly ITinyMessengerHub _messengerHub;
 
-        //Choose 200 as an upper bound. Highly unlikely that anyone could type more
+        //Choose 200 as an upper bound as to not generate more text than needed. Highly unlikely that anyone could type more
         //than 200wpm.
         private int _generatedTextCount;
         private string[] _generatedWords;

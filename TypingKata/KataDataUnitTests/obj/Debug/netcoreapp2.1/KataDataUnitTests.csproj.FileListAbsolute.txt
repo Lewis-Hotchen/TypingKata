@@ -1,7 +1,5 @@
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\Mono.Cecil.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\KataDataUnitTests.deps.json
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\KataDataUnitTests.runtimeconfig.json
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\KataDataUnitTests.runtimeconfig.dev.json
@@ -28,3 +26,9 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\GalaSoft.MvvmLight.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\testhost.exe
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\testhost.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\Microsoft.TestPlatform.PlatformAbstractions.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.api.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataUnitTests\bin\Debug\netcoreapp2.1\nunit.engine.core.dll

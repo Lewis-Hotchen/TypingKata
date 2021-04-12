@@ -516,7 +516,8 @@
       "Autofac >= 6.1.0",
       "KataSpeedProfilerModule >= 1.0.0",
       "Moq >= 4.16.1",
-      "NUnit >= 3.13.1"
+      "NUnit >= 3.13.1",
+      "System.Threading.Tasks.Extensions >= 4.5.4"
     ]
   },
   "packageFolders": {
@@ -526,9 +527,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\SpeedProfilerUnitTests\\SpeedProfilerUnitTests.csproj",
-      "projectName": "SpeedProfilerUnitTests",
-      "projectPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\SpeedProfilerUnitTests\\SpeedProfilerUnitTests.csproj",
+      "projectUniqueName": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\SpeedProfilerUnitTests\\TypingKataSpeedProfilerUnitTests.csproj",
+      "projectName": "TypingKataSpeedProfilerUnitTests",
+      "projectPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\SpeedProfilerUnitTests\\TypingKataSpeedProfilerUnitTests.csproj",
       "packagesPath": "C:\\Users\\Lewis\\.nuget\\packages\\",
       "outputPath": "X:\\Education\\Software Engineering Degree\\Final Year\\Project\\project files\\TypingKata\\SpeedProfilerUnitTests\\obj\\",
       "projectStyle": "PackageReference",
@@ -575,6 +576,10 @@
           "NUnit": {
             "target": "Package",
             "version": "[3.13.1, )"
+          },
+          "System.Threading.Tasks.Extensions": {
+            "target": "Package",
+            "version": "[4.5.4, )"
           }
         }
       }

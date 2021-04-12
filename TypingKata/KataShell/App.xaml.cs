@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using KataIocModule;
 
 namespace TypingKata {
@@ -9,10 +10,9 @@ namespace TypingKata {
 
 
         public App() {
-            
             //Work around to allow some "dependency injection" in my BootStrapper class before the container is actually configured
             //testing purposes.
-            BootStrapper.Log4NetConfigurator = new Log4NetConfigurator(); 
+            BootStrapper.Log4NetConfigurator = new Log4NetConfigurator();
             BootStrapper.Start<RootView>();
         }
 

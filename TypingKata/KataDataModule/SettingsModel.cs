@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using GalaSoft.MvvmLight;
-using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
@@ -15,8 +12,6 @@ namespace KataDataModule {
         private readonly ISettingsRepository _settingsRepository;
 
         private bool _isLearnMode;
-        private readonly string _settingsPath =
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.SettingsData;
 
         public SettingsModel(IDataSerializer serializer, ITinyMessengerHub messengerHub, IJSonLoader loader, ISettingsRepository settingsRepository) {
             _messengerHub = messengerHub;
@@ -63,10 +58,6 @@ namespace KataDataModule {
 
             _settingsRepository.Settings.First(x => x.Name == property).Data = value;
             _settingsRepository.WriteOutSettings();
-        }
-
-        public void ResetData() {
-            _settingsRepository.Settings.Clear();
         }
     }
 }

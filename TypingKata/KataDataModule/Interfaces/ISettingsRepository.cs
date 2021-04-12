@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using KataDataModule.JsonObjects;
 
 namespace KataDataModule.Interfaces {
@@ -21,5 +20,12 @@ namespace KataDataModule.Interfaces {
         /// Write out the settings.
         /// </summary>
         void WriteOutSettings();
+
+        /// <summary>
+        /// Get a Setting by string index.
+        /// </summary>
+        /// <param name="index">The name of the setting.</param>
+        /// <returns></returns>
+        SettingJsonObject this[string index] { get; }
     }
 }

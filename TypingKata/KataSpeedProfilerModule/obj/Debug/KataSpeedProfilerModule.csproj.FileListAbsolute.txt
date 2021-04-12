@@ -101,11 +101,6 @@ C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.baml
 C:\Users\Lewis\Documents\work backup\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.g.resources
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csprojAssemblyReference.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.g.cs
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataSpeedProfilerModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataSpeedProfilerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataSpeedProfilerModule.pdb
@@ -127,6 +122,7 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Numerics.Vectors.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Windows.Interactivity.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.IO.Abstractions.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataDataModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataDataModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\KataIocModule.pdb
@@ -149,6 +145,11 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Memory.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Numerics.Vectors.xml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csprojAssemblyReference.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\GeneratedInternalTypeHelper.g.cs
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.cache
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule_MarkupCompile.lref
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\SpeedView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.g.resources
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.Properties.Resources.resources
@@ -157,4 +158,3 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\obj\Debug\KataSpeedProfilerModule.pdb
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataSpeedProfilerModule\bin\Debug\System.IO.Abstractions.dll

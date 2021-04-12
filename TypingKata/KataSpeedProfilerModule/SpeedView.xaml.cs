@@ -14,7 +14,8 @@ namespace KataSpeedProfilerModule {
                 BootStrapper.Resolve<ITypingProfilerFactory>(),
                 BootStrapper.Resolve<ITinyMessengerHub>(),
                 BootStrapper.Resolve<IDataSerializer>(),
-                BootStrapper.Resolve<ISettingsRepository>());
+                BootStrapper.Resolve<ISettingsRepository>(),
+                BootStrapper.Resolve<IJSonLoader>());
         }
     }
 }

@@ -20,12 +20,13 @@ namespace KataDataModule {
         }
 
         private void ModelOnPropertyChanged(object sender, PropertyChangedEventArgs e) {
+            WpmResults = new ObservableCollection<WPMJsonObject>(_model.WpmResults);
             RaisePropertyChanged(nameof(WpmResults));
             RaisePropertyChanged(nameof(WpmAverage));
             RaisePropertyChanged(nameof(MostMisspelled));
         }
 
-        public ObservableCollection<WPMJsonObject> WpmResults { get; }
+        public ObservableCollection<WPMJsonObject> WpmResults { get; private set; }
 
         /// <summary>
         /// Most misspelled word.
@@ -59,6 +60,11 @@ namespace KataDataModule {
             }
 
             var incorrectWords = _model.WpmResults.Select(x => x.IncorrectWords).SelectMany(x => x);
+
+            if (!incorrectWords.Any()) {
+                return new Tuple<string, int>("No Data", 0);
+            }
+
             var res = incorrectWords.Select(x => x.Item2).GroupBy(
                     k => k,
                     StringComparer.InvariantCultureIgnoreCase)

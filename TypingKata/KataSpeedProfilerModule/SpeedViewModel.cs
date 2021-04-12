@@ -21,6 +21,7 @@ namespace KataSpeedProfilerModule {
 
         private readonly IDataSerializer _dataSerializer;
         private readonly ISettingsRepository _settingsRepository;
+        private readonly IJSonLoader _jsonLoader;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private bool _textFocus;
         private double _testTime;
@@ -53,6 +54,11 @@ namespace KataSpeedProfilerModule {
         public bool TextFocus {
             get => _textFocus;
             set => Set(ref _textFocus, value);
+        }
+
+        public bool IsRunning {
+            get => _isRunning;
+            set => Set(ref _isRunning, value);
         }
 
         /// <summary>
@@ -113,13 +119,15 @@ namespace KataSpeedProfilerModule {
         /// <param name="messengerHub"></param>
         /// <param name="dataSerializer"></param>
         /// <param name="settingsRepository"></param>
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer, ISettingsRepository settingsRepository) {
+        /// <param name="jsonLoader"></param>
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer, ISettingsRepository settingsRepository, IJSonLoader jsonLoader) {
             _model = new SpeedModel(typingProfilerFactory);
             _dataSerializer = dataSerializer;
             _settingsRepository = settingsRepository;
+            _jsonLoader = jsonLoader;
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
-            _isRunning = false;
+            IsRunning = false;
             messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
             LoadSettings();
             _settingsRepository.SettingsUpdatedEvent += SettingsRepositoryOnSettingsUpdatedEvent;
@@ -168,27 +176,34 @@ namespace KataSpeedProfilerModule {
                 RaisePropertyChanged(nameof(Document));
             });
 
-            _isRunning = false;
+           
 
             //This method is running on a different thread to the UI thread, which the command must run on.
             //To fix this we get the current Dispatcher (UI Thread) and execute the code on there.
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
             var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.TypingKataWpmJson;
 
-            var wpmObjs = _dataSerializer.DeserializeObject<List<WPMJsonObject>>(File.ReadAllText(path));
-            if (wpmObjs == null) {
-                wpmObjs = new List<WPMJsonObject>();
-            }
-            var errorWords = new List<Tuple<string, string>>();
-            foreach (var (item1, item2) in obj.Content.ErrorWords) {
-                errorWords.Add(new Tuple<string, string>(item1.ToString(), item2.ToString()));
+            if (IsRunning == false) {
+
+                var wpmObjs = _dataSerializer.DeserializeObject<List<WPMJsonObject>>(File.ReadAllText(path));
+
+                if (wpmObjs == null) {
+                    wpmObjs = new List<WPMJsonObject>();
+                }
+                var errorWords = new List<Tuple<string, string>>();
+                foreach (var (item1, item2) in obj.Content.ErrorWords) {
+                    errorWords.Add(new Tuple<string, string>(item1.ToString(), item2.ToString()));
+                }
+
+                var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,
+                    errorWords, DateTime.Now, _testTime);
+                wpmObjs.Add(newResult);
+
+                _dataSerializer.SerializeObject(wpmObjs, path);
+                _jsonLoader.RefreshJsonFiles();
             }
 
-            var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,
-                errorWords, DateTime.UtcNow, _testTime);
-            wpmObjs.Add(newResult);
-
-            _dataSerializer.SerializeObject(wpmObjs, path);
+            IsRunning = false;
         }
         
         /// <summary>
@@ -196,7 +211,7 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <returns></returns>
         private bool StartTestCanExecute() {
-            return _testTime >= 60 && _isRunning == false;
+            return _testTime >= 60 && IsRunning == false;
         }
 
         /// <summary>
@@ -214,7 +229,7 @@ namespace KataSpeedProfilerModule {
                     Words += string.Join("", word.Chars.Select(x => x.CurrentCharacter));
                 }
 
-            _isRunning = true;
+            IsRunning = true;
             StartTestCommand.RaiseCanExecuteChanged();
         }
 
@@ -247,7 +262,7 @@ namespace KataSpeedProfilerModule {
         /// Get the inline of the FlowDocument, and remove the last character from it.
         /// </summary>
         private void BackspaceDocumentText() {
-            if (!_isRunning) return;
+            if (!IsRunning) return;
             var para = (Paragraph) Document.Blocks.FirstOrDefault(p => p.GetType() == typeof(Paragraph));
             var inline = (Run) para?.Inlines.LastInline;
 
@@ -294,7 +309,7 @@ namespace KataSpeedProfilerModule {
         /// <param name="e"></param>
         private void ProfilerOnKeyComplete(object sender, KeyInputEventHandlerArgs e) {
 
-            if (!_isRunning) return;
+            if (!IsRunning) return;
 
             CurrentWord = TypingProfiler.Cursor.CurrentWord.ToString();
             var isKeyCorrect = e.IsCorrect;

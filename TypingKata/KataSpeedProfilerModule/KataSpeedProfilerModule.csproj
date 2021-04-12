@@ -114,6 +114,7 @@
     <Compile Include="Interfaces\ITypingTimer.cs" />
     <Compile Include="Interfaces\IWord.cs" />
     <Compile Include="Interfaces\IWordStack.cs" />
+    <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="EventArgs\KeyInputEventHandlerArgs.cs" />

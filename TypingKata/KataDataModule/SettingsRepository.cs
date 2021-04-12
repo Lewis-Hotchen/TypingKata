@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 
@@ -21,9 +22,19 @@ namespace KataDataModule {
         /// </summary>
         public IList<SettingJsonObject> Settings => _observableSettings;
 
+        /// <summary>
+        /// Event that fires when settings are updated.
+        /// </summary>
         public event EventHandler SettingsUpdatedEvent;
 
         /// <summary>
+        /// Get a Setting by string index.
+        /// </summary>
+        /// <param name="index">The name of the setting.</param>
+        /// <returns></returns>
+        public SettingJsonObject this[string index] => _observableSettings.FirstOrDefault(x => x.Name == index);
+
+         /// <summary>
         /// Instantiate new Settings Repository.
         /// </summary>
         /// <param name="settingsPath"></param>
