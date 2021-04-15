@@ -40,7 +40,7 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Foreground="AliceBlue" Content="{Binding Wpm}" />
-                                    <Label Grid.Column="1" Foreground="AliceBlue" Content="{Binding ErrorRate, StringFormat=F2}" />
+                                    <Label Grid.Column="1" Foreground="AliceBlue" Content="{Binding ErrorRate, StringFormat=N2}" />
                                     <Label Grid.Column="2" Foreground="AliceBlue" Content="{Binding Date}" />
                                     <Expander Grid.Column="3" Foreground="AliceBlue" Header="{Binding IncorrectWords.Count, StringFormat='Error Words {0}'}" Name="ErrorWordsExpander" Background="#272727" IsExpanded="False"
                                       ExpandDirection="Down">

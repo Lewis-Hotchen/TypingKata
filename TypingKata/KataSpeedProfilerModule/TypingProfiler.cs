@@ -74,8 +74,6 @@ namespace KataSpeedProfilerModule {
             Cursor.ResetCursor();
             GeneratedWords.Clear();
             RemovedWords.Clear();
-            
-            //Write out user stack and error stack.
 
             //Calculate wpm
             CalculateWpm();
@@ -110,7 +108,7 @@ namespace KataSpeedProfilerModule {
                 Cursor.NextWord(-1, GeneratedWords.First.Value);
                 Cursor.NextChar(Cursor.CurrentWord.CharCount - 1);
                 var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
-                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, CharacterStatus.Correct));
+                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(' ', CharacterStatus.Correct));
             } else if (userWord.CharCount > 0) {
                 //go back a character
                 var status = UserWords.Top.Chars[UserWords.Top.CharCount - 1].Status;
@@ -127,7 +125,7 @@ namespace KataSpeedProfilerModule {
         private void ConfirmSpace() {
             var userWord = UserWords.Top;
             var generatedWord = GeneratedWords.First;
-
+            bool isWrong = false;
             var userWordString = UserWords.Top.ToString() + ' ';
             string generatedWordString = "";
             if (GeneratedWords.First == null || generatedWord == null)
@@ -137,13 +135,24 @@ namespace KataSpeedProfilerModule {
             //Add word to Error words if they are not the same.
             if (!string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase)) {
                 ErrorWords.Add((userWord, generatedWord.Value));
+                isWrong = true;
+            }
+
+            (IWord, IWord) last = (null, null);
+            
+            if (ErrorWords.Any()) {
+                last = ErrorWords.Last();
             }
 
             RemovedWords.AddLast(new LinkedListNode<IWord>(generatedWord.Value));
             GeneratedWords.RemoveFirst();
             UserWords.Push(new UserDefinedWord());
             Cursor.NextWord(1, GeneratedWords.First.Value);
-            NextWordEvent?.Invoke(this, new WordChangedEventArgs(generatedWord.Value, GeneratedWords.First.Value));
+
+            NextWordEvent?.Invoke(this,
+                isWrong
+                    ? new WordChangedEventArgs(last.Item1, last.Item2, false)
+                    : new WordChangedEventArgs(generatedWord.Value, GeneratedWords.First.Value, true));
         }
 
         /// <summary>

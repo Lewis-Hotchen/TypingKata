@@ -20,7 +20,7 @@ namespace KataDataModule {
         }
 
         private void DeliveryAction(JsonUpdatedMessage obj) {
-            WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults);
+             WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults);
             RaisePropertyChanged(nameof(WpmResults));
         }
 

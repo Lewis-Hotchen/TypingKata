@@ -5,6 +5,10 @@ using KataDataModule.JsonObjects;
 using KataIocModule;
 
 namespace KataDataModule {
+
+    /// <summary>
+    /// Model for the Settings.
+    /// </summary>
     public class SettingsModel : ViewModelBase {
         private readonly ITinyMessengerHub _messengerHub;
         private readonly IDataSerializer _serializer;
@@ -13,6 +17,14 @@ namespace KataDataModule {
 
         private bool _isLearnMode;
 
+
+        /// <summary>
+        /// Instantiate new Settings Model.
+        /// </summary>
+        /// <param name="serializer"></param>
+        /// <param name="messengerHub"></param>
+        /// <param name="loader"></param>
+        /// <param name="settingsRepository"></param>
         public SettingsModel(IDataSerializer serializer, ITinyMessengerHub messengerHub, IJSonLoader loader, ISettingsRepository settingsRepository) {
             _messengerHub = messengerHub;
             _serializer = serializer;

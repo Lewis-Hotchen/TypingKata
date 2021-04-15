@@ -18,6 +18,10 @@ using KataSpeedProfilerModule.Properties;
 using log4net;
 
 namespace KataSpeedProfilerModule {
+
+    /// <summary>
+    /// View model for the Typing Test.
+    /// </summary>
     public class SpeedViewModel : ViewModelBase {
 
         private readonly IDataSerializer _dataSerializer;
@@ -290,9 +294,20 @@ namespace KataSpeedProfilerModule {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void TypingProfilerOnNextWordEvent(object sender, WordChangedEventArgs e) {
+
+            var errorDifference = 1;
+
+            //Calculate how much to trim off words in the case that space is pressed early.
+            if (!e.IsCorrect) {
+                errorDifference = e.NewWord.CharCount - e.OldWord.Chars.Select(x => x.Status).Count(c => c == CharacterStatus.Correct);
+            }
+
             CurrentChar = e.NewWord[0].CurrentCharacter;
             MapCharacterToFinger(CurrentChar);
-            Words = Words.Remove(0, 1);
+
+            if (errorDifference > 0) {
+                Words = Words.Remove(0, errorDifference);
+            }
             RaisePropertyChanged(nameof(Words));
             var tr = new TextRange(Document.ContentEnd, Document.ContentEnd) { Text = " " };
             RaisePropertyChanged(nameof(Document));

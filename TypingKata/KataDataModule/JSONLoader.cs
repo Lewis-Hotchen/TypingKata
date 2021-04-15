@@ -50,7 +50,7 @@ namespace KataDataModule {
         /// </summary>
         /// <typeparam name="T">The type to use.</typeparam>
         /// <param name="file">The name of the file to read from.</param>
-        /// <returns></returns>
+        /// <returns>The loaded type, or the default of that type if failed.</returns>
         public T LoadTypeFromJson<T>(string file) {
 
             foreach (var (content, filename) in _files) {
