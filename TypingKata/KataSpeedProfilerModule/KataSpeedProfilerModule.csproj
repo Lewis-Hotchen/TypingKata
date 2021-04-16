@@ -120,6 +120,7 @@
     <Compile Include="Interfaces\IWord.cs" />
     <Compile Include="Interfaces\IWordStack.cs" />
     <Compile Include="InverseBooleanConverter.cs" />
+    <Compile Include="Interfaces\ITypingSpeedCalculator.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
     <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="EventArgs\KeyInputEventHandlerArgs.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="EventArgs\TestCompleteEventArgs.cs" />
     <Compile Include="TypingProfiler.cs" />
     <Compile Include="TypingProfilerFactory.cs" />
+    <Compile Include="TypingSpeedCalculator.cs" />
     <Compile Include="TypingTimer.cs" />
     <Compile Include="GeneratedWord.cs" />
     <Compile Include="UserDefinedWord.cs" />

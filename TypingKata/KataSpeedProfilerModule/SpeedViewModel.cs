@@ -172,11 +172,13 @@ namespace KataSpeedProfilerModule {
         /// <param name="obj"></param>
         private void TestCompleteAction(TestCompleteMessage obj) {
             Words = " ";
+            RemovedWords = " ";
             RaisePropertyChanged(nameof(Words));
             CurrentWord = "";
             RaisePropertyChanged(nameof(CurrentWord));
             CurrentChar = "";
             RaisePropertyChanged(nameof(CurrentChar));
+            CurrentFinger = "";
 
             Document.Dispatcher.Invoke(() => {
                 Document.Blocks.Clear();
@@ -231,11 +233,8 @@ namespace KataSpeedProfilerModule {
             TypingProfiler?.Start();
             TextFocus = true;
             _words = "";
-            
-            if (TypingProfiler?.GeneratedWords != null)
-                foreach (var word in TypingProfiler?.GeneratedWords) {
-                    Words += string.Join("", word.Chars.Select(x => x.CurrentCharacter));
-                }
+
+            Words = string.Join("", TypingProfiler?.GeneratedWords);
 
             IsRunning = true;
             StartTestCommand.RaiseCanExecuteChanged();

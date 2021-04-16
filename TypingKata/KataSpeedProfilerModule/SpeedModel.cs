@@ -23,9 +23,9 @@ namespace KataSpeedProfilerModule {
         public ITypingProfiler ConstructProfiler(double testTime) {
             TypingProfiler = _profilerFactory.CreateTypingProfiler(
                 BootStrapper.Resolve<ICursor>(),
-                BootStrapper.Resolve<IWordStack>(),
+                BootStrapper.Resolve<ITypingSpeedCalculator>(),
                 BootStrapper.Resolve<ITypingTimer>(new Parameter[] { new NamedParameter("time", testTime) }),
-                BootStrapper.Resolve<IMarkovChainGenerator>(new Parameter[] { new NamedParameter("path", TextPath) }));
+                BootStrapper.Resolve<ITinyMessengerHub>());
             return TypingProfiler;
         }
 

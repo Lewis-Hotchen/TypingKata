@@ -14,16 +14,15 @@ namespace KataSpeedProfilerModule {
         protected sealed override void Load(ContainerBuilder builder) {
 
             var defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData;
-
+            const string _textPath = "KataSpeedProfilerModule.Resources.words.txt";
             //Parameter registrations
             builder.Register(
                 (c, p) => new TypingTimer(p.Named<double>("time"))
             ).As<ITypingTimer>();
 
             builder.Register(
-                (c, p) => new MarkovChainGenerator(p.Named<string>("path"))
+                (c, p) => new MarkovChainGenerator(_textPath)
             ).As<IMarkovChainGenerator>();
-            base.Load(builder);
 
             builder.Register(
                     (c, p) => new SettingsRepository(defaultPath,
@@ -32,6 +31,7 @@ namespace KataSpeedProfilerModule {
                 .As<ISettingsRepository>().InstancePerLifetimeScope();
 
             //Parameterless registrations
+            builder.RegisterType<TypingSpeedCalculator>().As<ITypingSpeedCalculator>();
             builder.RegisterType<Cursor>().As<ICursor>();
             builder.RegisterType<WordStack>().As<IWordStack>();
             builder.RegisterType<GeneratedWord>().As<IWord>().Keyed<IWord>("Generated");
@@ -40,6 +40,7 @@ namespace KataSpeedProfilerModule {
             builder.RegisterType<TypingProfiler>().As<ITypingProfiler>().InstancePerLifetimeScope();
             builder.RegisterType<TypingProfilerFactory>().As<ITypingProfilerFactory>();
             builder.RegisterType<TinyMessengerHub>().As<ITinyMessengerHub>().InstancePerLifetimeScope();
+            base.Load(builder);
         }
     }
 }

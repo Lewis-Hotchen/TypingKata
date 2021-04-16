@@ -1,14 +1,15 @@
-﻿using KataSpeedProfilerModule.Interfaces;
+﻿using KataIocModule;
 
-namespace KataSpeedProfilerModule {
+namespace KataSpeedProfilerModule.Interfaces {
 
     /// <summary>
     /// Simple factory to create TypingProfiler.
     /// </summary>
     public interface ITypingProfilerFactory {
-        ITypingProfiler CreateTypingProfiler(ICursor cursor, 
-            IWordStack userWords, 
+        ITypingProfiler CreateTypingProfiler(
+            ICursor cursor, 
+            ITypingSpeedCalculator typingSpeedCalculator, 
             ITypingTimer timer,
-            IMarkovChainGenerator generator);
+            ITinyMessengerHub messengerHub);
     }
 }

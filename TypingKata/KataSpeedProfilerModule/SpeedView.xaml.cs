@@ -1,6 +1,7 @@
 ﻿using System.Windows.Controls;
 using KataDataModule.Interfaces;
 using KataIocModule;
+using KataSpeedProfilerModule.Interfaces;
 
 namespace KataSpeedProfilerModule {
 

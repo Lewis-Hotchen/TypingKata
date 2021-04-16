@@ -36,7 +36,7 @@ namespace KataDataModule.JsonObjects {
         public WPMJsonObject(int wpm, int errors, double errorRate, List<Tuple<string, string>> incorrectWords, DateTime date, double time) {
             Wpm = wpm;
             Errors = errors;
-            ErrorRate = errorRate;
+            ErrorRate = Math.Round(errorRate, 2);
             IncorrectWords = incorrectWords;
             Date = date;
             Time = time;

@@ -44,7 +44,7 @@ namespace KataDataModule {
         public double WpmAverage {
             get {
                 if(_model.WpmResults.Any())
-                    return _model.WpmResults.Average(x => x.Wpm);
+                    return Math.Round(_model.WpmResults.Average(x => x.Wpm), 2);
                 return 0;
             }
         }

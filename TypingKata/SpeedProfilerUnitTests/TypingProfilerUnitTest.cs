@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using KataIocModule;
 using KataSpeedProfilerModule;
+using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
 using Moq;
 using NUnit.Framework;
 
-namespace SpeedProfilerUnitTests {
+namespace TypingKataSpeedProfilerUnitTests {
 
     [TestFixture]
     public class TypingProfilerUnitTest {
@@ -16,6 +17,7 @@ namespace SpeedProfilerUnitTests {
         private Mock<ITypingTimer> _timerMock;
         private List<Mock<IWord>> _mockStackWords;
         private Mock<ITinyMessengerHub> _mockTinyMessengerHub;
+        private Mock<ITypingSpeedCalculator> _calculatorMock;
 
         [SetUp]
         public void Setup() {
@@ -24,6 +26,7 @@ namespace SpeedProfilerUnitTests {
             _mockMarkovGenerator.Setup(x => x.GetText(200)).Returns("This is a test");
             _mockTinyMessengerHub = new Mock<ITinyMessengerHub>();
             var mockWord1 = new Mock<IWord>();
+            mockWord1.Setup(x => x[It.IsAny<int>()]).Returns(new CharacterDescriptor("t", CharacterStatus.Correct));
             mockWord1.Setup(x => x.Chars).Returns(new List<CharacterDescriptor> {
                 new CharacterDescriptor("t", CharacterStatus.Unmodified),
                 new CharacterDescriptor("e", CharacterStatus.Unmodified),
@@ -51,6 +54,7 @@ namespace SpeedProfilerUnitTests {
             });
             mockWord3.Setup(x => x.CharCount).Returns(5);
 
+            _calculatorMock = new Mock<ITypingSpeedCalculator>();
             _wordStackMock = new Mock<IWordStack>();
             _cursorMock = new Mock<ICursor>();
             _timerMock = new Mock<ITypingTimer>();
@@ -61,33 +65,41 @@ namespace SpeedProfilerUnitTests {
                 mockStackWordsObj[i] = _mockStackWords[i].Object;
             }
 
+
             _wordStackMock.Setup(x => x.GetWordsAsArray()).Returns(mockStackWordsObj);
+            _calculatorMock.Setup(x => x.UserWords).Returns(_wordStackMock.Object);
+            _calculatorMock.Setup(x => x.GenerateWords(It.IsAny<int>())).Returns(new[] {"test "});
+            _calculatorMock.Setup(x => x.GeneratedWords).Returns(new LinkedList<IWord>(mockStackWordsObj));
         }
 
         [Test]
         public void ShouldResetOnCompletionOfTimer() {
-            var target = CreateTarget(_wordStackMock.Object, _cursorMock.Object, _timerMock.Object, _mockMarkovGenerator.Object, _mockTinyMessengerHub.Object);
+            _calculatorMock.Setup(x => x.ResetCalculator());
+            _calculatorMock.Setup(x => x.CalculateWpm(It.IsAny<int>()));
             _cursorMock.Setup(x => x.ResetCursor());
-            _timerMock.Raise(x => x.TimeComplete += null, null, new EventArgs());
-
-            _cursorMock.VerifyAll();
+            _mockTinyMessengerHub.Setup(x => x.Publish(It.IsAny<TestCompleteMessage>()));
+            var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
+                _mockTinyMessengerHub.Object);
+            target.Start();
+            
+            _timerMock.Raise(x => x.TimeComplete += null, null, null);
+            _calculatorMock.Verify(x => x.ResetCalculator());
+            _calculatorMock.Verify(x => x.CalculateWpm(It.IsAny<int>()));
+            _cursorMock.Verify(x => x.ResetCursor());
+            _mockTinyMessengerHub.Verify(x => x.Publish(It.IsAny<TestCompleteMessage>()));
         }
 
         [Test]
-        [Ignore("Strange version referencing bug, unsolved as of now.")]
         public void ShouldReturnCorrectWpm() {
-            var target = CreateTarget(_wordStackMock.Object, _cursorMock.Object, _timerMock.Object, _mockMarkovGenerator.Object, _mockTinyMessengerHub.Object);
-            _timerMock.SetupGet(x => x.Time).Returns(new TimeSpan(0, 1, 0));
-            _timerMock.Raise(x => x.TimeComplete += null, null, new EventArgs());
+            _cursorMock.Setup(x => x.CurrentWord).Returns(_mockStackWords[0].Object);
+            var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
+                _mockTinyMessengerHub.Object);
             target.Start();
             SimulateTyping(target);
-
-            _wordStackMock.VerifyAll();
-            _timerMock.Verify(x => x.Time, Times.Exactly(2));
         }
 
-        private TypingProfiler CreateTarget(IWordStack  wordStack, ICursor cursor, ITypingTimer timer, IMarkovChainGenerator markovChainGenerator, ITinyMessengerHub messengerHub) {
-            return new TypingProfiler(cursor, wordStack, timer, markovChainGenerator, messengerHub);
+        private TypingProfiler CreateTarget(ICursor cursor, ITypingSpeedCalculator calculator, ITypingTimer timer, ITinyMessengerHub messengerHub) {
+            return new TypingProfiler(cursor, calculator, timer, messengerHub);
         }
 
         private void SimulateTyping(TypingProfiler target) {
