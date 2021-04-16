@@ -235,7 +235,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\RootView.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TouchTypingInfo.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\App.g.cs
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata_Content.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\GeneratedInternalTypeHelper.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata_MarkupCompile.cache
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata_MarkupCompile.lref

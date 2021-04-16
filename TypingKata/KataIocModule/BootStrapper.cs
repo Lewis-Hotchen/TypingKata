@@ -21,8 +21,8 @@ namespace KataIocModule {
         public static void Start<TRoot>() {
             noOfContainerBuilds = 0;
             var builder = new ContainerBuilder();
-            ConfigureContainer<TRoot>(builder);    
             ConfigureLog(Log4NetConfigurator);
+            ConfigureContainer<TRoot>(builder);    
 
             Log.Info("BootStrapper Starting...");
             Log.Info("Log configured");
