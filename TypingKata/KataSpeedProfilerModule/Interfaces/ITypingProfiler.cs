@@ -14,6 +14,7 @@ namespace KataSpeedProfilerModule.Interfaces {
         string[] GeneratedWords { get; }
         void CharacterInput(char key);
         void Start();
+        void AbortTest();
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         event EventHandler<WordChangedEventArgs> NextWordEvent;
         event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;

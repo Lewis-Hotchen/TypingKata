@@ -13,6 +13,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -22,8 +23,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-      <Label Grid.Row="0" Grid.Column="0" Content="Learning Mode" Foreground="AliceBlue" />
-        <ToggleButton IsChecked="{Binding IsLearnModeOn, Mode=TwoWay}" Grid.Row="0" Grid.Column="1">
+        <Label ToolTip="Turn on learn mode. Gives guidance on what finger to press and does not save results."
+               Grid.Row="0" Margin="0,0,-40,0" Grid.Column="0" Content="Learning Mode" Foreground="AliceBlue" />
+        <ToggleButton IsChecked="{Binding IsLearnModeOn, Mode=TwoWay}"
+                      ToolTip="Turn on learn mode. Gives guidance on what finger to press and does not save results."
+                      Margin="-40,0,0,0" Grid.Row="0" Grid.Column="1">
             <ToggleButton.Resources>
                     <Style TargetType="{x:Type ToggleButton}">
                         <Setter Property="Template">
@@ -56,7 +60,7 @@
             </ToggleButton.Resources>
       </ToggleButton>
 
-        <Separator Grid.Row="1" Grid.ColumnSpan="5" Grid.Column="0" Foreground="AliceBlue" Margin="30" />
+      <Separator Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0" Foreground="AliceBlue" Margin="30" />
         <Button Command="{Binding ResetDataCommand}" Grid.Row="2" Grid.Column="0" Background="#272727" Foreground="AliceBlue" Content="Reset Data" ToolTip="Resets all statistics and test results">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">

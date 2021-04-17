@@ -108,6 +108,7 @@
     </ApplicationDefinition>
     <Compile Include="IRootViewModel.cs" />
     <Compile Include="RootViewModel.cs" />
+    <Compile Include="TabClickedBehaviour.cs" />
     <Compile Include="TouchTypingInfo.xaml.cs">
       <DependentUpon>TouchTypingInfo.xaml</DependentUpon>
     </Compile>

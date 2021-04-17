@@ -136,8 +136,29 @@ namespace KataSpeedProfilerModule {
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             IsRunning = false;
             messengerHub.Subscribe<TestCompleteMessage>(TestCompleteAction);
+            messengerHub.Subscribe<TabControlChangedMessage>(TabControlChangedAction);
             LoadSettings();
             _settingsRepository.SettingsUpdatedEvent += SettingsRepositoryOnSettingsUpdatedEvent;
+        }
+
+        private void TabControlChangedAction(TabControlChangedMessage obj) {
+            AbortTest();
+        }
+
+        private void AbortTest() {
+            TypingProfiler.AbortTest();
+            TextFocus = false;
+            IsRunning = false;
+            Words = " ";
+            RemovedWords = " ";
+            RaisePropertyChanged(nameof(Words));
+            CurrentWord = "";
+            RaisePropertyChanged(nameof(CurrentWord));
+            CurrentChar = "";
+            RaisePropertyChanged(nameof(CurrentChar));
+            CurrentFinger = "";
+
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
         }
 
         /// <summary>
@@ -148,7 +169,7 @@ namespace KataSpeedProfilerModule {
         private void SettingsRepositoryOnSettingsUpdatedEvent(object sender, System.EventArgs e) {
             foreach (var settingsRepositorySetting in _settingsRepository.Settings) {
                 if (settingsRepositorySetting.Name == nameof(IsLearnMode)) {
-                    //The more settings addded to this class, add them here for loading.
+                    //The more settings added to this class, add them here for loading.
                     IsLearnMode = (bool)settingsRepositorySetting.Data;
                 }
             }
@@ -160,7 +181,7 @@ namespace KataSpeedProfilerModule {
         private void LoadSettings() {
             foreach (var settingsRepositorySetting in _settingsRepository.Settings) {
                 if (settingsRepositorySetting.Name == nameof(IsLearnMode)) {
-                    //The more settings addded to this class, add them here for loading.
+                    //The more settings added to this class, add them here for loading.
                     IsLearnMode = (bool) settingsRepositorySetting.Data;
                 }
             }
@@ -184,8 +205,6 @@ namespace KataSpeedProfilerModule {
                 Document.Blocks.Clear();
                 RaisePropertyChanged(nameof(Document));
             });
-
-           
 
             //This method is running on a different thread to the UI thread, which the command must run on.
             //To fix this we get the current Dispatcher (UI Thread) and execute the code on there.
@@ -228,16 +247,16 @@ namespace KataSpeedProfilerModule {
         /// Start the test.
         /// </summary>
         private void StartTest() {
-            Log.Debug($"Test started with {TestTime} time");
             CreateProfiler();
             TypingProfiler?.Start();
             TextFocus = true;
             _words = "";
 
-            Words = string.Join("", TypingProfiler?.GeneratedWords);
+            Words = string.Join("", TypingProfiler?.GeneratedWords ?? throw new InvalidOperationException());
 
             IsRunning = true;
             StartTestCommand.RaiseCanExecuteChanged();
+            MapCharacterToFinger(TypingProfiler?.Cursor.CurrentWord[0].CurrentCharacter);
         }
 
         /// <summary>
@@ -290,8 +309,8 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Handle next word event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void TypingProfilerOnNextWordEvent(object sender, WordChangedEventArgs e) {
 
             var errorDifference = 1;
@@ -315,8 +334,8 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Handle character changed event.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void CursorOnCharacterChangedEvent(object sender, CharacterChangedEventArgs e) {
             CurrentChar = e.NewValue.ToString() == " " ? "space" : e.NewValue.ToString();
             MapCharacterToFinger(CurrentChar);
@@ -325,7 +344,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Update finger information when the character changes.
         /// </summary>
-        /// <param name="c"></param>
+        /// <param name="c">The character to map.</param>
         private void MapCharacterToFinger(string c) {
             if (!IsLearnMode) return;
             var currentFinger = FingerColourMapping.FingerMapping[c.ToUpper()];
@@ -366,7 +385,7 @@ namespace KataSpeedProfilerModule {
 
             CurrentWord = TypingProfiler.Cursor.CurrentWord.ToString();
             var isKeyCorrect = e.IsCorrect;
-            Log.Debug($"Key pressed : {e.InputKey}");
+            
             var status = isKeyCorrect ? CharacterStatus.Correct : CharacterStatus.Incorrect;
 
             if (e.InputKey == ' ' || e.InputKey == '\b') {

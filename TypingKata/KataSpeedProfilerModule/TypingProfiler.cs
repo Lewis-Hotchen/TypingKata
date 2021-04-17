@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Security.RightsManagement;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
+using log4net;
 
 namespace KataSpeedProfilerModule {
 
@@ -13,8 +15,8 @@ namespace KataSpeedProfilerModule {
     public class TypingProfiler : ITypingProfiler {
         private readonly ITypingSpeedCalculator _typingSpeedCalculator;
         private readonly ITinyMessengerHub _messengerHub;
+        private readonly ILog _log = LogManager.GetLogger(nameof(TypingProfiler));
 
-        
         public string[] GeneratedWords { get; private set; }
         public ICursor Cursor { get; }
         public ITypingTimer Timer { get; }
@@ -54,6 +56,12 @@ namespace KataSpeedProfilerModule {
         /// <param name="e">Event arguments.</param>
         private void TimerOnTimeComplete(object sender, System.EventArgs e) {
             StopTest();
+        }
+
+        public void AbortTest() {
+            _log.Warn("Test was aborted");
+            _typingSpeedCalculator.ResetCalculator();
+            Cursor.ResetCursor();
         }
 
         /// <summary>
@@ -114,6 +122,7 @@ namespace KataSpeedProfilerModule {
         /// <param name="key"></param>
         /// <returns></returns>
         public void CharacterInput(char key) {
+            _log.Debug($"Key pressed : {key}");
             if (key == '\b') {
                 HandleBackspace();
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
@@ -124,6 +133,7 @@ namespace KataSpeedProfilerModule {
                 if (_typingSpeedCalculator.UserWords.Top.CharCount != 0) {
                     ConfirmSpace();
                     KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
+                    _log.Debug("Key pressed: space. Was the correct key");
                     return;
                 }
 
@@ -136,25 +146,27 @@ namespace KataSpeedProfilerModule {
                 _typingSpeedCalculator.UserWords.Top.Chars.Add(new CharacterDescriptor(new string(new []{key}), CharacterStatus.Correct));
                 Cursor.NextChar(1);
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
+                _log.Debug($"Key pressed: {key}. Was the correct key");
                 return;
             }
 
             _typingSpeedCalculator.UserWords.Top.Chars.Add(new CharacterDescriptor(new string(new[] { key }), CharacterStatus.Incorrect));
             Cursor.NextChar(1);
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
+            _log.Debug($"Key pressed: {key}. Wasn't the correct key. Correct key: {casedChar}");
         }
 
         /// <summary>
         /// Start the test.
         /// </summary>
         public void Start() {
-            
             //Determine number of words to generate.
             var minutes = Timer.Time.TotalMinutes;
             GeneratedWords = _typingSpeedCalculator.GenerateWords((int) minutes).ToArray();
             
             Cursor.NextWord(0, _typingSpeedCalculator.GeneratedWords.First.Value);
             Timer.StartTimer();
+            _log.Info($"Typing test was started with {Timer.Time.TotalMinutes} minutes, and {GeneratedWords.Length} words.");
         }
     }
 }
