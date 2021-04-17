@@ -141,10 +141,17 @@ namespace KataSpeedProfilerModule {
             _settingsRepository.SettingsUpdatedEvent += SettingsRepositoryOnSettingsUpdatedEvent;
         }
 
+        /// <summary>
+        /// Tab control changed event message.
+        /// </summary>
+        /// <param name="obj">The sender of the message.</param>
         private void TabControlChangedAction(TabControlChangedMessage obj) {
             AbortTest();
         }
 
+        /// <summary>
+        /// Abort the test.
+        /// </summary>
         private void AbortTest() {
             TypingProfiler.AbortTest();
             TextFocus = false;
@@ -238,7 +245,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Predicate to determine if you can start test.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Whether the start button should be click-able.</returns>
         private bool StartTestCanExecute() {
             return _testTime >= 60 && IsRunning == false;
         }
@@ -275,8 +282,8 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Handle the backspace.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="sender">The sender of the event.</param>
+        /// <param name="e">The event arguments.</param>
         private void TypingProfilerOnBackspaceCompleteEvent(object sender, BackspaceCompleteEvent e) {
             BackspaceDocumentText();
             if (e.IsError == CharacterStatus.Correct) {

@@ -58,6 +58,9 @@ namespace KataSpeedProfilerModule {
             StopTest();
         }
 
+        /// <summary>
+        /// Abort the test early. Test results are not saved.
+        /// </summary>
         public void AbortTest() {
             _log.Warn("Test was aborted");
             _typingSpeedCalculator.ResetCalculator();
