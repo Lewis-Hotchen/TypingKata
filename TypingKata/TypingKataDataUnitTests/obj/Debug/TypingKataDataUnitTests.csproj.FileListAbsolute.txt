@@ -51,3 +51,4 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataDataUnitTests\obj\Debug\TypingKataDataUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataDataUnitTests\obj\Debug\TypingKataDataUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataDataUnitTests\obj\Debug\TypingKataDataUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataDataUnitTests\bin\Debug\log4net.config

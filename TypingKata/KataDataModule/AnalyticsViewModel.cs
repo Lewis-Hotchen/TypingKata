@@ -12,6 +12,11 @@ namespace KataDataModule {
 
         private readonly AnalyticsModel _model;
 
+        /// <summary>
+        /// Instantiate new Analytics viewmodel.
+        /// </summary>
+        /// <param name="loader">The JsonLoader.</param>
+        /// <param name="messenger">The TinyMessengerHub.</param>
         public AnalyticsViewModel(IJSonLoader loader, ITinyMessengerHub messenger) {
             _model = new AnalyticsModel(loader, messenger);
             _model.PropertyChanged += ModelOnPropertyChanged;
@@ -19,6 +24,11 @@ namespace KataDataModule {
             MostMisspelledWord();
         }
 
+        /// <summary>
+        /// Event fired on model property changed.
+        /// </summary>
+        /// <param name="sender">Sender of the event (model).</param>
+        /// <param name="e">Event Arguments.</param>
         private void ModelOnPropertyChanged(object sender, PropertyChangedEventArgs e) {
             WpmResults = new ObservableCollection<WPMJsonObject>(_model.WpmResults);
             RaisePropertyChanged(nameof(WpmResults));
@@ -26,6 +36,9 @@ namespace KataDataModule {
             RaisePropertyChanged(nameof(MostMisspelled));
         }
 
+        /// <summary>
+        /// List of all test results.
+        /// </summary>
         public ObservableCollection<WPMJsonObject> WpmResults { get; private set; }
 
         /// <summary>

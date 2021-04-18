@@ -16,7 +16,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// GeneratedWord at the top of the stack. Acts as current word from <see cref="Cursor"/>
         /// </summary>
-        public IWord Top => _words.Peek();
+        public IWord Top => _words?.Peek();
 
         /// <summary>
         /// The current count of words in the stack.

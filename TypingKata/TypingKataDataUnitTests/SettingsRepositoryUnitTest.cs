@@ -5,7 +5,7 @@ using KataDataModule.JsonObjects;
 using Moq;
 using NUnit.Framework;
 
-namespace KataDataUnitTests {
+namespace TypingKataDataUnitTests {
 
     [TestFixture]
     public class SettingsRepositoryUnitTest {

@@ -10,8 +10,8 @@ namespace KataSpeedProfilerModule {
             "TypingProfiler", typeof(ITypingProfiler), typeof(KeyboardListenerBehaviour), new PropertyMetadata(default(ITypingProfiler)));
 
         public ITypingProfiler TypingProfiler {
-            get { return (ITypingProfiler) GetValue(TypingProfilerProperty); }
-            set { SetValue(TypingProfilerProperty, value); }
+            get => (ITypingProfiler) GetValue(TypingProfilerProperty);
+            set => SetValue(TypingProfilerProperty, value);
         }
 
         protected override void OnAttached() {

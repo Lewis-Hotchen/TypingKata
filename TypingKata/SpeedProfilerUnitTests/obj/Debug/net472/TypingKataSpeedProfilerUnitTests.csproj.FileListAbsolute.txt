@@ -38,3 +38,4 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\TypingKataSpeedProfilerUnitTests.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\TypingKataSpeedProfilerUnitTests.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\obj\Debug\net472\TypingKataSpeedProfilerUnitTests.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\SpeedProfilerUnitTests\bin\Debug\net472\log4net.config

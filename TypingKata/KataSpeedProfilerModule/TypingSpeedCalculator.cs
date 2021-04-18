@@ -10,14 +10,30 @@ namespace KataSpeedProfilerModule {
     public class TypingSpeedCalculator : ITypingSpeedCalculator {
         
         private readonly ITinyMessengerHub _messengerHub;
+
         //Choose 200 as an upper bound as to not generate more text than needed. Highly unlikely that anyone could type more
         //than 200wpm.
         private int _generatedTextCount;
         private readonly IMarkovChainGenerator _markovChainGenerator;
 
+        /// <summary>
+        /// The words written by the user.
+        /// </summary>
         public IWordStack UserWords { get; }
+
+        /// <summary>
+        /// The incorrect words written.
+        /// </summary>
         public List<(IWord, IWord)> ErrorWords { get; }
+        
+        /// <summary>
+        /// Collection of the generated words to type.
+        /// </summary>
         public LinkedList<IWord> GeneratedWords { get; }
+
+        /// <summary>
+        /// List of words removed from the generated words once typed.
+        /// </summary>
         public LinkedList<IWord> RemovedWords { get; }
 
         /// <summary>
@@ -65,16 +81,22 @@ namespace KataSpeedProfilerModule {
             var userWordString = UserWords.Top.ToString() + ' ';
             var generatedWordString = GeneratedWords.First.Value.ToString();
 
-            if (string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase))
+            if (string.Equals(userWordString, generatedWordString, StringComparison.CurrentCultureIgnoreCase)) {
                 isCorrect = true;
+
+            }
 
             (IWord, IWord) last = (null, null);
 
-            if (ErrorWords.Any()) {
-                last = ErrorWords.Last();
-            }
+            if (!isCorrect) {
+                ErrorWords.Add((userWord, generatedWord.Value));
 
-            ErrorWords.Add((userWord, generatedWord.Value));
+                if (ErrorWords.Any()) {
+                    last = ErrorWords.Last();
+                }
+                
+            }
+           
             RemovedWords.AddLast(new LinkedListNode<IWord>(generatedWord.Value));
             GeneratedWords.RemoveFirst();
             UserWords.Push(new UserDefinedWord());
@@ -89,7 +111,7 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         /// <returns></returns>
         public CharacterStatus HandleBackspace() {
-            var status = UserWords.Top.Chars[UserWords.Top.CharCount - 1].Status;
+            var status = UserWords.Top[UserWords.Top.CharCount - 1].Status;
             UserWords.Top.Chars.RemoveAt(UserWords.Top.CharCount - 1);
             return status;
         }

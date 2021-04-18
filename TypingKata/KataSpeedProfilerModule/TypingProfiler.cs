@@ -16,7 +16,7 @@ namespace KataSpeedProfilerModule {
         private readonly ITypingSpeedCalculator _typingSpeedCalculator;
         private readonly ITinyMessengerHub _messengerHub;
         private readonly ILog _log = LogManager.GetLogger(nameof(TypingProfiler));
-
+        private bool _isRunning = false;
         public string[] GeneratedWords { get; private set; }
         public ICursor Cursor { get; }
         public ITypingTimer Timer { get; }
@@ -65,17 +65,19 @@ namespace KataSpeedProfilerModule {
             _log.Warn("Test was aborted");
             _typingSpeedCalculator.ResetCalculator();
             Cursor.ResetCursor();
+            _isRunning = false;
         }
 
         /// <summary>
         /// Stop the test and reset values.
         /// </summary>
         private void StopTest() {
-            _typingSpeedCalculator.ResetCalculator();
-            Cursor.ResetCursor();
-
             //Calculate wpm
             CalculateWpm();
+
+            _typingSpeedCalculator.ResetCalculator();
+            Cursor.ResetCursor();
+            _isRunning = false;
         }
 
         /// <summary>
@@ -125,7 +127,10 @@ namespace KataSpeedProfilerModule {
         /// <param name="key"></param>
         /// <returns></returns>
         public void CharacterInput(char key) {
-            _log.Debug($"Key pressed : {key}");
+
+            if (!_isRunning) return;
+
+                _log.Debug($"Key pressed : {key}");
             if (key == '\b') {
                 HandleBackspace();
                 KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
@@ -170,6 +175,7 @@ namespace KataSpeedProfilerModule {
             Cursor.NextWord(0, _typingSpeedCalculator.GeneratedWords.First.Value);
             Timer.StartTimer();
             _log.Info($"Typing test was started with {Timer.Time.TotalMinutes} minutes, and {GeneratedWords.Length} words.");
+            _isRunning = true;
         }
     }
 }
