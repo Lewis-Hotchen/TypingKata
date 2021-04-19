@@ -54,8 +54,8 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Calculate the WPM.
         /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
+        /// <param name="time">The time of the test.</param>
+        /// <returns>WPM results message.</returns>
         public TestCompleteMessage CalculateWpm(int time) {
             var words = UserWords.GetWordsAsArray();
             var noOfCharsTyped = words.Sum(x => x.CharCount);
@@ -132,6 +132,7 @@ namespace KataSpeedProfilerModule {
             GeneratedWords.Clear();
             RemovedWords.Clear();
             UserWords.ClearStack();
+            ErrorWords.Clear();
         }
 
         /// <summary>

@@ -236,6 +236,8 @@ namespace KataSpeedProfilerModule {
 
                 _dataSerializer.SerializeObject(wpmObjs, path);
                 _jsonLoader.RefreshJsonFiles();
+
+
             }
 
             TextFocus = false;

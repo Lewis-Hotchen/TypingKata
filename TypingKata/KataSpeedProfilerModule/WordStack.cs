@@ -55,6 +55,9 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         public void ClearStack() {
             _words.Clear();
+
+            //We always want 1 word in the stack by default.
+            _words.Push(new UserDefinedWord());
         }
 
         /// <summary>

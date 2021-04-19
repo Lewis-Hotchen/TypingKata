@@ -1,10 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Abstractions;
 using KataIocModule;
 using System.Linq;
+using System.Threading;
 using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
+using log4net;
+using Newtonsoft.Json;
 
 namespace KataDataModule {
 
@@ -17,14 +21,17 @@ namespace KataDataModule {
         private readonly IDataSerializer _serializer;
         private List<(string content, string filename)> _files;
         private readonly IFileSystem _fileSystem;
+        private ILog log = LogManager.GetLogger(nameof(JsonLoader));
 
         /// <summary>
         /// Refresh the json files.
         /// </summary>
         public void RefreshJsonFiles() {
-            _files = _fileSystem.Directory.EnumerateFiles(_directory, "*.json").Select(file => (_fileSystem.File.ReadAllText(file), Path.GetFileName(file))).ToList();
+            _files = _fileSystem.Directory.EnumerateFiles(_directory, "*.json")
+                .Select(file => (_fileSystem.File.ReadAllText(file), Path.GetFileName(file))).ToList();
             _messengerHub.Publish(new JsonUpdatedMessage(this));
         }
+
 
         /// <summary>
         /// Create new JsonLoader.
@@ -60,6 +67,12 @@ namespace KataDataModule {
             }
 
             return default(T);
+        }
+
+        public T LoadTypeFromJsonFile<T>(string file) {
+            var json = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                                        @"\" + file);
+            return JsonConvert.DeserializeObject<T>(json);
         }
     }
 }

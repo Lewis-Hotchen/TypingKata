@@ -17,7 +17,8 @@ namespace KataDataModule {
                 new NamedParameter("directory", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + KataDataModule.Resources.TypingKataData), new NamedParameter("messengerHub", BootStrapper.Resolve<ITinyMessengerHub>()),
                 new NamedParameter("dataSerializer", BootStrapper.Resolve<IDataSerializer>()),
                 new NamedParameter("fileSystem", BootStrapper.Resolve<IFileSystem>()) 
-            }), BootStrapper.Resolve<ITinyMessengerHub>());
+            }), BootStrapper.Resolve<ITinyMessengerHub>(),
+                BootStrapper.Resolve<IDataSerializer>());
         }
     }
 }

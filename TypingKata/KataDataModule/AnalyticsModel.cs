@@ -11,31 +11,30 @@ namespace KataDataModule {
     public class AnalyticsModel : ViewModelBase {
 
         private readonly IJSonLoader _jSonLoader;
-        private FileSystemWatcher watcher;
-        public AnalyticsModel(IJSonLoader jSonLoader, ITinyMessengerHub messengerHub) {
+        private readonly ITinyMessengerHub _messengerHub;
+        private List<WPMJsonObject> _wpmResults;
 
-            watcher = new FileSystemWatcher(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                                            @"\" + Resources.TypingKataData) {
-                    NotifyFilter = NotifyFilters.Attributes
-                               | NotifyFilters.CreationTime
-                               | NotifyFilters.DirectoryName
-                               | NotifyFilters.FileName
-                               | NotifyFilters.LastAccess
-                               | NotifyFilters.LastWrite
-                               | NotifyFilters.Security
-                               | NotifyFilters.Size
-            };
-
-            watcher.Changed += WatcherOnChanged;
+        public AnalyticsModel(IJSonLoader jSonLoader, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer) {
             _jSonLoader = jSonLoader;
+            _messengerHub = messengerHub;
             WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults) ?? new List<WPMJsonObject>();
+
+            if (WpmResults.Count == 0) {
+                dataSerializer.SerializeObject(WpmResults, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
+                                                           @"\" + Resources.TypingKataData + @"\" + Resources.TypingResults);
+            }
+
+            _messengerHub.Subscribe<JsonUpdatedMessage>(JsonUpdatedAction);
         }
 
-        private void WatcherOnChanged(object sender, FileSystemEventArgs e) {
-            _jSonLoader.RefreshJsonFiles();
-            WpmResults = _jSonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults) ?? new List<WPMJsonObject>();
+        private void JsonUpdatedAction(JsonUpdatedMessage obj) {
+
+            WpmResults = _jSonLoader.LoadTypeFromJsonFile<List<WPMJsonObject>>(Resources.TypingResults) ?? new List<WPMJsonObject>();
         }
 
-        public List<WPMJsonObject> WpmResults { get; private set; }
+        public List<WPMJsonObject> WpmResults {
+            get => _wpmResults;
+            private set => Set(ref _wpmResults, value);
+        }
     }
 }

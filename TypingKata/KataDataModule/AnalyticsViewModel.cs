@@ -17,8 +17,8 @@ namespace KataDataModule {
         /// </summary>
         /// <param name="loader">The JsonLoader.</param>
         /// <param name="messenger">The TinyMessengerHub.</param>
-        public AnalyticsViewModel(IJSonLoader loader, ITinyMessengerHub messenger) {
-            _model = new AnalyticsModel(loader, messenger);
+        public AnalyticsViewModel(IJSonLoader loader, ITinyMessengerHub messenger, IDataSerializer serializer) {
+            _model = new AnalyticsModel(loader, messenger, serializer);
             _model.PropertyChanged += ModelOnPropertyChanged;
             WpmResults = new ObservableCollection<WPMJsonObject>(_model.WpmResults);
             MostMisspelledWord();
