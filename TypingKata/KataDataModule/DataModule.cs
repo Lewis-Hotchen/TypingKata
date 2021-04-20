@@ -19,6 +19,12 @@ namespace KataDataModule {
                     .As<IJSonLoader>();
 
             builder.Register(
+                (c, p) => new TypingResultsRepository(BootStrapper.Resolve<IJSonLoader>(),
+                    BootStrapper.Resolve<IDataSerializer>(),
+                    defaultPath)
+            ).As<ITypingResultsRepository>().InstancePerLifetimeScope();
+
+            builder.Register(
                     (c, p) => new SettingsRepository(defaultPath,
                         BootStrapper.Resolve<IDataSerializer>(),
                         BootStrapper.Resolve<IJSonLoader>()))

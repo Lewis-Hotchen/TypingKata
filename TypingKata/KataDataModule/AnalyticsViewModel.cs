@@ -17,11 +17,13 @@ namespace KataDataModule {
         /// </summary>
         /// <param name="loader">The JsonLoader.</param>
         /// <param name="messenger">The TinyMessengerHub.</param>
-        public AnalyticsViewModel(IJSonLoader loader, ITinyMessengerHub messenger, IDataSerializer serializer) {
-            _model = new AnalyticsModel(loader, messenger, serializer);
+        /// <param name="resultsRepository"></param>
+        public AnalyticsViewModel(ITinyMessengerHub messenger, ITypingResultsRepository resultsRepository) {
+            _model = new AnalyticsModel(messenger, resultsRepository);
             _model.PropertyChanged += ModelOnPropertyChanged;
             WpmResults = new ObservableCollection<WPMJsonObject>(_model.WpmResults);
             MostMisspelledWord();
+            
         }
 
         /// <summary>
@@ -65,7 +67,7 @@ namespace KataDataModule {
         /// <summary>
         /// This gets all of the incorrect words in the results, finds the word that is misspelled the most and returns it.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns the most misspelled word.</returns>
         public Tuple<string, int> MostMisspelledWord() {
 
             if (_model.WpmResults == null || _model.WpmResults.Count == 0) {

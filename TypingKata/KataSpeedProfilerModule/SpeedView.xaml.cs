@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using KataDataModule;
 using KataDataModule.Interfaces;
 using KataIocModule;
 using KataSpeedProfilerModule.Interfaces;
@@ -14,9 +15,9 @@ namespace KataSpeedProfilerModule {
             DataContext = new SpeedViewModel(
                 BootStrapper.Resolve<ITypingProfilerFactory>(),
                 BootStrapper.Resolve<ITinyMessengerHub>(),
-                BootStrapper.Resolve<IDataSerializer>(),
                 BootStrapper.Resolve<ISettingsRepository>(),
-                BootStrapper.Resolve<IJSonLoader>());
+                BootStrapper.Resolve<ITypingResultsRepository>()
+                );
         }
     }
 }

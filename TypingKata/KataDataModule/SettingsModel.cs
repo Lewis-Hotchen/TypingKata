@@ -10,9 +10,6 @@ namespace KataDataModule {
     /// Model for the Settings.
     /// </summary>
     public class SettingsModel : ViewModelBase {
-        private readonly ITinyMessengerHub _messengerHub;
-        private readonly IDataSerializer _serializer;
-        private readonly IJSonLoader _loader;
         private readonly ISettingsRepository _settingsRepository;
 
         private bool _isLearnMode;
@@ -21,14 +18,8 @@ namespace KataDataModule {
         /// <summary>
         /// Instantiate new Settings Model.
         /// </summary>
-        /// <param name="serializer"></param>
-        /// <param name="messengerHub"></param>
-        /// <param name="loader"></param>
         /// <param name="settingsRepository"></param>
-        public SettingsModel(IDataSerializer serializer, ITinyMessengerHub messengerHub, IJSonLoader loader, ISettingsRepository settingsRepository) {
-            _messengerHub = messengerHub;
-            _serializer = serializer;
-            _loader = loader;
+        public SettingsModel(ISettingsRepository settingsRepository) {
             _settingsRepository = settingsRepository;
             TryLoadSettings();
         }

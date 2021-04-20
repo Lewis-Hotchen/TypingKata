@@ -16,5 +16,9 @@ namespace TypingKata {
             BootStrapper.Start<RootView>();
         }
 
+        protected override void OnExit(ExitEventArgs e) {
+            
+            base.OnExit(e);
+        }
     }
 }

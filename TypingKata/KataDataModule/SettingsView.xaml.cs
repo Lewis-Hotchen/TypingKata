@@ -9,10 +9,10 @@ namespace KataDataModule {
     public partial class SettingsView : UserControl {
         public SettingsView() {
             InitializeComponent();
-            DataContext = new SettingsViewModel(BootStrapper.Resolve<IDataSerializer>(),
-                BootStrapper.Resolve<IJSonLoader>(),
+            DataContext = new SettingsViewModel(
                 BootStrapper.Resolve<ITinyMessengerHub>(),
-                BootStrapper.Resolve<ISettingsRepository>());
+                BootStrapper.Resolve<ISettingsRepository>(),
+                BootStrapper.Resolve<ITypingResultsRepository>());
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using KataDataModule;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
@@ -24,9 +25,8 @@ namespace KataSpeedProfilerModule {
     /// </summary>
     public class SpeedViewModel : ViewModelBase {
 
-        private readonly IDataSerializer _dataSerializer;
         private readonly ISettingsRepository _settingsRepository;
-        private readonly IJSonLoader _jsonLoader;
+        private readonly ITypingResultsRepository _repository;
         private static readonly ILog Log = LogManager.GetLogger("SpeedProfilerLog");
         private bool _textFocus;
         private double _testTime;
@@ -122,16 +122,17 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Instantiate new SpeedViewModel.
         /// </summary>
-        /// <param name="typingProfilerFactory"></param>
-        /// <param name="messengerHub"></param>
-        /// <param name="dataSerializer"></param>
-        /// <param name="settingsRepository"></param>
-        /// <param name="jsonLoader"></param>
-        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory, ITinyMessengerHub messengerHub, IDataSerializer dataSerializer, ISettingsRepository settingsRepository, IJSonLoader jsonLoader) {
+        /// <param name="typingProfilerFactory">The typing profiler factory.</param>
+        /// <param name="messengerHub">The tiny messenger hub.</param>
+        /// <param name="settingsRepository">The settings repository.</param>
+        /// <param name="typingResultsRepository">The typing results repository.</param>
+        public SpeedViewModel(ITypingProfilerFactory typingProfilerFactory,
+            ITinyMessengerHub messengerHub,
+            ISettingsRepository settingsRepository,
+            ITypingResultsRepository typingResultsRepository) {
             _model = new SpeedModel(typingProfilerFactory);
-            _dataSerializer = dataSerializer;
             _settingsRepository = settingsRepository;
-            _jsonLoader = jsonLoader;
+            _repository = typingResultsRepository;
             StartTestCommand = new RelayCommand(StartTest, StartTestCanExecute);
             Document = new FlowDocument { FontSize = 40, FontFamily = new FontFamily("Segoe UI"), PagePadding = new Thickness(0)};
             IsRunning = false;
@@ -216,28 +217,15 @@ namespace KataSpeedProfilerModule {
             //This method is running on a different thread to the UI thread, which the command must run on.
             //To fix this we get the current Dispatcher (UI Thread) and execute the code on there.
             Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() => StartTestCommand.RaiseCanExecuteChanged()));
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData + @"\" + Resources.TypingKataWpmJson;
 
             if (IsRunning == false) {
-
-                var wpmObjs = _dataSerializer.DeserializeObject<List<WPMJsonObject>>(File.ReadAllText(path));
-
-                if (wpmObjs == null) {
-                    wpmObjs = new List<WPMJsonObject>();
-                }
                 var errorWords = new List<Tuple<string, string>>();
                 foreach (var (item1, item2) in obj.Content.ErrorWords) {
                     errorWords.Add(new Tuple<string, string>(item1.ToString(), item2.ToString()));
                 }
-
                 var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,
                     errorWords, DateTime.Now, _testTime);
-                wpmObjs.Add(newResult);
-
-                _dataSerializer.SerializeObject(wpmObjs, path);
-                _jsonLoader.RefreshJsonFiles();
-
-
+                _repository.AddResult(newResult);
             }
 
             TextFocus = false;
@@ -273,11 +261,17 @@ namespace KataSpeedProfilerModule {
         /// </summary>
         private void CreateProfiler() {
             var profiler = _model.ConstructProfiler(TestTime);
+
+            //Ensures that none of the events are not subscribed before subscribing as this can happen multiple times.
+            profiler.KeyComplete -= ProfilerOnKeyComplete;
+            profiler.Cursor.CharacterChangedEvent -= CursorOnCharacterChangedEvent;
+            profiler.NextWordEvent -= TypingProfilerOnNextWordEvent;
+            profiler.BackspaceCompleteEvent -= TypingProfilerOnBackspaceCompleteEvent;
+
             profiler.KeyComplete += ProfilerOnKeyComplete;
             profiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             profiler.NextWordEvent += TypingProfilerOnNextWordEvent;
             profiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
-
             RaisePropertyChanged(nameof(TypingProfiler));
         }
 

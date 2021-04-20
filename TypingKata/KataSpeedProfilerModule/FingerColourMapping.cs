@@ -52,6 +52,7 @@ namespace KataSpeedProfilerModule {
             {"BACKSPACE", Fingers.RightPinky },
             {"P",Fingers.RightPinky },
             {";", Fingers.RightPinky },
+            {":", Fingers.RightPinky },
             {"/", Fingers.RightPinky },
             {"\\", Fingers.RightPinky },
             {"\'", Fingers.RightPinky },

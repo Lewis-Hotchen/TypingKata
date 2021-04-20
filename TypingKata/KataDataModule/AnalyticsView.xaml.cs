@@ -13,12 +13,8 @@ namespace KataDataModule {
     public partial class AnalyticsView : UserControl {
         public AnalyticsView() {
             InitializeComponent();
-            DataContext = new AnalyticsViewModel(BootStrapper.Resolve<IJSonLoader>(new Parameter[] {
-                new NamedParameter("directory", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + KataDataModule.Resources.TypingKataData), new NamedParameter("messengerHub", BootStrapper.Resolve<ITinyMessengerHub>()),
-                new NamedParameter("dataSerializer", BootStrapper.Resolve<IDataSerializer>()),
-                new NamedParameter("fileSystem", BootStrapper.Resolve<IFileSystem>()) 
-            }), BootStrapper.Resolve<ITinyMessengerHub>(),
-                BootStrapper.Resolve<IDataSerializer>());
+            DataContext = new AnalyticsViewModel(BootStrapper.Resolve<ITinyMessengerHub>(),
+                BootStrapper.Resolve<ITypingResultsRepository>());
         }
     }
 }

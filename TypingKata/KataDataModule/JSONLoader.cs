@@ -4,7 +4,6 @@ using System.IO;
 using System.IO.Abstractions;
 using KataIocModule;
 using System.Linq;
-using System.Threading;
 using KataDataModule.EventArgs;
 using KataDataModule.Interfaces;
 using log4net;
@@ -21,7 +20,7 @@ namespace KataDataModule {
         private readonly IDataSerializer _serializer;
         private List<(string content, string filename)> _files;
         private readonly IFileSystem _fileSystem;
-        private ILog log = LogManager.GetLogger(nameof(JsonLoader));
+        private readonly ILog _log = LogManager.GetLogger(nameof(JsonLoader));
 
         /// <summary>
         /// Refresh the json files.
@@ -69,6 +68,12 @@ namespace KataDataModule {
             return default(T);
         }
 
+        /// <summary>
+        /// Load type from a json file.
+        /// </summary>
+        /// <typeparam name="T">The type to load.</typeparam>
+        /// <param name="file">The file to load.</param>
+        /// <returns></returns>
         public T LoadTypeFromJsonFile<T>(string file) {
             var json = File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                                         @"\" + file);

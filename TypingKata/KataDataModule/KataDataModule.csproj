@@ -107,6 +107,7 @@
     <Compile Include="Interfaces\IJSonLoader.cs" />
     <Compile Include="Interfaces\ISettingsRepository.cs" />
     <Compile Include="Interfaces\SettingUpdatedEventArgs.cs" />
+    <Compile Include="ITypingResultsRepository.cs" />
     <Compile Include="JsonLoader.cs" />
     <Compile Include="EventArgs\JsonUpdatedMessage.cs" />
     <Compile Include="JsonObjects\SettingJsonObject.cs" />
@@ -119,6 +120,7 @@
     </Compile>
     <Compile Include="SettingsViewModel.cs" />
     <Compile Include="JsonObjects\WPMJsonObject.cs" />
+    <Compile Include="TypingResultsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx" />
