@@ -138,7 +138,7 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Generate words for typing test.
         /// </summary>
-        /// <param name="minutes"></param>
+        /// <param name="minutes">The minutes.</param>
         public IEnumerable<string> GenerateWords(int minutes) {
             _generatedTextCount = 200 * minutes;
             var generatedWords = _markovChainGenerator.GetText(_generatedTextCount).Split(' ');

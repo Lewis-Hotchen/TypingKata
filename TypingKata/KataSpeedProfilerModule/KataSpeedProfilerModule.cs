@@ -27,7 +27,7 @@ namespace KataSpeedProfilerModule {
             builder.Register(
                     (c, p) => new SettingsRepository(defaultPath,
                         BootStrapper.Resolve<IDataSerializer>(),
-                        BootStrapper.Resolve<IJSonLoader>()))
+                        BootStrapper.Resolve<IJsonLoader>()))
                 .As<ISettingsRepository>().InstancePerLifetimeScope();
 
             //Parameterless registrations

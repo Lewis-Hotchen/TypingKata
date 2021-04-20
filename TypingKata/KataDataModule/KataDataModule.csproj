@@ -104,7 +104,7 @@
     <Compile Include="DataModule.cs" />
     <Compile Include="DataSerializer.cs" />
     <Compile Include="Interfaces\IDataSerializer.cs" />
-    <Compile Include="Interfaces\IJSonLoader.cs" />
+    <Compile Include="Interfaces\IJsonLoader.cs" />
     <Compile Include="Interfaces\ISettingsRepository.cs" />
     <Compile Include="Interfaces\SettingUpdatedEventArgs.cs" />
     <Compile Include="ITypingResultsRepository.cs" />

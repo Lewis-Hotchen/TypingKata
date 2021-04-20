@@ -22,15 +22,13 @@ namespace SpeedProfilerUnitTests {
 
         [Test]
         public void ShouldRaiseTimeElapsedOnTimerElapsed() {
-            var target = CreateTarget(1);
+            var target = CreateTarget(0.2);
             var called = false;
             target.TimeComplete += (sender, args) => called = true;
 
             target.StartTimer();
             Thread.Sleep(1000);
             Assert.IsTrue(called);
-
-
         }
 
         private TypingTimer CreateTarget(double time) {

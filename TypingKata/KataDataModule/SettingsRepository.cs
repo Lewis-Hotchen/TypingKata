@@ -13,7 +13,7 @@ namespace KataDataModule {
     /// </summary>
     public class SettingsRepository : ISettingsRepository {
         private readonly string _settingsPath;
-        private readonly IJSonLoader _loader;
+        private readonly IJsonLoader _loader;
         private readonly IDataSerializer _serializer;
         private ObservableCollection<SettingJsonObject> _observableSettings;
 
@@ -40,7 +40,7 @@ namespace KataDataModule {
         /// <param name="settingsPath"></param>
         /// <param name="serializer"></param>
         /// <param name="loader"></param>
-        public SettingsRepository(string settingsPath, IDataSerializer serializer, IJSonLoader loader) {
+        public SettingsRepository(string settingsPath, IDataSerializer serializer, IJsonLoader loader) {
             _settingsPath = settingsPath;
             _loader = loader;
             _serializer = serializer;

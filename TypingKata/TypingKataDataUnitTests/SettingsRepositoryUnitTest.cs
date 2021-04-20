@@ -12,12 +12,12 @@ namespace TypingKataDataUnitTests {
 
         private readonly string testPath = "testPath";
         private Mock<IDataSerializer> _dataSerializerMock;
-        private Mock<IJSonLoader> _jsonLoaderMock;
+        private Mock<IJsonLoader> _jsonLoaderMock;
 
         [SetUp]
         public void Setup() {
             _dataSerializerMock = new Mock<IDataSerializer>();
-            _jsonLoaderMock = new Mock<IJSonLoader>();
+            _jsonLoaderMock = new Mock<IJsonLoader>();
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace TypingKataDataUnitTests {
             _jsonLoaderMock.VerifyAll();
         }
 
-        public SettingsRepository CreateTarget(IDataSerializer dataSerializer, IJSonLoader loader) {
+        public SettingsRepository CreateTarget(IDataSerializer dataSerializer, IJsonLoader loader) {
             return new SettingsRepository(testPath, dataSerializer, loader);
         }
 

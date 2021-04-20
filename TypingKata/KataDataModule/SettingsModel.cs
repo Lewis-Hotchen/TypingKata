@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
-using KataIocModule;
 
 namespace KataDataModule {
 

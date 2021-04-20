@@ -14,7 +14,7 @@ namespace KataDataModule {
     /// <summary>
     /// Class for handling serializing and deserializing of json.
     /// </summary>
-    public class JsonLoader : IJSonLoader {
+    public class JsonLoader : IJsonLoader {
         private readonly string _directory;
         private readonly ITinyMessengerHub _messengerHub;
         private readonly IDataSerializer _serializer;

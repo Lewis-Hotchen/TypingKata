@@ -6,7 +6,7 @@ using KataDataModule.JsonObjects;
 namespace KataDataModule {
     public class TypingResultsRepository : ITypingResultsRepository {
 
-        private readonly IJSonLoader _jsonLoader;
+        private readonly IJsonLoader _jsonLoader;
         private readonly IDataSerializer _dataSerializer;
         private readonly string _path;
         private List<WPMJsonObject> _results;
@@ -23,15 +23,14 @@ namespace KataDataModule {
         /// <param name="jsonLoader">The JsonLoader.</param>
         /// <param name="dataSerializer">The data serializer.</param>
         /// <param name="path">The file path.</param>
-        public TypingResultsRepository(IJSonLoader jsonLoader, IDataSerializer dataSerializer, string path) {
+        public TypingResultsRepository(IJsonLoader jsonLoader, IDataSerializer dataSerializer, string path) {
             _jsonLoader = jsonLoader;
             _dataSerializer = dataSerializer;
             _path = path;
             _results = _jsonLoader.LoadTypeFromJson<List<WPMJsonObject>>(Resources.TypingResults) ?? new List<WPMJsonObject>();
 
             if (_results.Count == 0) {
-                dataSerializer.SerializeObject(_results, Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
-                                                           @"\" + Resources.TypingKataData + @"\" + Resources.TypingResults);
+                WriteOutResults();
             }
         }
 

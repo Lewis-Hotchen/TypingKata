@@ -16,10 +16,10 @@ namespace KataDataModule {
                     BootStrapper.Resolve<ITinyMessengerHub>(),
                     BootStrapper.Resolve<IDataSerializer>(),
                     BootStrapper.Resolve<IFileSystem>()))
-                    .As<IJSonLoader>();
+                    .As<IJsonLoader>();
 
             builder.Register(
-                (c, p) => new TypingResultsRepository(BootStrapper.Resolve<IJSonLoader>(),
+                (c, p) => new TypingResultsRepository(BootStrapper.Resolve<IJsonLoader>(),
                     BootStrapper.Resolve<IDataSerializer>(),
                     defaultPath)
             ).As<ITypingResultsRepository>().InstancePerLifetimeScope();
@@ -27,7 +27,7 @@ namespace KataDataModule {
             builder.Register(
                     (c, p) => new SettingsRepository(defaultPath,
                         BootStrapper.Resolve<IDataSerializer>(),
-                        BootStrapper.Resolve<IJSonLoader>()))
+                        BootStrapper.Resolve<IJsonLoader>()))
                 .As<ISettingsRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<TinyMessengerHub>().As<ITinyMessengerHub>().InstancePerLifetimeScope();

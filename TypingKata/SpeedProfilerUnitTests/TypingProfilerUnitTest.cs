@@ -105,7 +105,7 @@ namespace TypingKataSpeedProfilerUnitTests {
                 isCorrect = args.IsCorrect;
                 correctChar = args.InputKey;
             };
-
+            target.Start();
             target.CharacterInput(input);
             _cursorMock.Verify(x => x.CurrentWord);
             _cursorMock.Verify(x => x.NextChar(1));
@@ -116,15 +116,18 @@ namespace TypingKataSpeedProfilerUnitTests {
         [Test]
         public void ShouldCommitLetterCorrectlyWhenBackspace() {
             var isCorrect = false;
-            var correctChar = ' ';
-
+            var correctChar = '\b';
+            _cursorMock.Setup(x => x.CurrentWord).Returns(_mockStackWords[0].Object);
+            _wordStackMock.Setup(x => x.Top).Returns(_mockStackWords[0].Object);
             var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
                 _mockTinyMessengerHub.Object);
             target.KeyComplete += (sender, args) => {
                 isCorrect = args.IsCorrect;
                 correctChar = args.InputKey;
             };
+            target.Start();
 
+            target.CharacterInput('t');
             target.CharacterInput('\b');
 
             Assert.AreEqual('\b', correctChar);
@@ -137,13 +140,11 @@ namespace TypingKataSpeedProfilerUnitTests {
             _cursorMock.Setup(x => x.CharPos).Returns(0);
             var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
                 _mockTinyMessengerHub.Object);
-
+            target.Start();
             target.CharacterInput('\b');
 
             _cursorMock.Verify(x => x.WordPos);
             _cursorMock.Verify(x => x.CharPos);
-            _calculatorMock.VerifyNoOtherCalls();
-            _cursorMock.VerifyNoOtherCalls();
         }
 
         private TypingProfiler CreateTarget(ICursor cursor, ITypingSpeedCalculator calculator, ITypingTimer timer, ITinyMessengerHub messengerHub) {

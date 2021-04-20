@@ -16,7 +16,7 @@ namespace KataSpeedProfilerModule {
         private readonly ITypingSpeedCalculator _typingSpeedCalculator;
         private readonly ITinyMessengerHub _messengerHub;
         private readonly ILog _log = LogManager.GetLogger(nameof(TypingProfiler));
-        private bool _isRunning = false;
+        private bool _isRunning;
         public string[] GeneratedWords { get; private set; }
         public ICursor Cursor { get; }
         public ITypingTimer Timer { get; }
