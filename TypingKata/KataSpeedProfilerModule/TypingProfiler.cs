@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Security.RightsManagement;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
@@ -22,7 +21,6 @@ namespace KataSpeedProfilerModule {
         public ITypingTimer Timer { get; }
         public event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         public event EventHandler<WordChangedEventArgs> NextWordEvent;
-        public event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
 
         /// <summary>
         /// Instantiate new TypingProfiler.
@@ -89,30 +87,6 @@ namespace KataSpeedProfilerModule {
         }
 
         /// <summary>
-        /// Handle backspace input.
-        /// </summary>
-        private void HandleBackspace() {
-            if (Cursor.WordPos == 0 && Cursor.CharPos == 0) return;
-
-            var userWord = _typingSpeedCalculator.UserWords.Top;
-
-            if (userWord.CharCount == 0) {
-                //go back a word
-                _typingSpeedCalculator.HandleChangeWordOnBackspace();
-                Cursor.NextWord(-1, _typingSpeedCalculator.GeneratedWords.First.Value);
-                Cursor.NextChar(Cursor.CurrentWord.CharCount - 1);
-                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(' ', CharacterStatus.Correct));
-
-            } else if (userWord.CharCount > 0) {
-                //go back a character
-                var status = _typingSpeedCalculator.HandleBackspace();
-                Cursor.NextChar(-1);
-                var c = Cursor.CurrentWord[Cursor.CharPos].CurrentCharacter[0];
-                BackspaceCompleteEvent?.Invoke(this, new BackspaceCompleteEvent(c, status));
-            }
-        }
-
-        /// <summary>
         /// Handle spacebar input.
         /// </summary>
         private void ConfirmSpace() {
@@ -124,18 +98,13 @@ namespace KataSpeedProfilerModule {
         /// <summary>
         /// Input a character.
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="key">The input key.</param>
         /// <returns></returns>
         public void CharacterInput(char key) {
 
             if (!_isRunning) return;
 
-                _log.Debug($"Key pressed : {key}");
-            if (key == '\b') {
-                HandleBackspace();
-                KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(true, key));
-                return;
-            }
+            _log.Debug($"Key pressed : {key}");
 
             if (key == ' ') {
                 if (_typingSpeedCalculator.UserWords.Top.CharCount != 0) {
@@ -159,7 +128,6 @@ namespace KataSpeedProfilerModule {
             }
 
             _typingSpeedCalculator.UserWords.Top.Chars.Add(new CharacterDescriptor(new string(new[] { key }), CharacterStatus.Incorrect));
-            Cursor.NextChar(1);
             KeyComplete?.Invoke(this, new KeyInputEventHandlerArgs(false, key));
             _log.Debug($"Key pressed: {key}. Wasn't the correct key. Correct key: {casedChar}");
         }

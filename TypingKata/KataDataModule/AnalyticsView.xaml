@@ -11,7 +11,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Expander Grid.Row="0" Header="WPM Results" Foreground="AliceBlue">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer CanContentScroll="True">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />

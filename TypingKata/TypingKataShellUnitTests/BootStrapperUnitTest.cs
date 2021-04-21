@@ -1,6 +1,4 @@
-using System;
 using System.Threading;
-using System.Windows;
 using Autofac;
 using KataIocModule;
 using KataShellUnitTests.HelperClasses;
@@ -8,7 +6,7 @@ using Moq;
 using NUnit.Framework;
 using TypingKata;
 
-namespace KataShellUnitTests {
+namespace TypingKataShellUnitTests {
 
     [TestFixture]
     [Apartment(ApartmentState.STA)]

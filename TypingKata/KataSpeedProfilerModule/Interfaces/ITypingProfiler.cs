@@ -36,6 +36,5 @@ namespace KataSpeedProfilerModule.Interfaces {
         void AbortTest();
         event EventHandler<KeyInputEventHandlerArgs> KeyComplete;
         event EventHandler<WordChangedEventArgs> NextWordEvent;
-        event EventHandler<BackspaceCompleteEvent> BackspaceCompleteEvent;
     }
 }

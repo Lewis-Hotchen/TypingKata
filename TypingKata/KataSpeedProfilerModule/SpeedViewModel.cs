@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -15,7 +14,6 @@ using KataDataModule.JsonObjects;
 using KataIocModule;
 using KataSpeedProfilerModule.EventArgs;
 using KataSpeedProfilerModule.Interfaces;
-using KataSpeedProfilerModule.Properties;
 using log4net;
 
 namespace KataSpeedProfilerModule {
@@ -266,47 +264,11 @@ namespace KataSpeedProfilerModule {
             profiler.KeyComplete -= ProfilerOnKeyComplete;
             profiler.Cursor.CharacterChangedEvent -= CursorOnCharacterChangedEvent;
             profiler.NextWordEvent -= TypingProfilerOnNextWordEvent;
-            profiler.BackspaceCompleteEvent -= TypingProfilerOnBackspaceCompleteEvent;
 
             profiler.KeyComplete += ProfilerOnKeyComplete;
             profiler.Cursor.CharacterChangedEvent += CursorOnCharacterChangedEvent;
             profiler.NextWordEvent += TypingProfilerOnNextWordEvent;
-            profiler.BackspaceCompleteEvent += TypingProfilerOnBackspaceCompleteEvent;
             RaisePropertyChanged(nameof(TypingProfiler));
-        }
-
-        /// <summary>
-        /// Handle the backspace.
-        /// </summary>
-        /// <param name="sender">The sender of the event.</param>
-        /// <param name="e">The event arguments.</param>
-        private void TypingProfilerOnBackspaceCompleteEvent(object sender, BackspaceCompleteEvent e) {
-            BackspaceDocumentText();
-            if (e.IsError == CharacterStatus.Correct) {
-                Words = Words.Insert(0, e.AddedChar.ToString());
-            }
-        }
-
-        /// <summary>
-        /// Get the inline of the FlowDocument, and remove the last character from it.
-        /// </summary>
-        private void BackspaceDocumentText() {
-            if (!IsRunning) return;
-            var para = (Paragraph) Document.Blocks.FirstOrDefault(p => p.GetType() == typeof(Paragraph));
-            var inline = (Run) para?.Inlines.LastInline;
-
-            if (inline != null) {
-                if (inline.Text.Length > 0) {
-                    inline.Text = inline.Text.Remove(inline.Text.Length - 1);
-                    return;
-                }
-            }
-
-            if (inline?.Text.Length == 0) {
-                para.Inlines.Remove(inline);
-            }
-
-            RaisePropertyChanged(nameof(Document));
         }
 
         /// <summary>
@@ -391,7 +353,7 @@ namespace KataSpeedProfilerModule {
             
             var status = isKeyCorrect ? CharacterStatus.Correct : CharacterStatus.Incorrect;
 
-            if (e.InputKey == ' ' || e.InputKey == '\b') {
+            if (e.InputKey == ' ') {
                 RemovedWords += e.InputKey;
                 return;
             }

@@ -16,7 +16,7 @@
         
 
         <StackPanel Grid.Row="0">
-            <TextBlock FontSize="80" Text="What is touch typing?" />
+            <TextBlock FontSize="80" Text="What is Touch Typing?" />
 
             <Separator Width="1000" HorizontalAlignment="Left" />
             <TextBlock TextWrapping="Wrap" FontSize="20">
