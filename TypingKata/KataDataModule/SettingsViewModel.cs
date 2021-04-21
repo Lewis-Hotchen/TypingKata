@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
 using KataIocModule;
+using Ookii.Dialogs.Wpf;
 
 namespace KataDataModule {
 
@@ -42,9 +43,7 @@ namespace KataDataModule {
         /// </summary>
         public bool IsLearnModeOn {
             get => _model.IsLearnMode;
-            set  {
-                _model.IsLearnMode = value;
-            } 
+            set => _model.IsLearnMode = value;
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using KataDataModule.Interfaces;
 using KataDataModule.JsonObjects;
@@ -12,7 +13,7 @@ namespace KataDataModule {
         private readonly ISettingsRepository _settingsRepository;
 
         private bool _isLearnMode;
-
+        public string DefaultFilePath => Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\" + Resources.TypingKataData;
 
         /// <summary>
         /// Instantiate new Settings Model.
@@ -28,10 +29,12 @@ namespace KataDataModule {
         /// </summary>
         private void TryLoadSettings() {
             foreach (var settingJsonObject in _settingsRepository.Settings) {
+                switch (settingJsonObject.Name) {
                     //As more settings are added, add here to load them.
-                if (settingJsonObject.Name == nameof(IsLearnMode)) {
-                    _isLearnMode = (bool) settingJsonObject.Data;
-                    RaisePropertyChanged(nameof(IsLearnMode));
+                    case nameof(IsLearnMode):
+                        _isLearnMode = (bool) settingJsonObject.Data;
+                        RaisePropertyChanged(nameof(IsLearnMode));
+                        break;
                 }
             }
         }

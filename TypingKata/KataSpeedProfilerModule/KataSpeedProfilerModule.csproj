@@ -122,8 +122,8 @@
     <Compile Include="InverseBooleanConverter.cs" />
     <Compile Include="Interfaces\ITypingSpeedCalculator.cs" />
     <Compile Include="KataSpeedProfilerModule.cs" />
-    <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="EventArgs\KeyInputEventHandlerArgs.cs" />
+    <Compile Include="KeyboardListenerBehaviour.cs" />
     <Compile Include="KeyConverter.cs" />
     <Compile Include="KeyToCharacterConverter.cs" />
     <Compile Include="MarkovChainGenerator.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Data;
 using Autofac;
 using KataDataModule;

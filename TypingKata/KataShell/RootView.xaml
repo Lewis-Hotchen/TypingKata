@@ -8,6 +8,7 @@
         xmlns:kataDataModule="clr-namespace:KataDataModule;assembly=KataDataModule"
         xmlns:typingKata="clr-namespace:TypingKata"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:kataUx="clr-namespace:KataUX;assembly=KataUX"
         mc:Ignorable="d"
         Title="Typing Kata" 
         WindowState="Maximized"
@@ -55,9 +56,9 @@
         </StackPanel>
 
         <Grid >
-            <TabControl BorderBrush="#303030" BorderThickness="0, 7, 0, 0" Background="#272727">
+            <TabControl BorderBrush="#F08080" Opacity="50" BorderThickness="0, 1, 0, 0" Background="#272727">
                 <i:Interaction.Behaviors>
-                    <typingKata:TabClickedBehaviour  />
+                    <kataUx:TabClickedBehaviour  />
                 </i:Interaction.Behaviors>
                 <TabControl.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -89,17 +90,101 @@
                     <Style TargetType="{x:Type TabPanel}">
                         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
                     </Style>
+                    <DataTemplate x:Key="HeaderTemplate">
+                        <HeaderedContentControl>
+                            <Border>
+                                <Border.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" 
+                                                         Value="True">
+                                                <Setter Property="Border.BorderBrush" Value="#FF8080" />
+                                                <Setter Property="Border.BorderThickness" Value="0, 0, 0, 2" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock Text="{x:Static resx:Resources.TabItemLearning}" />
+                            </Border>
+                        </HeaderedContentControl>
+                    </DataTemplate>
+                    
+
                 </TabControl.Resources>
-                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemLearning}">
+                <TabItem Style="{StaticResource TabItemStyle}">
+                    <TabItem.Header>
+                        <Border>
+                            <Border.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" 
+                                                     Value="True">
+                                            <Setter Property="Border.BorderBrush" Value="#FF8080" />
+                                            <Setter Property="Border.BorderThickness" Value="0, 0, 0, 2" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{x:Static resx:Resources.TabItemLearning}" />
+                        </Border>
+                    </TabItem.Header>
                     <typingKata:TouchTypingInfo />
                 </TabItem>
-                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSpeedTest}">
+                <TabItem Style="{StaticResource TabItemStyle}">
+                    <TabItem.Header>
+                        <Border>
+                            <Border.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" 
+                                                     Value="True">
+                                            <Setter Property="Border.BorderBrush" Value="#FF8080" />
+                                            <Setter Property="Border.BorderThickness" Value="0, 0, 0, 2" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{x:Static resx:Resources.TabItemSpeedTest}" />
+                        </Border>
+                    </TabItem.Header>
                     <kataSpeedProfilerModule:SpeedView />
                 </TabItem>
-                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemSettings}">
+                <TabItem Style="{StaticResource TabItemStyle}">
+                    <TabItem.Header>
+                        <Border>
+                            <Border.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" 
+                                                     Value="True">
+                                            <Setter Property="Border.BorderBrush" Value="#FF8080" />
+                                            <Setter Property="Border.BorderThickness" Value="0, 0, 0, 2" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{x:Static resx:Resources.TabItemSettings}" />
+                        </Border>
+                    </TabItem.Header>
                     <kataDataModule:SettingsView />
                 </TabItem>
-                <TabItem Style="{StaticResource TabItemStyle}" Header="{x:Static resx:Resources.TabItemAnalytics}">
+                <TabItem Style="{StaticResource TabItemStyle}">
+                    <TabItem.Header>
+                        <Border>
+                            <Border.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabItem}}, Path=IsSelected}" 
+                                                     Value="True">
+                                            <Setter Property="Border.BorderBrush" Value="#FF8080" />
+                                            <Setter Property="Border.BorderThickness" Value="0, 0, 0, 2" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <TextBlock Text="{x:Static resx:Resources.TabItemAnalytics}" />
+                        </Border>
+                    </TabItem.Header>
                     <kataDataModule:AnalyticsView />
                 </TabItem>
             </TabControl>

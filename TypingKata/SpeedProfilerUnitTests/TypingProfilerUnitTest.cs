@@ -113,40 +113,6 @@ namespace TypingKataSpeedProfilerUnitTests {
             Assert.AreEqual(true, isCorrect);
         }
 
-        [Test]
-        public void ShouldCommitLetterCorrectlyWhenBackspace() {
-            var isCorrect = false;
-            var correctChar = '\b';
-            _cursorMock.Setup(x => x.CurrentWord).Returns(_mockStackWords[0].Object);
-            _wordStackMock.Setup(x => x.Top).Returns(_mockStackWords[0].Object);
-            var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
-                _mockTinyMessengerHub.Object);
-            target.KeyComplete += (sender, args) => {
-                isCorrect = args.IsCorrect;
-                correctChar = args.InputKey;
-            };
-            target.Start();
-
-            target.CharacterInput('t');
-            target.CharacterInput('\b');
-
-            Assert.AreEqual('\b', correctChar);
-            Assert.AreEqual(true, isCorrect);
-        }
-
-        [Test]
-        public void ShouldReturnWhenBackspacingWhenCursorAt0() {
-            _cursorMock.Setup(x => x.WordPos).Returns(0);
-            _cursorMock.Setup(x => x.CharPos).Returns(0);
-            var target = CreateTarget(_cursorMock.Object, _calculatorMock.Object, _timerMock.Object,
-                _mockTinyMessengerHub.Object);
-            target.Start();
-            target.CharacterInput('\b');
-
-            _cursorMock.Verify(x => x.WordPos);
-            _cursorMock.Verify(x => x.CharPos);
-        }
-
         private TypingProfiler CreateTarget(ICursor cursor, ITypingSpeedCalculator calculator, ITypingTimer timer, ITinyMessengerHub messengerHub) {
             return new TypingProfiler(cursor, calculator, timer, messengerHub);
         }

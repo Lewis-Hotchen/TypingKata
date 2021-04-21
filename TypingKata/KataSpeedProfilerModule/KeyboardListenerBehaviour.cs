@@ -11,7 +11,7 @@ namespace KataSpeedProfilerModule {
 
         public ITypingProfiler TypingProfiler {
             get => (ITypingProfiler) GetValue(TypingProfilerProperty);
-            set => SetValue(TypingProfilerProperty, value);
+            set => SetValue(TypingProfilerProperty, (object) value);
         }
 
         protected override void OnAttached() {
@@ -32,7 +32,7 @@ namespace KataSpeedProfilerModule {
             }
 
             var c = KeyConverter.GetCharFromKey(e.Key);
-            TypingProfiler.CharacterInput(c);
+            TypingProfiler?.CharacterInput(c);
             e.Handled = true;
         }
     }

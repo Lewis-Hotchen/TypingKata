@@ -156,7 +156,8 @@
       "KataDataModule/1.0.0": {
         "type": "project",
         "dependencies": {
-          "KataIocModule": "1.0.0"
+          "KataIocModule": "1.0.0",
+          "KataUX": "1.0.0"
         },
         "compile": {
           "bin/placeholder/KataDataModule.dll": {}
@@ -185,6 +186,18 @@
         },
         "runtime": {
           "bin/placeholder/KataSpeedProfilerModule.dll": {}
+        }
+      },
+      "KataUX/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "KataIocModule": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/KataUX.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/KataUX.dll": {}
         }
       }
     }
@@ -509,6 +522,11 @@
       "type": "project",
       "path": "../KataSpeedProfilerModule/KataSpeedProfilerModule.csproj",
       "msbuildProject": "../KataSpeedProfilerModule/KataSpeedProfilerModule.csproj"
+    },
+    "KataUX/1.0.0": {
+      "type": "project",
+      "path": "../KataUX/KataUX.csproj",
+      "msbuildProject": "../KataUX/KataUX.csproj"
     }
   },
   "projectFileDependencyGroups": {

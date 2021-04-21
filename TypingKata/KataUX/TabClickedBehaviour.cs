@@ -2,7 +2,8 @@
 using System.Windows.Interactivity;
 using KataIocModule;
 
-namespace TypingKata {
+namespace KataUX {
+
     public class TabClickedBehaviour : Behavior<TabControl> {
 
         protected override void OnAttached() {

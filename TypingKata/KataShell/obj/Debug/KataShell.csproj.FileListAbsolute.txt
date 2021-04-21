@@ -247,3 +247,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\KataShell.csproj.CopyComplete
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata.exe
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\obj\Debug\TypingKata.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataUX.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataUX.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataShell\bin\Debug\KataUX.dll.config

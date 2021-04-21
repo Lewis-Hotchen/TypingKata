@@ -42,7 +42,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\AnalyticsView.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\SettingsView.g.cs
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule_MarkupCompile.cache
-X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule_MarkupCompile.lref
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\SettingsView.baml
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule.g.resources
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule.Resources.resources
@@ -52,3 +51,9 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule.dll
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\obj\Debug\KataDataModule.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\log4net.config
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\KataUX.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\KataUX.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\KataUX.dll.config
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\Ookii.Dialogs.Wpf.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\Ookii.Dialogs.Wpf.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\KataDataModule\bin\Debug\Ookii.Dialogs.Wpf.xml

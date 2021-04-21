@@ -61,3 +61,6 @@ X:\Education\Software Engineering Degree\Final Year\Project\project files\Typing
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\KataDataModule.dll.config
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\MarkVSharp.pdb
 X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\Newtonsoft.Json.xml
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\KataUX.dll
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\KataUX.pdb
+X:\Education\Software Engineering Degree\Final Year\Project\project files\TypingKata\TypingKataShellUnitTests\bin\Debug\KataUX.dll.config

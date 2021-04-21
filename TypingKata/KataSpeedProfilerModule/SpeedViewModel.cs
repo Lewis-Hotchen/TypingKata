@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -370,7 +372,7 @@ namespace KataSpeedProfilerModule {
                     }
                     break;
                 case CharacterStatus.Incorrect:
-                    tr.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Red);
+                    tr.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.LightCoral);
                     break;
                 case CharacterStatus.Unmodified:
                     break;

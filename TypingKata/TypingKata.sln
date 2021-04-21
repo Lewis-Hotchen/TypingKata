@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypingKataDataUnitTests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypingKataShellUnitTests", "TypingKataShellUnitTests\TypingKataShellUnitTests.csproj", "{5F583C76-5234-4B36-8F69-94D01DAFCC70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KataUX", "KataUX\KataUX.csproj", "{50AFFCE0-68C8-4F03-850A-602626FC2EBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F583C76-5234-4B36-8F69-94D01DAFCC70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50AFFCE0-68C8-4F03-850A-602626FC2EBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50AFFCE0-68C8-4F03-850A-602626FC2EBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50AFFCE0-68C8-4F03-850A-602626FC2EBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50AFFCE0-68C8-4F03-850A-602626FC2EBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

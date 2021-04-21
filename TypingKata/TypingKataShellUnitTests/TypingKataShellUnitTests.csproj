@@ -110,6 +110,10 @@
       <Project>{4e1515e8-5e6f-4891-b21a-c8d10e2251bc}</Project>
       <Name>KataSpeedProfilerModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KataUX\KataUX.csproj">
+      <Project>{50affce0-68c8-4f03-850a-602626fc2ebf}</Project>
+      <Name>KataUX</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
