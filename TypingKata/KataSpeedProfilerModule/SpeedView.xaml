@@ -32,10 +32,11 @@
 
             <FlowDocumentScrollViewer FontSize="0.1"
                                       Padding="0" 
-                                      VerticalScrollBarVisibility="Visible"
+                                      VerticalScrollBarVisibility="Hidden"
+                                      
                                       Focusable="True" 
                                       kataSpeedProfilerModule:FocusExtension.IsFocused="{Binding TextFocus}" 
-                                      Grid.Column="0" Grid.ColumnSpan="2"
+                                      Grid.Column="0" Grid.ColumnSpan="3"
                                       Grid.Row="0" Background="#272727"
                                       Foreground="AliceBlue" Document="{Binding Document}">
                 <i:Interaction.Behaviors>

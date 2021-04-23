@@ -49,7 +49,7 @@ namespace KataSpeedProfilerModule {
                 }
             }
 
-            return null; // could also return string.Empty
+            return null;
         }
     }
 }

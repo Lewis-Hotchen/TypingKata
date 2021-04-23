@@ -112,8 +112,8 @@
     <Compile Include="Interfaces\IDataSerializer.cs" />
     <Compile Include="Interfaces\IJsonLoader.cs" />
     <Compile Include="Interfaces\ISettingsRepository.cs" />
-    <Compile Include="Interfaces\SettingUpdatedEventArgs.cs" />
-    <Compile Include="ITypingResultsRepository.cs" />
+    <Compile Include="EventArgs\SettingUpdatedEventArgs.cs" />
+    <Compile Include="Interfaces\ITypingResultsRepository.cs" />
     <Compile Include="JsonLoader.cs" />
     <Compile Include="EventArgs\JsonUpdatedMessage.cs" />
     <Compile Include="JsonObjects\SettingJsonObject.cs" />

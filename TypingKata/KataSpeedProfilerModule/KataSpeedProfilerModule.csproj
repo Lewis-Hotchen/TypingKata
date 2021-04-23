@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EnumExtensions.cs" />
-    <Compile Include="EventArgs\BackspaceCompleteEvent.cs" />
     <Compile Include="CharacterStatus.cs" />
     <Compile Include="EventArgs\CharacterChangedEventArgs.cs" />
     <Compile Include="Cursor.cs" />
