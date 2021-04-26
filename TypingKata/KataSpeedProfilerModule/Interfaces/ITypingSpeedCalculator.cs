@@ -10,8 +10,6 @@ namespace KataSpeedProfilerModule.Interfaces {
         void ResetCalculator();
         TestCompleteMessage CalculateWpm(int time);
         IEnumerable<string> GenerateWords(int minutes);
-        void HandleChangeWordOnBackspace();
-        CharacterStatus HandleBackspace();
 
         List<(IWord, IWord)> ErrorWords { get; }
         LinkedList<IWord> GeneratedWords { get; }

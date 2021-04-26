@@ -63,7 +63,7 @@ namespace KataSpeedProfilerModule {
             var wpm = grossWpm - (ErrorWords.Count / time);
             var errorRate = ((double)UserWords.Count / 100) * ErrorWords.Count;
 
-            return new TestCompleteMessage(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm));
+            return new TestCompleteMessage(this, new TestCompleteEventArgs(errorRate, ErrorWords, wpm, time));
         }
 
         /// <summary>

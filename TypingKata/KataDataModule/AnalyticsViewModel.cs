@@ -36,6 +36,9 @@ namespace KataDataModule {
             RaisePropertyChanged(nameof(WpmResults));
             RaisePropertyChanged(nameof(WpmAverage));
             RaisePropertyChanged(nameof(MostMisspelled));
+            RaisePropertyChanged(nameof(TotalTimeSpent));
+            RaisePropertyChanged(nameof(TotalNumberOfTests));
+            RaisePropertyChanged(nameof(AverageErrorRate));
         }
 
         /// <summary>
@@ -62,6 +65,24 @@ namespace KataDataModule {
                     return Math.Round(_model.WpmResults.Average(x => x.Wpm), 2);
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Get's the total time spent.
+        /// </summary>
+        public int TotalTimeSpent => _model.WpmResults.Any() ? Convert.ToInt32(_model.WpmResults.Sum(x => x.Time)) : 0;
+
+        /// <summary>
+        /// Gets the total number of tests done.
+        /// </summary>
+        public int TotalNumberOfTests => _model.WpmResults.Any() ? _model.WpmResults.Count : 0;
+
+        public double AverageErrorRate => Math.Round(AverageErrorRateCalculation(), 2);
+
+        private double AverageErrorRateCalculation() {
+            if (!_model.WpmResults.Any()) return 0;
+
+            return _model.WpmResults.Average(x => x.ErrorRate);
         }
 
         /// <summary>

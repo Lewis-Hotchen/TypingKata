@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -224,7 +222,7 @@ namespace KataSpeedProfilerModule {
                     errorWords.Add(new Tuple<string, string>(item1.ToString(), item2.ToString()));
                 }
                 var newResult = new WPMJsonObject(obj.Content.Wpm, obj.Content.ErrorWords.Count, obj.Content.ErrorRate,
-                    errorWords, DateTime.Now, _testTime);
+                    errorWords, DateTime.Now, obj.Content.Time);
                 _repository.AddResult(newResult);
             }
 

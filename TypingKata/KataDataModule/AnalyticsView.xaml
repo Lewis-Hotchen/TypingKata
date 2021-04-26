@@ -181,47 +181,7 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-
-                                <!--<ItemsControl Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" ItemsSource="{Binding WpmResults}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Foreground="AliceBlue" Content="{Binding Wpm}" />
-                                                <Label Grid.Column="1" Foreground="AliceBlue" Content="{Binding ErrorRate, StringFormat={}{0:#.##}}" />
-                                                <Label Grid.Column="2" Foreground="AliceBlue" Content="{Binding Date}" />
-                                                <Expander Grid.Column="3" Foreground="AliceBlue" Header="{Binding IncorrectWords.Count, StringFormat='Error Words {0}'}" Name="ErrorWordsExpander" Background="#272727" IsExpanded="False"
-                                              ExpandDirection="Down">
-                                                    <ListBox Background="#272727" ItemsSource="{Binding IncorrectWords}">
-                                                        <ListBox.ItemContainerStyle>
-                                                            <Style TargetType="ListBoxItem">
-                                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                                            </Style>
-                                                        </ListBox.ItemContainerStyle>
-                                                        <ListBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Grid>
-                                                                    <Grid.ColumnDefinitions>
-                                                                        <ColumnDefinition />
-                                                                        <ColumnDefinition />
-                                                                    </Grid.ColumnDefinitions>
-                                                                    <Label Grid.Column="0" Content="{Binding Item1}" Foreground="Red" />
-                                                                    <Label Grid.Column="1" Content="{Binding Item2}" Foreground="GreenYellow" />
-                                                                </Grid>
-                                                            </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                    </ListBox>
-                                                </Expander>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>-->
-                            </Grid>
+                </Grid>
             </TabItem>
             <TabItem Style="{StaticResource TabItemStyle}">
                 <TabItem.Header>
@@ -247,18 +207,31 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                             <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Grid.Row="0" Foreground="AliceBlue" Content="Most Misspelled Word: " Grid.Column="0" />
-                        <Label Grid.Row="0" Foreground="AliceBlue" Content="{Binding MostMisspelled}" HorizontalContentAlignment="Left" Grid.Column="1" />
+                        <Label Grid.Row="0" Foreground="AliceBlue" Content="Most Misspelled Word: " Grid.Column="0" Grid.ColumnSpan="2" />
+                        <Label Grid.Row="0" Foreground="AliceBlue" Content="{Binding MostMisspelled}" HorizontalContentAlignment="Left" Grid.Column="2" />
 
-                        <Label Grid.Row="1" Foreground="AliceBlue" Grid.Column="0" Content="Average WPM: " />
-                        <Label Grid.Row="1" Foreground="AliceBlue" Grid.Column="1" Content="{Binding WpmAverage, StringFormat=F2}" />
-                    </Grid>
+                        <Label Grid.Row="1" Foreground="AliceBlue" Grid.Column="0" Grid.ColumnSpan="2" Content="Average WPM: " />
+                        <Label Grid.Row="1" Foreground="AliceBlue" Grid.Column="2" Content="{Binding WpmAverage, StringFormat=F2}" />
+
+                        <Label Grid.Row="2" Foreground="AliceBlue" Grid.Column="0" Grid.ColumnSpan="2" Content="Total Number of Tests Completed: " />
+                        <Label Grid.Row="2" Foreground="AliceBlue" Grid.Column="2" Content="{Binding TotalNumberOfTests}" />
+
+                        <Label Grid.Row="3" Foreground="AliceBlue" Grid.Column="0" Grid.ColumnSpan="2" Content="Average Error Rate: " />
+                        <Label Grid.Row="3" Foreground="AliceBlue" Grid.Column="2" Content="{Binding AverageErrorRate}" />
+
+                        <Label Grid.Row="4" Foreground="AliceBlue" Grid.Column="0" Grid.ColumnSpan="2" Content="Total Time Spent (minutes): " />
+                        <Label Grid.Row="4" Foreground="AliceBlue" Grid.Column="2" Content="{Binding TotalTimeSpent}" />
+                </Grid>
                 </TabItem>
         </TabControl>
     </Grid>
